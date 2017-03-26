@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CarRepairReport\CarRepairReport.csproj">
+    <ProjectReference Include="..\CarRepairReport\CarRepairReport.Web.csproj">
       <Project>{7E2929D1-A7D9-4FA4-8B65-72BD2E785FB1}</Project>
-      <Name>CarRepairReport</Name>
+      <Name>CarRepairReport.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
