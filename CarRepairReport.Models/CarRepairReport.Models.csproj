@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppModels\Language.cs" />
+    <Compile Include="BaseModel.cs" />
+    <Compile Include="IBaseModel.cs" />
     <Compile Include="MVC_Models\ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="MVC_Models\ApplicationUser.cs" />
     <Compile Include="MVC_Models\ViewModels\Account\ExternalLoginListViewModel.cs" />
@@ -92,7 +95,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Models\" />
     <Folder Include="BindingModels\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

@@ -1,6 +1,4 @@
-﻿
-
-namespace CarRepairReport
+﻿namespace CarRepairReport
 {
     using System;
     using Microsoft.AspNet.Identity;

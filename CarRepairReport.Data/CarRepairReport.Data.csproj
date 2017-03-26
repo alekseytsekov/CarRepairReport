@@ -58,6 +58,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="BaseEntityRepository.cs" />
+    <Compile Include="CarRepairReportData.cs" />
+    <Compile Include="EntityRepository.cs" />
+    <Compile Include="IBaseEntityRepository.cs" />
+    <Compile Include="ICarRepairReportData.cs" />
+    <Compile Include="IEntityRepository.cs" />
+    <Compile Include="Migrations\201703261152469_InitialCreate.cs" />
+    <Compile Include="Migrations\201703261152469_InitialCreate.Designer.cs">
+      <DependentUpon>201703261152469_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261337164_AddBaseModel.cs" />
+    <Compile Include="Migrations\201703261337164_AddBaseModel.Designer.cs">
+      <DependentUpon>201703261337164_AddBaseModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261357149_AddIsDeletedToIBaseModel.cs" />
+    <Compile Include="Migrations\201703261357149_AddIsDeletedToIBaseModel.Designer.cs">
+      <DependentUpon>201703261357149_AddIsDeletedToIBaseModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261649216_addLang.cs" />
+    <Compile Include="Migrations\201703261649216_addLang.Designer.cs">
+      <DependentUpon>201703261649216_addLang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261727303_addNickNameToAppUser.cs" />
+    <Compile Include="Migrations\201703261727303_addNickNameToAppUser.Designer.cs">
+      <DependentUpon>201703261727303_addNickNameToAppUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +96,23 @@
       <Project>{c5ea82c7-7bf6-426b-b557-47d75ac30db3}</Project>
       <Name>CarRepairReport.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703261152469_InitialCreate.resx">
+      <DependentUpon>201703261152469_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261337164_AddBaseModel.resx">
+      <DependentUpon>201703261337164_AddBaseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261357149_AddIsDeletedToIBaseModel.resx">
+      <DependentUpon>201703261357149_AddIsDeletedToIBaseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261649216_addLang.resx">
+      <DependentUpon>201703261649216_addLang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261727303_addNickNameToAppUser.resx">
+      <DependentUpon>201703261727303_addNickNameToAppUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
