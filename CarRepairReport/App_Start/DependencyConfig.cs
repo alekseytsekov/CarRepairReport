@@ -5,6 +5,10 @@
     using Autofac;
     using Autofac.Integration.Mvc;
     using CarRepairReport.Data;
+    using CarRepairReport.Managers;
+    using CarRepairReport.Managers.Interfaces;
+    using CarRepairReport.Services;
+    using CarRepairReport.Services.Interfaces;
 
     public static class DependencyConfig
     {
@@ -29,9 +33,15 @@
             builder.RegisterFilterProvider();
 
             //builder.RegisterType<CustomerService>().InstancePerRequest();
-            //builder.RegisterType<CarDealerContext>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<CarRepairReportData>().AsSelf().InstancePerLifetimeScope();
+            //builder.RegisterType<Service>().InstancePerRequest();
+            
+            builder.RegisterType<IUserService>().As<UserService>().InstancePerLifetimeScope();
+            builder.RegisterType<ILanguageService>().As<LanguageService>().InstancePerLifetimeScope();
 
-            //builder.RegisterType<ICarRepairReportData>().As<CarRepairReportData>().InstancePerLifetimeScope();
+            builder.RegisterType<ILanguageManager>().As<LanguageManager>().InstancePerLifetimeScope();
+            builder.RegisterType<IMyUserManager>().As<MyUserManager>().InstancePerLifetimeScope();
+            
 
             // Register services
             RegisterServices(builder);
@@ -46,6 +56,9 @@
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.Register(x => new CarRepairReportData()).As<ICarRepairReportData>().InstancePerRequest();
+
+            //builder.Register(x => new LanguageService(new CarRepairReportData())).As<ILanguageService>().InstancePerRequest();
+            //builder.Register(x => new UserService(new CarRepairReportData())).As<IUserService>().InstancePerRequest();
 
             //builder.Register(x => new CarDealerContext())
             //    .As<DbContext>()

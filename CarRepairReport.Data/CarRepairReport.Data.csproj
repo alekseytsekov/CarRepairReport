@@ -84,6 +84,14 @@
     <Compile Include="Migrations\201703261727303_addNickNameToAppUser.Designer.cs">
       <DependentUpon>201703261727303_addNickNameToAppUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704021341490_addSomeModelsAndLangLogic.cs" />
+    <Compile Include="Migrations\201704021341490_addSomeModelsAndLangLogic.Designer.cs">
+      <DependentUpon>201704021341490_addSomeModelsAndLangLogic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704021559236_addLanguageValueEntity.cs" />
+    <Compile Include="Migrations\201704021559236_addLanguageValueEntity.Designer.cs">
+      <DependentUpon>201704021559236_addLanguageValueEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -112,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703261727303_addNickNameToAppUser.resx">
       <DependentUpon>201703261727303_addNickNameToAppUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704021341490_addSomeModelsAndLangLogic.resx">
+      <DependentUpon>201704021341490_addSomeModelsAndLangLogic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704021559236_addLanguageValueEntity.resx">
+      <DependentUpon>201704021559236_addLanguageValueEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

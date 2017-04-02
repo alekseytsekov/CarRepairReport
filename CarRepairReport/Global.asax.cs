@@ -8,11 +8,12 @@ namespace CarRepairReport
     {
         protected void Application_Start()
         {
-            DependencyConfig.Register();
+            //DependencyConfig.Register();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        
     }
 }

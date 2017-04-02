@@ -9,7 +9,7 @@
     using Owin;
     using CarRepairReport.Models;
     using CarRepairReport.Data;
-    using CarRepairReport.Models.MVC_Models;
+    using CarRepairReport.Models.Models;
 
     public partial class Startup
     {

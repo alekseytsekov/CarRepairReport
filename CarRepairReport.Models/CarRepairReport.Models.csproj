@@ -67,27 +67,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppModels\Language.cs" />
+    <Compile Include="AddressType.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="IBaseModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
-    <Compile Include="MVC_Models\ApplicationUser.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\ExternalLoginListViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\ForgotPasswordViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\ForgotViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\LoginViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\RegisterViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\ResetPasswordViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\SendCodeViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Account\VerifyCodeViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\AddPhoneNumberViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\ChangePasswordViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\FactorViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\ManageLoginsViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\IndexViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\SetPasswordViewModel.cs" />
-    <Compile Include="MVC_Models\ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\LanguageValue.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserSetting.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="ViewModels\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\ForgotViewModel.cs" />
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="ViewModels\Manage\FactorViewModel.cs" />
+    <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\Manage\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BindingModels\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

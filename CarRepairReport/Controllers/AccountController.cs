@@ -9,27 +9,32 @@ namespace CarRepairReport.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using CarRepairReport.Managers;
+    using CarRepairReport.Managers.Interfaces;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using CarRepairReport.Models;
-    using CarRepairReport.Models.MVC_Models;
-    using CarRepairReport.Models.MVC_Models.ViewModels.Account;
+    using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IMyUserManager myUserManager;
 
-        public AccountController()
+        public AccountController(IMyUserManager myUserManager)
         {
+            this.myUserManager = myUserManager;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IMyUserManager myUserManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this.myUserManager = myUserManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -160,6 +165,8 @@ namespace CarRepairReport.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    this.myUserManager.CreateMyUserAsync(user, this.HttpContext);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

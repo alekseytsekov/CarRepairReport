@@ -1,0 +1,27 @@
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc
+
+@{
+    ViewBag.Title = "";
+}
+
+@section Scripts
+{
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
+}
+
+<div>@Ajax.ActionLink("EN post", "Set", "Language", new { langValue = "bg" }, new AjaxOptions() { HttpMethod = "Post",Confirm = "Are you sure ?", OnSuccess = "langSuccessSet" })</div>
+
+<select class="nav navbar-nav navbar-right lang-drop-down-menu">
+    <option>@Ajax.ActionLink("EN","Set","Language", new { langValue = "en" }, new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you sure?" })</option>
+    <option>@Ajax.ActionLink("BG", "Set", "Language", new { langValue = "bg" }, new AjaxOptions() { HttpMethod = "POST" })</option>
+    <option>@Ajax.ActionLink("RU", "Set", "Language", new { langValue = "ru" }, new AjaxOptions() { HttpMethod = "POST" })</option>
+    <option>@Html.ActionLink("bul", "Set", "Language", new { langValue = "ru" }, null)</option>
+</select>
+
+<script type="text/javascript">
+    
+    function langSuccessSet(result) {
+        console.log(result);
+    }
+</script>

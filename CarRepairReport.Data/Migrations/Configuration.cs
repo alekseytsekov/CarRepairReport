@@ -1,9 +1,9 @@
-namespace CarRepairReport.Data.Migrations
+﻿namespace CarRepairReport.Data.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using CarRepairReport.Models.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRepairReport.Data.ApplicationDbContext>
     {
@@ -13,20 +13,40 @@ namespace CarRepairReport.Data.Migrations
             this.ContextKey = "CarRepairReport.Data.ApplicationDbContext";
         }
 
-        protected override void Seed(CarRepairReport.Data.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.Languages.Any())
+            {
+                var enLang = new Language()
+                {
+                    Name = "English",
+                    TwoLetterCode = "en",
+                    CreatedOn = DateTime.UtcNow,
+                    IsSystemLanguage = true
+                };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                var bgLang = new Language()
+                {
+                    Name = "Български",
+                    TwoLetterCode = "бг",
+                    CreatedOn = DateTime.UtcNow,
+                    IsSystemLanguage = true
+                };
+
+                var ruLang = new Language()
+                {
+                    Name = "Русский",
+                    TwoLetterCode = "ру",
+                    CreatedOn = DateTime.UtcNow,
+                    IsSystemLanguage = true
+                };
+
+                context.Languages.Add(enLang);
+                context.Languages.Add(bgLang);
+                context.Languages.Add(ruLang);
+
+                context.SaveChanges();
+            }
         }
     }
 }

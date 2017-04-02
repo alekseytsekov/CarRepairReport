@@ -6,10 +6,10 @@ namespace CarRepairReport.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using CarRepairReport.Models.ViewModels.Manage;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
-    using CarRepairReport.Models.MVC_Models.ViewModels.Manage;
 
     [Authorize]
     public class ManageController : Controller

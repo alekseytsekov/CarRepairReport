@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Car Repair Report</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,11 +21,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Profile", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Garage", "", "")</li>
+                    <li>@Html.ActionLink("Forum", "", "")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+                @Html.Partial("_Language")
             </div>
         </div>
     </div>
@@ -40,5 +41,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script>
 </body>
 </html>

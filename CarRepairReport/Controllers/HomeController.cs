@@ -2,8 +2,7 @@
 {
     using System.Web.Mvc;
     using CarRepairReport.Data;
-    using CarRepairReport.Models.AppModels;
-
+    
     public class HomeController : Controller
     {
         private ICarRepairReportData crrd;
@@ -12,7 +11,7 @@
         {
             this.crrd = crrd;
         }
-
+        
         public ActionResult Index()
         {
             //var user = this.crrd.Users.FirstOrDefault();
@@ -27,6 +26,8 @@
 
             //this.crrd.Languages.Add(lang);
             //this.crrd.Commit();
+
+            //var a = this.crrd.MyUsers.FirstOrDefault().ApplicationUser;
 
             return this.View();
         }

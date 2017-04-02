@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* drop down language*/
+.lang-drop-down-menu {
+    margin: 15px;
+    color: lightgrey;
+    background-color: black;
+}
+
+.lang-drop-down-menu:hover {
+    color: white;
+}
