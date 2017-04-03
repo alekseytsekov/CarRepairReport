@@ -20,6 +20,8 @@
 
         public string LastName { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }

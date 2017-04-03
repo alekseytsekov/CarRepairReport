@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\UserProfileVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

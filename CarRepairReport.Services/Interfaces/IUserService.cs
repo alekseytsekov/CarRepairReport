@@ -5,5 +5,6 @@
     public interface IUserService
     {
         bool Add(User user);
+        User GetUserById(string userId);
     }
 }

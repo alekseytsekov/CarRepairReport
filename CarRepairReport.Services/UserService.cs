@@ -18,6 +18,11 @@
             return true;
         }
 
-        
+        public User GetUserById(string userId)
+        {
+            var user = this.context.MyUsers.GetById(userId);
+
+            return user;
+        }
     }
 }

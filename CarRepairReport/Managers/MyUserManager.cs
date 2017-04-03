@@ -5,6 +5,7 @@
     using System.Web;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Services.Interfaces;
 
     public class MyUserManager : IMyUserManager
@@ -22,6 +23,16 @@
             return Task.Run(() =>
             {
                 var lang = this.langManager.GetCurrentLang(httpContext);
+
+                if (lang == null)
+                {
+                    lang = new Language()
+                    {
+                        CreatedOn = DateTime.UtcNow,
+                        Name = "English",
+                        TwoLetterCode = "en"
+                    };
+                }
 
                 var language = new Language()
                 {
@@ -46,6 +57,18 @@
 
                 this.userService.Add(myUser);
             });
+        }
+
+        public UserProfileVm GetUserProfileById(string userId)
+        {
+            var user = this.userService.GetUserById(userId);
+
+            if (string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.LastName))
+            {
+                return null;
+            }
+
+
         }
     }
 }

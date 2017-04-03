@@ -24,7 +24,7 @@ textarea {
 }
 
 
-/* drop down language*/
+/* drop down language
 .lang-drop-down-menu {
     margin: 15px;
     color: lightgrey;
@@ -33,4 +33,8 @@ textarea {
 
 .lang-drop-down-menu:hover {
     color: white;
+}*/
+
+#nav-lang-menu > ul > li > a {
+    padding: 15px 0;
 }

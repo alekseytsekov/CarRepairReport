@@ -1,5 +1,6 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System.Globalization;
     using System.Web.Mvc;
     using CarRepairReport.Managers.Interfaces;
     using Microsoft.Ajax.Utilities;
@@ -17,29 +18,39 @@
 
         
 
-        [HttpPost]
-        public JsonResult Set(string langValue)
+        [HttpGet]
+        public ActionResult Set(string langValue, string returnUrl)
         {
-            bool isSuccess = false;
-            var result = "{result : " + isSuccess + "}";
-
-            if (!this.Request.IsAjaxRequest())
-            {
-                return Json(result);
-            }
-
             var userId = this.User.Identity.GetUserId();
-            
-            isSuccess = this.langManager.SetLangCookie(langValue, userId, this.HttpContext);
 
-            result = "{result : " + isSuccess + "}";
+            bool isSuccess = this.langManager.SetLangCookie(langValue, userId, this.HttpContext);
 
-            return this.Json(result);
+            this.SetCulture(langValue);
+
+            return this.Redirect(returnUrl);
         }
 
-        public JsonResult Set( )
+        public void SetCulture(string lang)
         {
-            return Json("");
+            var langValue = string.Empty;
+
+            switch (lang)
+            {
+                case "en":
+                    langValue = "en-EN";
+                    break;
+                case "bg":
+                    langValue = "bg-BG";
+                    break;
+                case "ru":
+                    langValue = "ru-RU";
+                    break;
+                default:return;
+            }
+
+            CultureInfo ci = new CultureInfo(langValue);
+            System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
         }
     }
 }
