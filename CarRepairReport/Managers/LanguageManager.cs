@@ -63,5 +63,12 @@
 
             return lang;
         }
+
+        public string GetLanguageValueByKey(string langKey, string langCode)
+        {
+            string langValue = this.langService.GetLanguageValueByKey(langKey, langCode);
+
+            return langValue;
+        }
     }
 }

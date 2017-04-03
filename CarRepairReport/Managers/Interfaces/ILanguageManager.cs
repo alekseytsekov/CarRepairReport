@@ -8,5 +8,6 @@ namespace CarRepairReport.Managers.Interfaces
     {
         bool SetLangCookie(string lang, string userId, HttpContextBase httpContext);
         Language GetCurrentLang(HttpContextBase httpContext);
+        string GetLanguageValueByKey(string langKey, string langCode);
     }
 }

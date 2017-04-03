@@ -20,7 +20,7 @@
 
         public User GetUserById(string userId)
         {
-            var user = this.context.MyUsers.GetById(userId);
+            var user = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == userId);
 
             return user;
         }

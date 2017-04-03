@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using System.Web;
+    using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.ViewModels;
@@ -68,7 +69,9 @@
                 return null;
             }
 
+            var vm = Mapper.Map<User, UserProfileVm>(user);
 
+            return vm;
         }
     }
 }

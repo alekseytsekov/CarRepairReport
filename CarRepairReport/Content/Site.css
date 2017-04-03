@@ -38,3 +38,14 @@ textarea {
 #nav-lang-menu > ul > li > a {
     padding: 15px 0;
 }
+
+/* error msg*/
+
+/*.field-validation-valid
+{
+    display: none;
+}
+.validation-summary-valid
+{
+    display: none;
+}*/

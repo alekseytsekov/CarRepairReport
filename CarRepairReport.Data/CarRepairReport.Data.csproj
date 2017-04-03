@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201704021559236_addLanguageValueEntity.Designer.cs">
       <DependentUpon>201704021559236_addLanguageValueEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704031922359_addLittleChanges.cs" />
+    <Compile Include="Migrations\201704031922359_addLittleChanges.Designer.cs">
+      <DependentUpon>201704031922359_addLittleChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704021559236_addLanguageValueEntity.resx">
       <DependentUpon>201704021559236_addLanguageValueEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704031922359_addLittleChanges.resx">
+      <DependentUpon>201704031922359_addLittleChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

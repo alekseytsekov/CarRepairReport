@@ -57,5 +57,22 @@
 
             return lang;
         }
+
+        public string GetLanguageValueByKey(string langKey, string langCode)
+        {
+            var langValue = context.LanguageValues.FirstOrDefault(x => x.LangTwoLetterCode == langCode && x.Key == langKey);
+            var value = string.Empty;
+
+            if (langValue == null)
+            {
+                value = langKey;
+            }
+            else
+            {
+                value = langValue.Value;
+            }
+
+            return value;
+        }
     }
 }
