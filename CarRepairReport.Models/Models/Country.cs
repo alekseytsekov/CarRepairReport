@@ -15,6 +15,6 @@
 
         public string CountryCode { get; set; }
 
-        public virtual IEnumerable<City> Cities { get; set; }
+        public virtual ICollection<City> Cities { get; set; }
     }
 }

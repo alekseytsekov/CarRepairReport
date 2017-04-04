@@ -233,11 +233,12 @@
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Globals\Configurations.cs" />
-    <Compile Include="HtmlHelpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelpers\HtmlHelperExtensions.cs" />
     <Compile Include="Managers\Interfaces\ILanguageManager.cs" />
     <Compile Include="Managers\Interfaces\IMyUserManager.cs" />
     <Compile Include="Managers\LanguageManager.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Language.cshtml" />
     <Content Include="Views\User\AddProfile.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

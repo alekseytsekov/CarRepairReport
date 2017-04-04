@@ -24,9 +24,9 @@
         [Route("Profile/Info")]
         public ActionResult Profile()
         {
-            var userId = this.User.Identity.GetUserId();
+            var appUserId = this.User.Identity.GetUserId();
 
-            UserProfileVm vm = this.userManager.GetUserProfileById(userId);
+            UserProfileVm vm = this.userManager.GetUserProfileByAppUserId(appUserId);
 
             if (vm == null)
             {
@@ -72,7 +72,14 @@
                 return this.RedirectToAction("AddProfile");
             }
 
-            return this.View(bm);
+            var isSuccess = this.userManager.AddUserDetails(bm, this.User.Identity.GetUserId());
+
+            if (!isSuccess)
+            {
+                //error page
+            }
+
+            return this.RedirectToAction("Profile");
         }
     }
 }

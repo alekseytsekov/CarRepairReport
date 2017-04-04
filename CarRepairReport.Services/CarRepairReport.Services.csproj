@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressService.cs" />
+    <Compile Include="Interfaces\IAddressService.cs" />
     <Compile Include="Interfaces\ILanguageService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\Service.cs" />

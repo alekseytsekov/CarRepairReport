@@ -1,7 +1,9 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CarRepairReport.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CarRepairReport.App_Start.NinjectWebCommon), "Stop")]
+using CarRepairReport;
 
-namespace CarRepairReport.App_Start
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
+
+namespace CarRepairReport
 {
     using System;
     using System.Web;
@@ -11,7 +13,6 @@ namespace CarRepairReport.App_Start
     using CarRepairReport.Services;
     using CarRepairReport.Services.Interfaces;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
     using Ninject;
     using Ninject.Web.Common;
 
@@ -71,6 +72,7 @@ namespace CarRepairReport.App_Start
             kernel.Bind<ILanguageService>().To<LanguageService>().InRequestScope();
             kernel.Bind<ILanguageManager>().To<LanguageManager>().InRequestScope();
             kernel.Bind<IMyUserManager>().To<MyUserManager>().InRequestScope();
+            kernel.Bind<IAddressService>().To<AddressService>().InRequestScope();
         }        
     }
 }

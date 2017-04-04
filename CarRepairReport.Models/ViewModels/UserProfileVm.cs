@@ -11,6 +11,8 @@
             this.Errors = new Dictionary<string, string>();
         }
 
+        public string LanguageCode { get; set; }
+
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
 
@@ -23,6 +25,14 @@
         public string LastName { get; set; }
 
         public string ImageUrl { get; set; }
+        
+        public string StreetName { get; set; }
+
+        public string Neighborhood { get; set; }
+        
+        public string City { get; set; }
+
+        public string Country { get; set; }
 
         public IDictionary<string, string> Errors { get; set; }
     }

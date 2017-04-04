@@ -24,5 +24,26 @@
 
             return user;
         }
+
+        public bool Update(User user)
+        {
+            var entity = this.context.MyUsers.FirstOrDefault(x => x.Id == user.Id);
+
+            if (entity == null)
+            {
+                return false;
+            }
+
+            entity.FirstName = user.FirstName;
+            entity.LastName = user.LastName;
+            entity.Birthday = user.Birthday;
+            entity.ImageUrl = entity.ImageUrl;
+
+            this.context.MyUsers.Update(entity);
+
+            this.context.Commit();
+
+            return true;
+        }
     }
 }

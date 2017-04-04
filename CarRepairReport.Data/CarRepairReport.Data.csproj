@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201704031922359_addLittleChanges.Designer.cs">
       <DependentUpon>201704031922359_addLittleChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704041859545_addUserToAddress.cs" />
+    <Compile Include="Migrations\201704041859545_addUserToAddress.Designer.cs">
+      <DependentUpon>201704041859545_addUserToAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704031922359_addLittleChanges.resx">
       <DependentUpon>201704031922359_addLittleChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041859545_addUserToAddress.resx">
+      <DependentUpon>201704041859545_addUserToAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

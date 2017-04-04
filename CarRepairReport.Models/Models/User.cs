@@ -30,7 +30,7 @@
 
         public virtual UserSetting UserSetting { get; set; }
         
-        public virtual IEnumerable<Address> Addresses { get; set; }
+        public virtual ICollection<Address> Addresses { get; set; }
 
     }
 }

@@ -8,11 +8,11 @@
     {
         
         //[RegularExpression("^[a-zA-Z]{2,}$",ErrorMessage = "Invalid data name")]
-        [RegexValidation("^[a-zA-Z]{2,}$","common.error")]
+        [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error")]
         public string FirstName { get; set; }
 
         [Required]
-        [RegexValidation("^[a-zA-Z]{2,}$", "common.error2")]
+        [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error2")]
         //[RegularExpression("^[a-zA-Z]{2,}$")]
         public string LastName { get; set; }
 
@@ -20,5 +20,13 @@
         public DateTime Birthday { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public string StreetName { get; set; }
+
+        public string Neighborhood { get; set; }
+
+        public string City { get; set; }
+
+        public string Country { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace CarRepairReport.HtmlHelpers
+﻿namespace CarRepairReport.Extensions.HtmlHelpers
 {
     using System.Web.Mvc;
     using CarRepairReport.Data;

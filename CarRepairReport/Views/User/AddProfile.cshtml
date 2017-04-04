@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.UserProfileVm
+﻿@using CarRepairReport.Extensions.HtmlHelpers
+@model CarRepairReport.Models.ViewModels.UserProfileVm
 
 @{
     ViewBag.Title = "AddProfile";
@@ -23,10 +24,10 @@
             <div class="col-md-10">
                 
 
-                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.EditorFor(model => model.FirstName, new {htmlAttributes = new {@class = "form-control", id="model-firstName", onkeyup = "onInputChange(this)" } })
                 @if (Model.Errors.ContainsKey(nameof(Model.FirstName)))
                 {
-                    <span class="text-danger">@Model.Errors[nameof(Model.FirstName)]</span>
+                    <span id="model-firstName-error" class="text-danger">@Model.Errors[nameof(Model.FirstName)]</span>
                 }
             </div>
         </div>
@@ -34,10 +35,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id ="model-lastName", onkeyup = "onInputChange(this)" } })
                 @if (Model.Errors.ContainsKey(nameof(Model.LastName)))
                 {
-                    <span class="text-danger">@Model.Errors[nameof(Model.LastName)]</span>
+                    <span id="model-lastName-error" class="text-danger">@Model.Errors[nameof(Model.LastName)]</span>
                 }
             </div>
         </div>
@@ -45,8 +46,57 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control date-picker" } })
-                @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control date-picker", id="model-birthday", onchange = "onInputChange(this)" } })
+                @if (Model.Errors.ContainsKey(nameof(Model.LastName)))
+                {
+                    <span id="model-birthday-error" class="text-danger">@Model.Errors[nameof(Model.Birthday)]</span>
+                }
+            </div>
+        </div>
+        
+        <div>@Html.LangValue("system.common.unrequired", Model.LanguageCode)</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-country", onchange = "onInputChange(this)" } })
+                @if (Model.Errors.ContainsKey(nameof(Model.Country)))
+                {
+                    <span id="model-birthday-error" class="text-danger">@Model.Errors[nameof(Model.Country)]</span>
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-City", onchange = "onInputChange(this)" } })
+                @if (Model.Errors.ContainsKey(nameof(Model.Country)))
+                {
+                    <span id="model-City-error" class="text-danger">@Model.Errors[nameof(Model.City)]</span>
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Neighborhood, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Neighborhood, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-Neighborhood", onchange = "onInputChange(this)" } })
+                @if (Model.Errors.ContainsKey(nameof(Model.Neighborhood)))
+                {
+                    <span id="model-Neighborhood-error" class="text-danger">@Model.Errors[nameof(Model.Neighborhood)]</span>
+                }
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-streetname", onchange = "onInputChange(this)" } })
+                @if (Model.Errors.ContainsKey(nameof(Model.StreetName)))
+                {
+                    <span id="model-streetname-error" class="text-danger">@Model.Errors[nameof(Model.StreetName)]</span>
+                }
             </div>
         </div>
 
@@ -69,3 +119,15 @@
 <div>
     @Html.ActionLink("Back to Home", "Index", "Home")
 </div>
+
+<script type="text/javascript">
+    function onInputChange(event) {
+
+        var id = event.id;
+
+        var errorElement = $("#" + id + "-error")[0];
+
+        errorElement.style.display = "none";
+    }
+
+</script>
