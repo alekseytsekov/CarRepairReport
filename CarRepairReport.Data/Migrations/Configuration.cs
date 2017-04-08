@@ -4,6 +4,7 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.LanguageModels;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRepairReport.Data.ApplicationDbContext>
     {

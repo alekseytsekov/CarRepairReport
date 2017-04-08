@@ -5,6 +5,10 @@
     using System.Linq;
     using CarRepairReport.Models;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.LanguageModels;
+    using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public class CarRepairReportData : ICarRepairReportData
@@ -21,10 +25,16 @@
         private IBaseEntityRepository<UserSetting> userSettings;
         private IBaseEntityRepository<LanguageValue> languageValues;
 
-        public CarRepairReportData() : this(ApplicationDbContext.Create())
-        {
+        private IBaseEntityRepository<Car> cars;
+        private IBaseEntityRepository<CarPart> carParts;
+        private IBaseEntityRepository<Engine> engine;
+        private IBaseEntityRepository<Gearbox> gearbox;
+        private IBaseEntityRepository<Manufacturer> manufacturer;
+
+        //public CarRepairReportData() : this(ApplicationDbContext.Create())
+        //{
             
-        }
+        //}
 
         public CarRepairReportData(ApplicationDbContext context)
         {
@@ -82,7 +92,32 @@
         {
             get { return this.languageValues ?? (this.languageValues = new BaseEntityRepository<LanguageValue>(this.context.LanguageValues)); }
         }
-    
+
+        public IBaseEntityRepository<Car> Cars
+        {
+            get { return this.cars ?? (this.cars = new BaseEntityRepository<Car>(this.context.Cars)); }
+        }
+
+        public IBaseEntityRepository<CarPart> CarParts
+        {
+            get { return this.carParts ?? (this.carParts = new BaseEntityRepository<CarPart>(this.context.CarParts)); }
+        }
+
+        public IBaseEntityRepository<Engine> Engines
+        {
+            get { return this.engine ?? (this.engine = new BaseEntityRepository<Engine>(this.context.Engines)); }
+        }
+
+        public IBaseEntityRepository<Gearbox> Gearboxs
+        {
+            get { return this.gearbox ?? (this.gearbox = new BaseEntityRepository<Gearbox>(this.context.Gearboxs)); }
+        }
+
+        public IBaseEntityRepository<Manufacturer> Manufacturers
+        {
+            get { return this.manufacturer ?? (this.manufacturer = new BaseEntityRepository<Manufacturer>(this.context.Manufacturers)); }
+        }
+
         public ApplicationDbContext Context { get { return this.context; } }
 
         private void ApplyAuditInfoRules()

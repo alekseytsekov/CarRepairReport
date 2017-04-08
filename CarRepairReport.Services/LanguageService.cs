@@ -2,6 +2,7 @@
 {
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Services.Interfaces;
 
     public class LanguageService : Service, ILanguageService

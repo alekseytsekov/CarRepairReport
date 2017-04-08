@@ -10,6 +10,7 @@
     using CarRepairReport.Models;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.UserModels;
 
     public partial class Startup
     {

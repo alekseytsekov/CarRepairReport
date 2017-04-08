@@ -2,6 +2,10 @@
 {
     using System.Data.Entity;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.LanguageModels;
+    using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -23,5 +27,10 @@
         public virtual IDbSet<User> MyUsers { get; set; }
         public virtual IDbSet<UserSetting> UserSettings { get; set; }
         public virtual IDbSet<LanguageValue> LanguageValues { get; set; }
+        public virtual IDbSet<Car> Cars { get; set; }
+        public virtual IDbSet<CarPart> CarParts { get; set; }
+        public virtual IDbSet<Engine> Engines { get; set; }
+        public virtual IDbSet<Gearbox> Gearboxs { get; set; }
+        public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
     }
 }

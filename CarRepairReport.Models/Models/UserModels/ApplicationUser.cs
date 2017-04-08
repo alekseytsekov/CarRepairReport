@@ -1,4 +1,4 @@
-﻿namespace CarRepairReport.Models.Models
+﻿namespace CarRepairReport.Models.Models.UserModels
 {
     using System;
     using System.Security.Claims;

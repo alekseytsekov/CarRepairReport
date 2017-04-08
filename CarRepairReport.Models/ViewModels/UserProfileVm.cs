@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using CarRepairReport.Models.Attributes;
 
     public class UserProfileVm : ViewBindingModel
     {
@@ -15,21 +16,29 @@
         //[DataType(DataType.Date)]
         //public DateTime Birthday { get; set; }
 
-        
+        [Required]
+        [MinLength(2), MaxLength(30)]
         [RegularExpression("^[a-zA-Z]{2,}$")]
         public string FirstName { get; set; }
 
         [Required]
+        [MinLength(2), MaxLength(30)]
         [RegularExpression("^[a-zA-Z]{2,}$")]
         public string LastName { get; set; }
 
         public string ImageUrl { get; set; }
-        
-        //public string StreetName { get; set; }
-        
-        public string City { get; set; }
 
-        public string Country { get; set; }
+        //public string StreetName { get; set; }
+
+        [Required]
+        [MinLength(2), MaxLength(30)]
+        [RegexValidation("^[a-zA-Z]{2,}$","")]
+        public string CityName { get; set; }
+
+        [Required]
+        [MinLength(2), MaxLength(30)]
+        [RegexValidation("^[a-zA-Z]{2,}$", "")]
+        public string CountryName { get; set; }
 
         public IDictionary<string, string> Errors { get; set; }
     }

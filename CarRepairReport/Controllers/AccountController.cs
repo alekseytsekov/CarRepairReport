@@ -16,6 +16,7 @@ namespace CarRepairReport.Controllers
     using Microsoft.Owin.Security;
     using CarRepairReport.Models;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels.Account;
 
     [Authorize]

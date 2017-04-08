@@ -28,11 +28,14 @@
 
             </div>
         </div>
-        <div class="row">
-            <div class="col col-sm-2">
-                <h4>@Model.City, @Model.Country</h4>
+        @if (!string.IsNullOrWhiteSpace(Model.CityName))
+        {
+            <div class="row">
+                <div class="col col-sm-2">
+                    <h4>@Model.CityName, @Model.CountryName</h4>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 <div class="profile-personal-cars profile-data">

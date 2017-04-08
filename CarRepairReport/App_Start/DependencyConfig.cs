@@ -55,7 +55,7 @@
 
         private static void RegisterServices(ContainerBuilder builder)
         {
-            builder.Register(x => new CarRepairReportData()).As<ICarRepairReportData>().InstancePerRequest();
+            //builder.Register(x => new CarRepairReportData()).As<ICarRepairReportData>().InstancePerRequest();
 
             //builder.Register(x => new LanguageService(new CarRepairReportData())).As<ILanguageService>().InstancePerRequest();
             //builder.Register(x => new UserService(new CarRepairReportData())).As<IUserService>().InstancePerRequest();

@@ -1,6 +1,7 @@
 ﻿namespace CarRepairReport.Controllers
 {
     using System.Web.Mvc;
+    using CarRepairReport.Models.ViewModels.CarVms;
 
     [Authorize]
     [RoutePrefix("Cars")]
@@ -10,9 +11,9 @@
         [Route("Add")]
         public ActionResult Add()
         {
+            var vm = new CreateCarVm();
 
-
-            return View();
+            return View(vm);
         }
 
         [HttpPost]

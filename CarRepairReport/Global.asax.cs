@@ -7,6 +7,7 @@ namespace CarRepairReport
     using AutoMapper;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
 
     public class MvcApplication : System.Web.HttpApplication

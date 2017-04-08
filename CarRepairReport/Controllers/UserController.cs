@@ -29,6 +29,8 @@
 
             UserProfileVm vm = this.userManager.GetUserProfileByAppUserId(appUserId);
 
+            
+
             if (vm == null)
             {
                 return this.RedirectToAction("AddProfile");
@@ -57,6 +59,10 @@
             if (!this.ModelState.IsValid)
             {
                 var vm = new UserProfileVm();
+                vm.FirstName = bm.FirstName;
+                vm.LastName = bm.LastName;
+                vm.CityName = bm.CityName;
+                vm.CountryName = bm.CountryName;
 
                 foreach (var kvp in this.ModelState)
                 {

@@ -1,4 +1,4 @@
-﻿namespace CarRepairReport.Models.Models
+﻿namespace CarRepairReport.Models.Models.AddressModels
 {
     using System.Collections.Generic;
 

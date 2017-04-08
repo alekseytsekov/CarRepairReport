@@ -2,6 +2,9 @@
 {
     using System.Data.Entity;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.LanguageModels;
+    using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
 
     public interface ICarRepairReportData

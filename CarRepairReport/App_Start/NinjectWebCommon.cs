@@ -66,6 +66,7 @@ namespace CarRepairReport
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
             kernel.Bind<CarRepairReportData>().ToSelf().InRequestScope();
             kernel.Bind<ICarRepairReportData>().To<CarRepairReportData>().InRequestScope();
             kernel.Bind<IUserService>().To<UserService>().InRequestScope();

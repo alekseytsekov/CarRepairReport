@@ -9,8 +9,7 @@
         
         [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error")]
         public string FirstName { get; set; }
-
-        [Required]
+        
         [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error2")]
         public string LastName { get; set; }
 
@@ -23,8 +22,14 @@
 
         public string Neighborhood { get; set; }
 
+        [Required]
+        [MinLength(2), MaxLength(30)]
+        [RegexValidation("^[a-zA-Z]{2,}$", "asd")]
         public string CityName { get; set; }
 
+        [Required]
+        [MinLength(2), MaxLength(30)]
+        [RegexValidation("^[a-zA-Z]{2,}$", "asd")]
         public string CountryName { get; set; }
     }
 }

@@ -327,6 +327,7 @@
     <Content Include="Views\User\AddProfile.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Car\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,7 +338,6 @@
     <Folder Include="Areas\Forum\Models\" />
     <Folder Include="Areas\Forum\Views\Shared\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Car\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

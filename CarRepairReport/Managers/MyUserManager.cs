@@ -9,6 +9,9 @@
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.LanguageModels;
+    using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Services.Interfaces;
 
@@ -68,7 +71,7 @@
         public UserProfileVm GetUserProfileByAppUserId(string appUserId)
         {
             var user = this.userService.GetUserByAppId(appUserId);
-
+            
             if (string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.LastName))
             {
                 return null;
@@ -76,15 +79,18 @@
 
             var vm = Mapper.Map<User, UserProfileVm>(user);
 
-            var address = user.Addresses.FirstOrDefault();
+            var address = user.Addresses.FirstOrDefault(x=> x.IsPrimary && x.Users.Any(u => u.ApplicationUserId == appUserId));
+
+            var users = this.userService.GetAllUsers();
+            var addresses = this.addressService.GetAllAddresses();
 
             if (address == null)
             {
                 return vm;
             }
 
-            vm.City = address.City.Name.ToCapital();
-            vm.Country = address.City.Country.Name.ToCapital();
+            vm.CityName = address.City.Name.ToCapital();
+            vm.CountryName = address.City.Country.Name.ToCapital();
             //vm.Neighborhood = address.Neighborhood.ToCapital();
             //vm.StreetName = address.StreetName.ToCapital();
 
@@ -93,21 +99,23 @@
 
         public bool AddUserDetails(UserProfileBm bm, string appUserId)
         {
-            var user = this.userService.GetUserByAppId(appUserId);
+            var isUserExists = this.userService.IsUserExists(appUserId);
 
-            user.FirstName = bm.FirstName;
-            user.LastName = bm.LastName;
-            //user.Birthday = bm.Birthday;
+            if (!isUserExists)
+            {
+                return false;
+            }
+
             var isPrimary = true;
 
             var address = this.addressService.GenerateAddressToUser(bm.CountryName, bm.CityName, bm.Neighborhood, bm.StreetName, appUserId, isPrimary);
 
             if (address == null)
             {
-                //error page
+                return false;
             }
 
-            bool isUpdated = this.userService.Update(user);
+            bool isUpdated = this.userService.UpdatePersonalInfo(bm.FirstName, bm.LastName, appUserId);
 
             return isUpdated;
         }

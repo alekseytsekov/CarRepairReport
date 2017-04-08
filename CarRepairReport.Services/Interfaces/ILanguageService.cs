@@ -1,6 +1,7 @@
 ﻿namespace CarRepairReport.Services.Interfaces
 {
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.LanguageModels;
 
     public interface ILanguageService
     {

@@ -4,6 +4,7 @@
     using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Services.Interfaces;
 
     public class LanguageManager : ILanguageManager

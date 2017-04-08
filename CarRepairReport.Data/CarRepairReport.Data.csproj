@@ -108,6 +108,22 @@
     <Compile Include="Migrations\201704080911406_someMigration.Designer.cs">
       <DependentUpon>201704080911406_someMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704081327202_AddCarAndCarComponents.cs" />
+    <Compile Include="Migrations\201704081327202_AddCarAndCarComponents.Designer.cs">
+      <DependentUpon>201704081327202_AddCarAndCarComponents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704081508064_AddVinToCarModel.cs" />
+    <Compile Include="Migrations\201704081508064_AddVinToCarModel.Designer.cs">
+      <DependentUpon>201704081508064_AddVinToCarModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704081703105_AddressCanHaveMoreThanOneUser.cs" />
+    <Compile Include="Migrations\201704081703105_AddressCanHaveMoreThanOneUser.Designer.cs">
+      <DependentUpon>201704081703105_AddressCanHaveMoreThanOneUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704081729412_anotherMigration.cs" />
+    <Compile Include="Migrations\201704081729412_anotherMigration.Designer.cs">
+      <DependentUpon>201704081729412_anotherMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -154,6 +170,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704080911406_someMigration.resx">
       <DependentUpon>201704080911406_someMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081327202_AddCarAndCarComponents.resx">
+      <DependentUpon>201704081327202_AddCarAndCarComponents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081508064_AddVinToCarModel.resx">
+      <DependentUpon>201704081508064_AddVinToCarModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081703105_AddressCanHaveMoreThanOneUser.resx">
+      <DependentUpon>201704081703105_AddressCanHaveMoreThanOneUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704081729412_anotherMigration.resx">
+      <DependentUpon>201704081729412_anotherMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

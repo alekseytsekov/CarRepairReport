@@ -12,6 +12,7 @@ namespace CarRepairReport
     using Microsoft.Owin.Security;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.UserModels;
 
     public class EmailService : IIdentityMessageService
     {

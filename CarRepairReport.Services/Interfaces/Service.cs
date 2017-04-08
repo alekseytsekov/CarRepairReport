@@ -6,10 +6,10 @@
     {
         protected ICarRepairReportData context;
 
-        protected Service() : this(new CarRepairReportData())
-        {
+        //protected Service() : this(new CarRepairReportData())
+        //{
             
-        }
+        //}
 
         protected Service(ICarRepairReportData context)
         {

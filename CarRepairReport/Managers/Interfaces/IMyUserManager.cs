@@ -4,6 +4,7 @@
     using System.Web;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models;
+    using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
 
     public interface IMyUserManager
