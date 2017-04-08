@@ -4,16 +4,14 @@
     using System.ComponentModel.DataAnnotations;
     using CarRepairReport.Models.Attributes;
 
-    public class UserProfileBm
+    public class UserProfileBm : ViewBindingModel
     {
         
-        //[RegularExpression("^[a-zA-Z]{2,}$",ErrorMessage = "Invalid data name")]
         [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error")]
         public string FirstName { get; set; }
 
         [Required]
         [RegexValidation("^[a-zA-Zа-яА-Я]{2,}$", "common.error2")]
-        //[RegularExpression("^[a-zA-Z]{2,}$")]
         public string LastName { get; set; }
 
         [DataType(DataType.Date)]
@@ -25,8 +23,8 @@
 
         public string Neighborhood { get; set; }
 
-        public string City { get; set; }
+        public string CityName { get; set; }
 
-        public string Country { get; set; }
+        public string CountryName { get; set; }
     }
 }

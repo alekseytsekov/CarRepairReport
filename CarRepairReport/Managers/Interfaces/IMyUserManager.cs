@@ -10,7 +10,10 @@
     {
         Task CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext);
         //void CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext);
-        UserProfileVm GetUserProfileByAppUserId(string userId);
-        bool AddUserDetails(UserProfileBm bm, string userId);
+        UserProfileVm GetUserProfileByAppUserId(string appUserId);
+        bool AddUserDetails(UserProfileBm bm, string appUserId);
+        EditUserVm GetEditModelByAppId(string appUserId);
+
+        bool EditUserPersonalDetails(EditUserBm bm, string appUserId);
     }
 }

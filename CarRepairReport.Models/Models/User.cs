@@ -14,7 +14,8 @@
         [Key]
         public string Id { get; set; }
 
-        public DateTime Birthday { get; set; }
+        // // премахнато поради ЗЗЛД - закон за защита на личните данни 
+        //public DateTime Birthday { get; set; }
 
         public string FirstName { get; set; }
 

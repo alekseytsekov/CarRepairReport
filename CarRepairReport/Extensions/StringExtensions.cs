@@ -12,7 +12,7 @@
                 return null;
             }
 
-            var tokens = Regex.Split(str, "\\s");
+            var tokens = Regex.Split(str, "\\s+");
 
             for (int i = 0; i < tokens.Length; i++)
             {

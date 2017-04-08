@@ -10,6 +10,7 @@
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationDataLossAllowed = true;
             this.ContextKey = "CarRepairReport.Data.ApplicationDbContext";
         }
 

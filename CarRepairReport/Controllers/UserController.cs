@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
+    using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.ViewModels;
@@ -12,7 +13,7 @@
     {
         private IMyUserManager userManager;
         private ILanguageManager langManager;
-
+        
         public UserController(IMyUserManager userManager, ILanguageManager langManager)
         {
             this.userManager = userManager;
@@ -22,7 +23,7 @@
         // GET: User
         [HttpGet]
         [Route("Profile/Info")]
-        public ActionResult Profile()
+        public ActionResult UserProfile()
         {
             var appUserId = this.User.Identity.GetUserId();
 
@@ -36,15 +37,16 @@
             return this.View(vm);
         }
 
+        [HttpGet]
         public ActionResult AddProfile()
         {
-            var vm = this.TempData["UserProfileVm"] as UserProfileVm;
+            var vm = this.TempData["errorModel"] as UserProfileVm;
 
             if (vm == null)
             {
                 vm = new UserProfileVm();
             }
-            this.TempData["UserProfileVm"] = null;
+            this.TempData["errorModel"] = null;
 
             return this.View(vm);
         }
@@ -67,7 +69,7 @@
                     }
                 }
 
-                this.TempData["UserProfileVm"] = vm;
+                this.TempData["errorModel"] = vm;
 
                 return this.RedirectToAction("AddProfile");
             }
@@ -79,7 +81,72 @@
                 //error page
             }
 
-            return this.RedirectToAction("Profile");
+            return this.RedirectToAction("UserProfile");
+        }
+
+        [HttpGet]
+        [Route("Profile/Edit")]
+        public ActionResult Edit()
+        {
+            var errorModel = this.TempData["errorModel"] as EditUserVm;
+
+            if (errorModel != null)
+            {
+                this.TempData["errorModel"] = null;
+                return this.View(errorModel);
+            }
+            
+            var userId = this.User.Identity.GetUserId();
+
+            EditUserVm vm = this.userManager.GetEditModelByAppId(userId);
+
+            if (vm.Errors.Any())
+            {
+                if (vm.Errors.ContainsKey("error"))
+                {
+                    //error
+                    return this.View();
+                }
+            }
+
+            return this.View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Profile/Edit")]
+        public ActionResult Edit(EditUserBm bm)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                //error page
+
+                //var errorModel = new EditUserVm();
+
+                //foreach (var kvp in this.ModelState)
+                //{
+                //    if (kvp.Value.Errors.Count > 0)
+                //    {
+                //        var errorMsg =
+                //            this.langManager.GetLanguageValueByKey(kvp.Value.Errors.FirstOrDefault().ErrorMessage,
+                //                this.langManager.GetCurrentLang(this.HttpContext).TwoLetterCode);
+                //        errorModel.Errors.Add(kvp.Key, errorMsg);
+                //    }
+                //}
+
+                //this.TempData["errorModel"] = errorModel;
+
+                //return this.RedirectToAction("Edit");
+            }
+
+            var result = this.userManager.EditUserPersonalDetails(bm, this.User.Identity.GetUserId());
+
+            if (!result)
+            {
+                //error
+            }
+
+            return this.RedirectToAction("UserProfile");
         }
     }
 }

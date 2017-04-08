@@ -43,7 +43,7 @@
             </div>
         </div>
         
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Birthday, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control date-picker", id="model-birthday", onchange = "onInputChange(this)" } })
@@ -52,7 +52,7 @@
                     <span id="model-birthday-error" class="text-danger">@Model.Errors[nameof(Model.Birthday)]</span>
                 }
             </div>
-        </div>
+        </div>*@
         
         <div>@Html.LangValue("system.common.unrequired", Model.LanguageCode)</div>
 
@@ -78,18 +78,7 @@
             </div>
         </div>
         
-        <div class="form-group">
-            @Html.LabelFor(model => model.Neighborhood, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Neighborhood, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-Neighborhood", onchange = "onInputChange(this)" } })
-                @if (Model.Errors.ContainsKey(nameof(Model.Neighborhood)))
-                {
-                    <span id="model-Neighborhood-error" class="text-danger">@Model.Errors[nameof(Model.Neighborhood)]</span>
-                }
-            </div>
-        </div>
-        
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-streetname", onchange = "onInputChange(this)" } })
@@ -98,7 +87,7 @@
                     <span id="model-streetname-error" class="text-danger">@Model.Errors[nameof(Model.StreetName)]</span>
                 }
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })

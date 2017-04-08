@@ -5,6 +5,7 @@ using System.Web.Routing;
 namespace CarRepairReport
 {
     using AutoMapper;
+    using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.ViewModels;
 
@@ -25,6 +26,7 @@ namespace CarRepairReport
             Mapper.Initialize(map =>
             {
                 map.CreateMap<User, UserProfileVm>();
+                map.CreateMap<EditUserBm, UserProfileBm>();
             });
         }
         

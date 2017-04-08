@@ -7,5 +7,6 @@
         bool Add(User user);
         User GetUserById(string userId);
         bool Update(User user);
+        User GetUserByAppId(string appUserId);
     }
 }

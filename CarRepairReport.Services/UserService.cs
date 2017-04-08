@@ -20,7 +20,7 @@
 
         public User GetUserById(string userId)
         {
-            var user = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == userId);
+            var user = this.context.MyUsers.FirstOrDefault(x => x.Id == userId);
 
             return user;
         }
@@ -36,7 +36,7 @@
 
             entity.FirstName = user.FirstName;
             entity.LastName = user.LastName;
-            entity.Birthday = user.Birthday;
+            //entity.Birthday = user.Birthday;
             entity.ImageUrl = entity.ImageUrl;
 
             this.context.MyUsers.Update(entity);
@@ -44,6 +44,11 @@
             this.context.Commit();
 
             return true;
+        }
+
+        public User GetUserByAppId(string appUserId)
+        {
+            return this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);
         }
     }
 }

@@ -1,0 +1,56 @@
+﻿@using CarRepairReport.Extensions.HtmlHelpers
+@model CarRepairReport.Models.ViewModels.UserProfileVm
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="profile-personal-data profile-data">
+    <div class="row flex">
+        <div class="col col-sm-2 font-lg">
+            Profile
+        </div>
+        <div class="col col-sm-3">
+            @Html.ActionLink(Html.LangValue("system.common.edit", Model.LanguageCode).ToString(), "Edit", null, new { @class = "btn btn-info" })
+        </div>
+    </div> 
+    <hr />
+
+    <div class="container">
+        
+        <div class="row">
+            <div class="col col-sm-6">
+                <h3>@Model.FirstName @Model.LastName</h3>
+            </div>
+
+            <div class="col col-sm-6">
+                @*<div class="pull-right">@Html.ActionLink(Html.LangValue("system.common.edit", Model.LanguageCode).ToString(), "Edit", null, new { @class = "btn btn-primary" })</div>*@
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-sm-2">
+                <h4>@Model.City, @Model.Country</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile-personal-cars profile-data">
+    
+    <div class="row flex">
+        <div class="col col-sm-2 font-lg">
+            Cars
+        </div>
+        <div class="col col-sm-3">
+            @Html.ActionLink("Add", "Add", "Car", null, new { @class = "btn btn-info" })
+        </div>
+    </div>
+    <hr />
+    
+    <div class="container">
+        
+        <div class="row">
+            asd
+        </div>
+    </div>
+</div>

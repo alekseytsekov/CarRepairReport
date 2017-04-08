@@ -58,16 +58,16 @@
                     UserSetting = userSetting,
                     //ApplicationUser = appUser,
                     ApplicationUserId = appUser.Id,
-                    Birthday = new DateTime(1901, 1, 1)
+                    //Birthday = new DateTime(1901, 1, 1)
                 };
 
                 this.userService.Add(myUser);
             });
         }
 
-        public UserProfileVm GetUserProfileByAppUserId(string userId)
+        public UserProfileVm GetUserProfileByAppUserId(string appUserId)
         {
-            var user = this.userService.GetUserById(userId);
+            var user = this.userService.GetUserByAppId(appUserId);
 
             if (string.IsNullOrWhiteSpace(user.FirstName) || string.IsNullOrWhiteSpace(user.LastName))
             {
@@ -85,21 +85,22 @@
 
             vm.City = address.City.Name.ToCapital();
             vm.Country = address.City.Country.Name.ToCapital();
-            vm.Neighborhood = address.Neighborhood.ToCapital();
-            vm.StreetName = address.StreetName.ToCapital();
+            //vm.Neighborhood = address.Neighborhood.ToCapital();
+            //vm.StreetName = address.StreetName.ToCapital();
 
             return vm;
         }
 
-        public bool AddUserDetails(UserProfileBm bm, string userId)
+        public bool AddUserDetails(UserProfileBm bm, string appUserId)
         {
-            var user = this.userService.GetUserById(userId);
+            var user = this.userService.GetUserByAppId(appUserId);
 
             user.FirstName = bm.FirstName;
             user.LastName = bm.LastName;
-            user.Birthday = bm.Birthday;
+            //user.Birthday = bm.Birthday;
+            var isPrimary = true;
 
-            var address = this.addressService.GenerateAddressToUser(bm.Country, bm.City, bm.Neighborhood, bm.StreetName, userId);
+            var address = this.addressService.GenerateAddressToUser(bm.CountryName, bm.CityName, bm.Neighborhood, bm.StreetName, appUserId, isPrimary);
 
             if (address == null)
             {
@@ -110,5 +111,48 @@
 
             return isUpdated;
         }
+        
+        public bool EditUserPersonalDetails(EditUserBm bm, string appUserId)
+        {
+            var model = Mapper.Map<EditUserBm, UserProfileBm>(bm);
+
+            var result = this.AddUserDetails(model, appUserId);
+
+            return result;
+        }
+
+        public EditUserVm GetEditModelByAppId(string appUserId)
+        {
+            User user = this.userService.GetUserByAppId(appUserId);
+
+            if (user == null)
+            {
+                var model = new EditUserVm();
+                model.Errors.Add("error", null);
+                return model;
+            }
+
+            var address = user.Addresses.FirstOrDefault(x => x.IsPrimary);
+
+            var cityName = string.Empty;
+            var countryName = string.Empty;
+
+            if (address != null)
+            {
+                cityName = address.City.Name;
+                countryName = address.City.Country.Name;
+            }
+
+            var vm = new EditUserVm()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                CityName = cityName,
+                CountryName = countryName
+            };
+
+            return vm;
+        }
+        
     }
 }

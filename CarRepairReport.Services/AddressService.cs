@@ -4,8 +4,13 @@
     using CarRepairReport.Services.Interfaces;
     public class AddressService : Service, IAddressService
     {
-        public Address GenerateAddressToUser(string bmCountry, string bmCity, string bmNeighborhood, string bmStreetName, string userId)
+        public Address GenerateAddressToUser(string bmCountry, string bmCity, string bmNeighborhood, string bmStreetName, string appUserId, bool isPrimary)
         {
+            if (string.IsNullOrWhiteSpace(bmCountry) || string.IsNullOrWhiteSpace(bmCity))
+            {
+                return null;
+            }
+
             bmCountry = bmCountry.ToLower();
             var country = this.context.Countries.FirstOrDefault(x => x.Name == bmCountry);
 
@@ -31,8 +36,8 @@
                 this.context.Commit();
             }
 
-            bmNeighborhood = bmNeighborhood.ToLower();
-            bmStreetName = bmStreetName.ToLower();
+            //bmNeighborhood = bmNeighborhood.ToLower();
+            //bmStreetName = bmStreetName.ToLower();
 
             var address =
                 this.context.Addresses.FirstOrDefault(
@@ -44,11 +49,12 @@
                 {
                     StreetName = bmStreetName,
                     Neighborhood = bmNeighborhood,
-                    CityId = city.Id
+                    CityId = city.Id,
+                    IsPrimary = isPrimary
                 };
             }
 
-            var user = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == userId);
+            var user = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);
 
             address.UserId = user.Id;
 

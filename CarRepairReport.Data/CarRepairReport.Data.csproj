@@ -100,6 +100,14 @@
     <Compile Include="Migrations\201704041859545_addUserToAddress.Designer.cs">
       <DependentUpon>201704041859545_addUserToAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704080713274_RemoveBirthdayFromUser.cs" />
+    <Compile Include="Migrations\201704080713274_RemoveBirthdayFromUser.Designer.cs">
+      <DependentUpon>201704080713274_RemoveBirthdayFromUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704080911406_someMigration.cs" />
+    <Compile Include="Migrations\201704080911406_someMigration.Designer.cs">
+      <DependentUpon>201704080911406_someMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704041859545_addUserToAddress.resx">
       <DependentUpon>201704041859545_addUserToAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080713274_RemoveBirthdayFromUser.resx">
+      <DependentUpon>201704080713274_RemoveBirthdayFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704080911406_someMigration.resx">
+      <DependentUpon>201704080911406_someMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

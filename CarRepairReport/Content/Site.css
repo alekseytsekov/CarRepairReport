@@ -39,13 +39,20 @@ textarea {
     padding: 15px 0;
 }
 
-/* error msg*/
-
-/*.field-validation-valid
-{
-    display: none;
+.profile-data {
+    margin-top: 25px;
+    border-bottom: 1px solid rgb(245, 245, 245);
 }
-.validation-summary-valid
-{
-    display: none;
+
+.flex {
+    
+    display: flex;
+}
+
+.font-lg {
+    font-size: 3rem;
+}
+
+/*.profile-data > h2 {
+    display: inline-block!important;
 }*/
