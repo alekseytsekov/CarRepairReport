@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
 
     public class User : BaseModel
     {
@@ -11,6 +12,7 @@
         {
             this.Addresses = new List<Address>();
             this.Cars = new HashSet<Car>();
+            this.Costs = new HashSet<Cost>();
         }
 
         [Key]
@@ -36,6 +38,8 @@
         public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual ICollection<Car> Cars { get; set; }
+
+        public virtual ICollection<Cost> Costs { get; set; }
 
         public decimal GetTotalSpendOnCars()
         {

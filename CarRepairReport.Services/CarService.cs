@@ -49,5 +49,28 @@
 
             return true;
         }
+
+        public Car GetById(int carId)
+        {
+            return this.context.Cars.FirstOrDefault(x=> x.Id == carId && !x.IsDeleted);
+        }
+
+        public bool RemoveCar(string appUserId, int id)
+        {
+            var car = this.context.Cars.GetById(id);
+
+            var isSameOwner = car.Owner.ApplicationUserId == appUserId;
+
+            if (!isSameOwner)
+            {
+                return false;
+            }
+
+            this.context.Cars.Remove(car);
+            
+            this.context.Commit();
+
+            return true;
+        }
     }
 }

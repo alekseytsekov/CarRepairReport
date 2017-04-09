@@ -1,31 +1,139 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model CarRepairReport.Models.ViewModels.Commons.HomeVm
+
+@{
+    ViewBag.Title = "Car Repair Report";
 }
 
-<div class="jumbotron">
+@*<div class="jumbotron">
     <h1>ASP.NET</h1>
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>*@
+<div class="commercial-banner">
+    <p></p>
+    <p></p>
+    <p></p>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 site-color">
+            <div class="row">
+                <div class="col col-xs-12 aside-home-left">
+                    @using (Ajax.BeginForm("Cost", "Cost", new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you sure you want to add this cost?" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                        <div class="form-group">
+                            <div class="col-md-10 text-muted">
+                                New Investment
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCostVm.Name, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCostVm.Name, new {htmlAttributes = new {@class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCostVm.Name, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCostVm.Price, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCostVm.Price, new { htmlAttributes = new { @class = "form-group" } })
+                                @*@Html.EditorFor(x => x.CreateCostVm.Price, new { htmlAttributes = new { @class = "form-group form-control" } })*@
+                                @Html.ValidationMessageFor(x => x.CreateCostVm.Price, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCostVm.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCostVm.DistanceTraveled, new { htmlAttributes = new { @class = "form-group" } })
+                                @*@Html.EditorFor(x => x.CreateCostVm.DistanceTraveled, new {htmlAttributes = new { @class = "form-group form-control" } })*@
+                                @Html.ValidationMessageFor(x => x.CreateCostVm.DistanceTraveled, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.CreateCostVm.MountedOnKm, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.CreateCostVm.MountedOnKm, new { htmlAttributes = new { @class = "form-group" } })
+                                    @*@Html.EditorFor(x => x.CreateCostVm.MountedOnKm, new {htmlAttributes = new { @class = "form-group form-control" } })*@
+                                    @Html.ValidationMessageFor(x => x.CreateCostVm.MountedOnKm, "", new {@class = "text-danger"})
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.CreateCostVm.MountedOnMi, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.CreateCostVm.MountedOnMi, new { htmlAttributes = new { @class = "form-group" } })
+                                    @*@Html.EditorFor(x => x.CreateCostVm.MountedOnMi, new {htmlAttributes = new { @class = "form-group form-control" } })*@
+                                    @Html.ValidationMessageFor(x => x.CreateCostVm.MountedOnMi, "", new {@class = "text-danger"})
+                                </div>
+                            </div>
+                            
+                        <div class="form-group">
+                            <div class="col-md-10 text-muted">
+                                New Part
+                            </div>
+                           
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCarPartVm.SerialNumber, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCarPartVm.SerialNumber, new {htmlAttributes = new { @class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.SerialNumber, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCarPartVm.Name, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCarPartVm.Name, new {htmlAttributes = new { @class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Name, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCarPartVm.Price, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCarPartVm.Price, new {htmlAttributes = new { @class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Price, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCarPartVm.Quantity, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCarPartVm.Quantity, new {htmlAttributes = new { @class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Quantity, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.CreateCarPartVm.ManufacturerName, htmlAttributes: new { @class = "form-group" })
+                                @Html.EditorFor(x => x.CreateCarPartVm.ManufacturerName, new {htmlAttributes = new { @class = "form-group" } })
+                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.ManufacturerName, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group margin-me">
+                            <div class="col-md-10">
+                                <input type="submit" value="Add" class="btn btn-sm btn-default" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
     </div>
 </div>

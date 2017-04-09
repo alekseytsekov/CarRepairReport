@@ -21,12 +21,14 @@
         private ILanguageManager langManager;
         private IUserService userService;
         private IAddressService addressService;
+        private ICarManager carManager;
 
-        public MyUserManager(ILanguageManager langManager, IUserService userService, IAddressService addressService)
+        public MyUserManager(ILanguageManager langManager, IUserService userService, IAddressService addressService, ICarManager carManager)
         {
             this.langManager = langManager;
             this.userService = userService;
             this.addressService = addressService;
+            this.carManager = carManager;
         }
         public Task CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext)
         {
@@ -93,17 +95,9 @@
             vm.CityName = address.City.Name.ToCapital();
             vm.CountryName = address.City.Country.Name.ToCapital();
 
-            foreach (var car in user.Cars)
+            foreach (var car in user.Cars.Where(x=> !x.IsDeleted))
             {
-                var vmCar = new SimpleCarVm()
-                {
-                    Model = car.Model,
-                    Make = car.Make,
-                    FuelType = car.Engine.FuelType,
-                    RunningDistance = car.RunningDistance,
-                    NumberOfServices = car.CarParts.Count,
-                    TotalSpent = car.SpendOnCar()
-                };
+                var vmCar = this.carManager.MapToSimpleVm(car);
 
                 vm.Cars.Add(vmCar);
             }

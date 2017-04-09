@@ -2,7 +2,9 @@
 {
     using System.Web.Mvc;
     using CarRepairReport.Data;
-    
+    using CarRepairReport.Models.ViewModels.CarVms;
+    using CarRepairReport.Models.ViewModels.Commons;
+
     public class HomeController : Controller
     {
         private ICarRepairReportData crrd;
@@ -29,7 +31,12 @@
 
             //var a = this.crrd.MyUsers.FirstOrDefault().ApplicationUser;
 
-            return this.View();
+            var vm = new HomeVm();
+
+            vm.CreateCarPartVm = new CreateCarPartVm();
+            vm.CreateCostVm = new CreateCostVm();
+
+            return this.View(vm);
         }
 
         public ActionResult About()

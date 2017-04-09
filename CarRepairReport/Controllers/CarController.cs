@@ -79,16 +79,35 @@
 
         [HttpGet]
         [Route("Remove")]
-        public ActionResult Remove()
+        public ActionResult Remove(int carId)
         {
-            return View();
+            var appUserId = this.User.Identity.GetUserId();
+
+            SimpleCarVm vm = this.carManager.GetSimpleVm(appUserId, carId);
+
+            if (vm == null)
+            {
+                // error page
+            }
+
+            return this.View(vm);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         [Route("Remove")]
-        public ActionResult Remove(int a)
+        public ActionResult Remove(int id, string model)
         {
-            return View();
+            var appUserId = this.User.Identity.GetUserId();
+
+            bool isRemoved = this.carManager.RemoveCarFromUser(appUserId, id);
+
+            if (!isRemoved)
+            {
+                // error page
+            }
+
+            return this.RedirectToAction("UserProfile", "User");
         }
     }
 }

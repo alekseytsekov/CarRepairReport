@@ -82,6 +82,7 @@
     <Compile Include="Models\CarComponents\Engine.cs" />
     <Compile Include="Models\CarComponents\Gearbox.cs" />
     <Compile Include="Models\CarComponents\Manufacturer.cs" />
+    <Compile Include="Models\CommonModels\Cost.cs" />
     <Compile Include="Models\LanguageModels\Language.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="IBaseModel.cs" />
@@ -99,8 +100,11 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\CarVms\CreateCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
+    <Compile Include="ViewModels\Commons\CreateCostVm.cs" />
+    <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />

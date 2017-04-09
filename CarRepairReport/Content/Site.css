@@ -56,3 +56,22 @@ textarea {
 .table-header {
     background-color: rgb(200, 200, 200);
 }
+
+.site-color {
+    background-color: hsl(240, 25%, 95%);
+}
+
+.aside-home-left .form-group {
+    margin: 0;
+    padding: 0;
+}
+
+.margin-me .btn-sm {
+    margin: 15px 0;
+}
+
+/*.replace-fg {
+    margin: 0;
+    padding: 0;
+}*/
+

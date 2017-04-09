@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.UserModels;
 
     public class Car : BaseModel
@@ -10,6 +11,7 @@
         public Car()
         {
             this.CarParts = new List<CarPart>();
+            this.Costs = new HashSet<Cost>();
         }
 
         public int Id { get; set; }
@@ -38,6 +40,8 @@
         public virtual User Owner { get; set; }
 
         public virtual ICollection<CarPart> CarParts { get; set; }
+
+        public virtual ICollection<Cost> Costs { get; set; }
 
         public decimal SpendOnCar()
         {

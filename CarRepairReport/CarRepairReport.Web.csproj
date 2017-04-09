@@ -230,6 +230,7 @@
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarController.cs" />
+    <Compile Include="Controllers\CostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -330,6 +331,7 @@
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Car\Add.cshtml" />
+    <Content Include="Views\Car\Remove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,6 +343,7 @@
     <Folder Include="Areas\Forum\Views\Shared\" />
     <Folder Include="Factories\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Cost\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

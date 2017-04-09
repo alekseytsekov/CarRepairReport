@@ -7,6 +7,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -30,10 +31,11 @@
         private IBaseEntityRepository<Engine> engine;
         private IBaseEntityRepository<Gearbox> gearbox;
         private IBaseEntityRepository<Manufacturer> manufacturer;
+        private IBaseEntityRepository<Cost> costs;
 
         //public CarRepairReportData() : this(ApplicationDbContext.Create())
         //{
-            
+
         //}
 
         public CarRepairReportData(ApplicationDbContext context)
@@ -116,6 +118,11 @@
         public IBaseEntityRepository<Manufacturer> Manufacturers
         {
             get { return this.manufacturer ?? (this.manufacturer = new BaseEntityRepository<Manufacturer>(this.context.Manufacturers)); }
+        }
+
+        public IBaseEntityRepository<Cost> Costs
+        {
+            get { return this.costs ?? (this.costs = new BaseEntityRepository<Cost>(this.context.Costs)); }
         }
 
         public ApplicationDbContext Context { get { return this.context; } }

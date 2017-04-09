@@ -3,6 +3,7 @@
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Services.Interfaces;
 
     public class CarManager : ICarManager
@@ -60,6 +61,48 @@
             bool isAdded = this.carService.AddCar(car, appUserId);
 
             return true;
+        }
+
+        public SimpleCarVm MapToSimpleVm(Car car)
+        {
+            var vmCar = new SimpleCarVm()
+            {
+                Id = car.Id,
+                Model = car.Model,
+                Make = car.Make,
+                FuelType = car.Engine.FuelType,
+                RunningDistance = car.RunningDistance,
+                NumberOfServices = car.CarParts.Count,
+                TotalSpent = car.SpendOnCar()
+            };
+
+            return vmCar;
+        }
+
+        public SimpleCarVm GetSimpleVm(string appUserId, int carId)
+        {
+            var car = this.carService.GetById(carId);
+
+            if (car == null)
+            {
+                return null;
+            }
+
+            var carBelongToUser = car.Owner.ApplicationUserId == appUserId;
+
+            if (!carBelongToUser)
+            {
+                return null;
+            }
+
+            return this.MapToSimpleVm(car);
+        }
+
+        public bool RemoveCarFromUser(string appUserId, int id)
+        {
+            bool isRemoved = this.carService.RemoveCar(appUserId, id);
+
+            return isRemoved;
         }
 
         private int RunningDistanceToKm(int kms, int miles)

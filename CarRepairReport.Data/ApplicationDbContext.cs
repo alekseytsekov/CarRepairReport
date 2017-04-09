@@ -4,6 +4,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -32,5 +33,6 @@
         public virtual IDbSet<Engine> Engines { get; set; }
         public virtual IDbSet<Gearbox> Gearboxs { get; set; }
         public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual IDbSet<Cost> Costs { get; set; }
     }
 }

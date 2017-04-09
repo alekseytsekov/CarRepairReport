@@ -4,6 +4,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -27,6 +28,7 @@
         IBaseEntityRepository<Engine> Engines { get; }
         IBaseEntityRepository<Gearbox> Gearboxes { get; }
         IBaseEntityRepository<Manufacturer> Manufacturers { get; }
+        IBaseEntityRepository<Cost> Costs { get; }
 
         ApplicationDbContext Context { get; }
     }

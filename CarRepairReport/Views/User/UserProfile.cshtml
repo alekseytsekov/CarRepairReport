@@ -63,20 +63,35 @@
             </thead>
             <tbody>
             
-                @foreach (var car in Model.Cars)
-                {
-                    <tr>
-                        <td>@car.Model</td>
-                        <td>@car.Make</td>
-                        <td>@car.FuelType.ToString()</td>
-                        <td>@car.RunningDistance</td>
-                        <td>@car.NumberOfServices</td>
-                        <td>@car.TotalSpent</td>
-                        <td>@Html.ActionLink("Remove","Remove","Car", null, htmlAttributes:new {@class ="btn btn-danger"}) | @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>
-                    </tr>
-                }
+            @foreach (var car in Model.Cars)
+            {
+                <tr>
+                    <td>@car.Model</td>
+                    <td>@car.Make</td>
+                    <td>@car.FuelType.ToString()</td>
+                    <td>@car.RunningDistance</td>
+                    <td>@car.NumberOfServices</td>
+                    <td>@car.TotalSpent.ToString("F2")</td>
+                    <td>@Html.ActionLink("Remove","Remove","Car",new {carId = car.Id}, htmlAttributes:new {@class ="btn btn-danger"})</td> @*| @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>*@
+                </tr>
+            }
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total spend:</td>
+                    <td>@Model.Cars.Sum(x => x.TotalSpent).ToString("F2")</td>
+                    <td></td>
+                </tr>
+            </tfoot>
         </table>
+    }
+    else
+    {
+        <div>You still don't register a car!</div>
     }
 
 </div>
