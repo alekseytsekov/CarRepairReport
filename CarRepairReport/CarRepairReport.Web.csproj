@@ -240,6 +240,8 @@
     </Compile>
     <Compile Include="Globals\Configurations.cs" />
     <Compile Include="Extensions\HtmlHelpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Managers\CarManager.cs" />
+    <Compile Include="Managers\Interfaces\ICarManager.cs" />
     <Compile Include="Managers\Interfaces\ILanguageManager.cs" />
     <Compile Include="Managers\Interfaces\IMyUserManager.cs" />
     <Compile Include="Managers\LanguageManager.cs" />
@@ -337,6 +339,7 @@
     <Folder Include="Areas\Forum\Controllers\" />
     <Folder Include="Areas\Forum\Models\" />
     <Folder Include="Areas\Forum\Views\Shared\" />
+    <Folder Include="Factories\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

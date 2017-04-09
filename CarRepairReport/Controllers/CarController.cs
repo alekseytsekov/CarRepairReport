@@ -1,26 +1,66 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System;
+    using System.Linq;
     using System.Web.Mvc;
+    using CarRepairReport.Managers.Interfaces;
+    using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.Enums;
     using CarRepairReport.Models.ViewModels.CarVms;
+    using Microsoft.AspNet.Identity;
 
     [Authorize]
     [RoutePrefix("Cars")]
     public class CarController : Controller
     {
+        private ICarManager carManager;
+        public CarController(ICarManager carManager)
+        {
+            this.carManager = carManager;
+        }
+
         [HttpGet]
         [Route("Add")]
         public ActionResult Add()
         {
             var vm = new CreateCarVm();
+            
+            var fuelTypes = Enum.GetValues(typeof(FuelType)).Cast<FuelType>();
+
+            foreach (var fuelType in fuelTypes)
+            {
+                vm.FuelTypeValues.Add((int)fuelType, fuelType.ToString());
+            }
+
+            var gearboxTypes = Enum.GetValues(typeof(GearBoxType)).Cast<GearBoxType>();
+
+            foreach (var gearboxType in gearboxTypes)
+            {
+                vm.GearBoxValues.Add((int)gearboxType, gearboxType.ToString());
+            }
 
             return View(vm);
         }
 
         [HttpPost]
         [Route("Add")]
-        public ActionResult Add(int a)
+        public ActionResult Add(CreateCarBm bm)
         {
-            return View();
+            if (!this.ModelState.IsValid)
+            {
+                // return model with this data
+            }
+
+            var appUserId = this.User.Identity.GetUserId();
+
+            bool isCreated = this.carManager.CreateCar(bm, appUserId);
+
+            if (!isCreated)
+            {
+                // error page
+            }
+
+            return this.RedirectToAction("UserProfile", "User");
         }
 
         [HttpGet]

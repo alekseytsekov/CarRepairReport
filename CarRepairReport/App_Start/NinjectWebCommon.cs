@@ -74,6 +74,8 @@ namespace CarRepairReport
             kernel.Bind<ILanguageManager>().To<LanguageManager>().InRequestScope();
             kernel.Bind<IMyUserManager>().To<MyUserManager>().InRequestScope();
             kernel.Bind<IAddressService>().To<AddressService>().InRequestScope();
+            kernel.Bind<ICarManager>().To<CarManager>().InRequestScope();
+            kernel.Bind<ICarService>().To<CarService>().InRequestScope();
         }        
     }
 }

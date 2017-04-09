@@ -49,11 +49,34 @@
         </div>
     </div>
     <hr />
-    
-    <div class="container">
-        
-        <div class="row">
-            asd
-        </div>
-    </div>
+    @if (Model.Cars.Any())
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-header">
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().Model)</th>
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().Make)</th>
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().FuelType)</th>
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().RunningDistance)</th>
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().NumberOfServices)</th>
+            <th>@Html.LabelFor(x=> x.Cars.FirstOrDefault().TotalSpent)</th>
+            <th></th>
+            </thead>
+            <tbody>
+            
+                @foreach (var car in Model.Cars)
+                {
+                    <tr>
+                        <td>@car.Model</td>
+                        <td>@car.Make</td>
+                        <td>@car.FuelType.ToString()</td>
+                        <td>@car.RunningDistance</td>
+                        <td>@car.NumberOfServices</td>
+                        <td>@car.TotalSpent</td>
+                        <td>@Html.ActionLink("Remove","Remove","Car", null, htmlAttributes:new {@class ="btn btn-danger"}) | @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
 </div>

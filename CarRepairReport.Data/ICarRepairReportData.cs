@@ -3,6 +3,7 @@
     using System.Data.Entity;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -21,6 +22,11 @@
         IBaseEntityRepository<User> MyUsers { get;}
         IBaseEntityRepository<UserSetting> UserSettings { get; }
         IBaseEntityRepository<LanguageValue> LanguageValues { get; }
+        IBaseEntityRepository<Car> Cars { get; }
+        IBaseEntityRepository<CarPart> CarParts { get; }
+        IBaseEntityRepository<Engine> Engines { get; }
+        IBaseEntityRepository<Gearbox> Gearboxes { get; }
+        IBaseEntityRepository<Manufacturer> Manufacturers { get; }
 
         ApplicationDbContext Context { get; }
     }

@@ -37,7 +37,7 @@
 
         public virtual ICollection<Car> Cars { get; set; }
 
-        public decimal GetTotalSpentOnCars()
+        public decimal GetTotalSpendOnCars()
         {
             var totalSpent = 0m;
 

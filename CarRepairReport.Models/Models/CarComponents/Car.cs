@@ -38,5 +38,16 @@
         public virtual User Owner { get; set; }
 
         public virtual ICollection<CarPart> CarParts { get; set; }
+
+        public decimal SpendOnCar()
+        {
+            var money = 0m;
+
+            foreach (var carPart in CarParts)
+            {
+                money += carPart.Price;
+            }
+            return money;
+        }
     }
 }

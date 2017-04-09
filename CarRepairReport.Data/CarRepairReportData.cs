@@ -108,7 +108,7 @@
             get { return this.engine ?? (this.engine = new BaseEntityRepository<Engine>(this.context.Engines)); }
         }
 
-        public IBaseEntityRepository<Gearbox> Gearboxs
+        public IBaseEntityRepository<Gearbox> Gearboxes
         {
             get { return this.gearbox ?? (this.gearbox = new BaseEntityRepository<Gearbox>(this.context.Gearboxs)); }
         }

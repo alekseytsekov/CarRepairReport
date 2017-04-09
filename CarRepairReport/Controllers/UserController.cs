@@ -28,9 +28,7 @@
             var appUserId = this.User.Identity.GetUserId();
 
             UserProfileVm vm = this.userManager.GetUserProfileByAppUserId(appUserId);
-
             
-
             if (vm == null)
             {
                 return this.RedirectToAction("AddProfile");

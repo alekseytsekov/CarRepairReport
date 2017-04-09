@@ -26,7 +26,7 @@ namespace CarRepairReport
         {
             Mapper.Initialize(map =>
             {
-                map.CreateMap<User, UserProfileVm>();
+                map.CreateMap<User, UserProfileVm>().ForMember(x=> x.Cars, y=> y.Ignore());
                 map.CreateMap<EditUserBm, UserProfileBm>();
             });
         }

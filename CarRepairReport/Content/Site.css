@@ -53,6 +53,6 @@ textarea {
     font-size: 3rem;
 }
 
-/*.profile-data > h2 {
-    display: inline-block!important;
-}*/
+.table-header {
+    background-color: rgb(200, 200, 200);
+}

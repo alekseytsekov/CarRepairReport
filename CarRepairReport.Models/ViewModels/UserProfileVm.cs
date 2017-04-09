@@ -4,12 +4,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using CarRepairReport.Models.Attributes;
+    using CarRepairReport.Models.ViewModels.CarVms;
 
     public class UserProfileVm : ViewBindingModel
     {
         public UserProfileVm()
         {
             this.Errors = new Dictionary<string, string>();
+            this.Cars = new List<SimpleCarVm>();
         }
         
         // премахнато поради ЗЗЛД - закон за защита на личните данни 
@@ -39,6 +41,8 @@
         [MinLength(2), MaxLength(30)]
         [RegexValidation("^[a-zA-Z]{2,}$", "")]
         public string CountryName { get; set; }
+
+        public ICollection<SimpleCarVm> Cars { get; set; }
 
         public IDictionary<string, string> Errors { get; set; }
     }

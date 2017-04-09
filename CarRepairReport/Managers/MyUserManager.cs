@@ -13,6 +13,7 @@
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
+    using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Services.Interfaces;
 
     public class MyUserManager : IMyUserManager
@@ -91,8 +92,21 @@
 
             vm.CityName = address.City.Name.ToCapital();
             vm.CountryName = address.City.Country.Name.ToCapital();
-            //vm.Neighborhood = address.Neighborhood.ToCapital();
-            //vm.StreetName = address.StreetName.ToCapital();
+
+            foreach (var car in user.Cars)
+            {
+                var vmCar = new SimpleCarVm()
+                {
+                    Model = car.Model,
+                    Make = car.Make,
+                    FuelType = car.Engine.FuelType,
+                    RunningDistance = car.RunningDistance,
+                    NumberOfServices = car.CarParts.Count,
+                    TotalSpent = car.SpendOnCar()
+                };
+
+                vm.Cars.Add(vmCar);
+            }
 
             return vm;
         }

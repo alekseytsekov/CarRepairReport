@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="AddressType.cs" />
     <Compile Include="Attributes\RegexValidationAttribute.cs" />
+    <Compile Include="BindingModels\CreateCarBm.cs" />
     <Compile Include="BindingModels\EditUserBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
     <Compile Include="Enums\FuelType.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
+    <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />

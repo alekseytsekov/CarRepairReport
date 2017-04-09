@@ -5,23 +5,13 @@
 }
 
 <h2>Add</h2>
-
-@using (Html.BeginForm()) 
+<hr />
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>CreateCarVm</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LanguageCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LanguageCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LanguageCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
+    <div class="form-horizontal">
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Make, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -44,6 +34,65 @@
                 @Html.EditorFor(model => model.VIN, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VIN, "", new { @class = "text-danger" })
             </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstRegistration, new { htmlAttributes = new { @class = "form-control date-picker" } })
+                @Html.ValidationMessageFor(model => model.FirstRegistration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.RunningDistanceKm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RunningDistanceKm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RunningDistanceKm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RunningDistanceM, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RunningDistanceM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RunningDistanceM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            <div class="col-md-10">
+                
+                    <div class="row">
+
+                    @{
+                        int counter = 0;
+
+                        foreach (var ft in Model.FuelTypeValues)
+                        {
+                            if (counter != 0 && counter % 2 == 0)
+                            {
+                                @:</div>
+                                @:<div class="row">
+                            }
+                            
+                            <div class="col-md-2">
+
+                                @Html.RadioButtonFor(m => m.FuelType, ft.Key, new { id = ft.Key + "ft" })
+                                <label for=@(ft.Key + "ft")>@ft.Value</label>
+
+                            </div>
+
+                            counter = counter + 1;
+                        }
+                    }
+
+                    </div>
+
+            </div>
+
         </div>
 
         <div class="form-group">
@@ -71,34 +120,40 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(m => m.GearBoxType, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            <div class="col-md-10">
+                <div class="row">
+                
+                    @{
+                        counter = 0;
+
+                        foreach (var gb in Model.GearBoxValues)
+                        {
+                            if (counter != 0 && counter % 2 == 0)
+                            {
+                                @:</div>
+                                @:<div class="row">
+                            }
+
+                            <div class="col-md-2">
+                                @Html.RadioButtonFor(m => m.GearBoxType, gb.Key, new { id = gb.Key + "gb" })
+                                <label for=@(gb.Key + "gb")>@gb.Value</label>
+                            </div>
+
+                            counter = counter + 1;
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.NumberOfGears, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOfGears, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NumberOfGears, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstRegistration, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstRegistration, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RunningDistanceKm, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RunningDistanceKm, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RunningDistanceKm, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RunningDistanceM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RunningDistanceM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RunningDistanceM, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -108,8 +163,15 @@
             </div>
         </div>
     </div>
-}
+                    }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Profile", "UserProfile", "User")
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+    })
+</script>
