@@ -58,6 +58,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,7 +72,9 @@
     <Compile Include="Attributes\RegexValidationAttribute.cs" />
     <Compile Include="BindingModels\CreateCarBm.cs" />
     <Compile Include="BindingModels\EditUserBm.cs" />
+    <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
+    <Compile Include="Dtos\CostDto.cs" />
     <Compile Include="Enums\FuelType.cs" />
     <Compile Include="Enums\GearBoxType.cs" />
     <Compile Include="Models\AddressModels\Address.cs" />
@@ -103,7 +106,7 @@
     <Compile Include="ViewModels\CarVms\CreateCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
-    <Compile Include="ViewModels\Commons\CreateCostVm.cs" />
+    <Compile Include="ViewModels\Commons\CreateInvestVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />

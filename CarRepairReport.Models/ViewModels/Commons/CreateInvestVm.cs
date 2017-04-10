@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateCostVm
+    public class CreateInvestVm
     {
         [Required]
         [MinLength(2),MaxLength(30)]

@@ -33,8 +33,8 @@
 
             var vm = new HomeVm();
 
-            vm.CreateCarPartVm = new CreateCarPartVm();
-            vm.CreateCostVm = new CreateCostVm();
+            //vm.CreateCarPartVm = new CreateCarPartVm();
+            //vm.CreateCostVm = new CreateInvestVm();
 
             return this.View(vm);
         }

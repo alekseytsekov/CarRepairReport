@@ -8,10 +8,10 @@
 
         //[Required]
         //[MinLength(2), MaxLength(50)]
-        public string Name { get; set; }
+        public string PartName { get; set; }
 
         //[Range(0.01d, 1000000d)]
-        public decimal Price { get; set; }
+        public decimal PartPrice { get; set; }
 
         //[Range(0, 100)]
         public int Quantity { get; set; }

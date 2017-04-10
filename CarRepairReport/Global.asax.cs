@@ -9,6 +9,8 @@ namespace CarRepairReport
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
+    using CarRepairReport.Models.ViewModels.CarVms;
+    using CarRepairReport.Models.ViewModels.Commons;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -28,6 +30,8 @@ namespace CarRepairReport
             {
                 map.CreateMap<User, UserProfileVm>().ForMember(x=> x.Cars, y=> y.Ignore());
                 map.CreateMap<EditUserBm, UserProfileBm>();
+                map.CreateMap<InvestPartBm, CreateInvestVm>();
+                map.CreateMap<InvestPartBm, CreateCarPartVm>();
             });
         }
         

@@ -25,104 +25,100 @@
 
                         <div class="form-group">
                             <div class="col-md-10 text-muted">
-                                New Investment
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCostVm.Name, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCostVm.Name, new {htmlAttributes = new {@class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCostVm.Name, "", new {@class = "text-danger"})
+                                <div class="form-group flex">
+                                    <div class="col-md-11 margin-top">
+                                        <span>New Invest</span>
+                                    </div>
+                                    <div class="col-md-1 margin-top">
+                                        <button onclick="changeIcon('#plus-minus-invest')" type="button" data-toggle="collapse" data-target="#cost-form"><span id="plus-minus-invest" class="glyphicon glyphicon-plus"></span></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCostVm.Price, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCostVm.Price, new { htmlAttributes = new { @class = "form-group" } })
-                                @*@Html.EditorFor(x => x.CreateCostVm.Price, new { htmlAttributes = new { @class = "form-group form-control" } })*@
-                                @Html.ValidationMessageFor(x => x.CreateCostVm.Price, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCostVm.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCostVm.DistanceTraveled, new { htmlAttributes = new { @class = "form-group" } })
-                                @*@Html.EditorFor(x => x.CreateCostVm.DistanceTraveled, new {htmlAttributes = new { @class = "form-group form-control" } })*@
-                                @Html.ValidationMessageFor(x => x.CreateCostVm.DistanceTraveled, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
+                        <div id="cost-form" class="collapse">
                             <div class="form-group">
-                                
                                 <div class="col-md-10">
-                                    @Html.LabelFor(x => x.CreateCostVm.MountedOnKm, htmlAttributes: new { @class = "form-group" })
-                                    @Html.EditorFor(x => x.CreateCostVm.MountedOnKm, new { htmlAttributes = new { @class = "form-group" } })
-                                    @*@Html.EditorFor(x => x.CreateCostVm.MountedOnKm, new {htmlAttributes = new { @class = "form-group form-control" } })*@
-                                    @Html.ValidationMessageFor(x => x.CreateCostVm.MountedOnKm, "", new {@class = "text-danger"})
+                                    @Html.LabelFor(x => x.InvestPart.Name, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.Name, new { htmlAttributes = new { @class = "form-group" } })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    @Html.LabelFor(x => x.CreateCostVm.MountedOnMi, htmlAttributes: new { @class = "form-group" })
-                                    @Html.EditorFor(x => x.CreateCostVm.MountedOnMi, new { htmlAttributes = new { @class = "form-group" } })
-                                    @*@Html.EditorFor(x => x.CreateCostVm.MountedOnMi, new {htmlAttributes = new { @class = "form-group form-control" } })*@
-                                    @Html.ValidationMessageFor(x => x.CreateCostVm.MountedOnMi, "", new {@class = "text-danger"})
+                                    @Html.LabelFor(x => x.InvestPart.Price, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.Price, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
                                 </div>
                             </div>
-                            
-                        <div class="form-group">
-                            <div class="col-md-10 text-muted">
-                                New Part
-                            </div>
-                           
-                        </div>
-                        <hr />
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCarPartVm.SerialNumber, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCarPartVm.SerialNumber, new {htmlAttributes = new { @class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.SerialNumber, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCarPartVm.Name, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCarPartVm.Name, new {htmlAttributes = new { @class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Name, "", new {@class = "text-danger"})
-                            </div>
-                        </div>
+                            <div class="form-group">
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCarPartVm.Price, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCarPartVm.Price, new {htmlAttributes = new { @class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Price, "", new {@class = "text-danger"})
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.DistanceTraveled, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
 
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCarPartVm.Quantity, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCarPartVm.Quantity, new {htmlAttributes = new { @class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.Quantity, "", new {@class = "text-danger"})
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.MountedOnKm, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.MountedOnKm, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-10">
-                                @Html.LabelFor(x => x.CreateCarPartVm.ManufacturerName, htmlAttributes: new { @class = "form-group" })
-                                @Html.EditorFor(x => x.CreateCarPartVm.ManufacturerName, new {htmlAttributes = new { @class = "form-group" } })
-                                @Html.ValidationMessageFor(x => x.CreateCarPartVm.ManufacturerName, "", new {@class = "text-danger"})
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.MountedOnMi, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.MountedOnMi, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group margin-me">
-                            <div class="col-md-10">
-                                <input type="submit" value="Add" class="btn btn-sm btn-default" />
+                            <div class="form-group margin-top">
+                                <div class="col-md-10 text-muted">
+                                    <div class="form-group">
+                                        <div class="col-md-11 hr margin-top">
+                                            New Part
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.SerialNumber, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.SerialNumber, new { htmlAttributes = new { @class = "form-group" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.PartName, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.PartName, new { htmlAttributes = new { @class = "form-group" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.PartPrice, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.PartPrice, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.Quantity, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.Quantity, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.ManufacturerName, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.ManufacturerName, new { htmlAttributes = new { @class = "form-group" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-me">
+                                <div class="col-md-10">
+                                    <input type="submit" value="Add" class="btn btn-sm btn-default" />
+                                </div>
                             </div>
                         </div>
                     }
@@ -132,8 +128,25 @@
         <div class="col-md-6">
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 site-color">
 
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function changeIcon(id) {
+
+        var element = $(id)[0];
+
+        var hasPlus = $(id).hasClass('glyphicon-plus');
+
+        if (hasPlus) {
+            element.className = element.className.replace(' glyphicon-plus', ' glyphicon-minus');
+        } else {
+            element.className = element.className.replace(' glyphicon-minus', ' glyphicon-plus');
+        }
+    }
+
+</script>

@@ -61,6 +61,10 @@ textarea {
     background-color: hsl(240, 25%, 95%);
 }
 
+.aside-home-left {
+    min-height: 700px;
+}
+
 .aside-home-left .form-group {
     margin: 0;
     padding: 0;
@@ -70,8 +74,11 @@ textarea {
     margin: 15px 0;
 }
 
-/*.replace-fg {
-    margin: 0;
-    padding: 0;
-}*/
+.hr {
+    border-bottom: 2px solid rgb(180, 180, 180);
+}
+
+.margin-top {
+    margin-top: 10px;
+}
 
