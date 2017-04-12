@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateInvestVm
+    public class CreateInvestmentVm
     {
         [Required]
         [MinLength(2),MaxLength(30)]
@@ -16,5 +16,7 @@
         public int MountedOnKm { get; set; }
 
         public int MountedOnMi { get; set; }
+
+        public string VehicleService { get; set; }
     }
 }

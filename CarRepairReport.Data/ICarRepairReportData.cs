@@ -29,6 +29,7 @@
         IBaseEntityRepository<Gearbox> Gearboxes { get; }
         IBaseEntityRepository<Manufacturer> Manufacturers { get; }
         IBaseEntityRepository<Cost> Costs { get; }
+        IBaseEntityRepository<VehicleService> VehicleServices { get; }
 
         ApplicationDbContext Context { get; }
     }

@@ -92,6 +92,7 @@
     <Compile Include="Models\LanguageModels\LanguageValue.cs" />
     <Compile Include="Models\UserModels\User.cs" />
     <Compile Include="Models\UserModels\UserSetting.cs" />
+    <Compile Include="Models\UserModels\VehicleService.cs" />
     <Compile Include="ViewBindingModel.cs" />
     <Compile Include="ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\UserModels\ApplicationUser.cs" />
@@ -106,7 +107,7 @@
     <Compile Include="ViewModels\CarVms\CreateCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
-    <Compile Include="ViewModels\Commons\CreateInvestVm.cs" />
+    <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />

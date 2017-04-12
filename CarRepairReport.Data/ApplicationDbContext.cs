@@ -34,5 +34,6 @@
         public virtual IDbSet<Gearbox> Gearboxs { get; set; }
         public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
         public virtual IDbSet<Cost> Costs { get; set; }
+        public virtual IDbSet<VehicleService> VehicleServices { get; set; }
     }
 }

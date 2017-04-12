@@ -8,6 +8,7 @@
         public Address()
         {
             this.Users = new List<User>();
+            this.VehicleServices = new HashSet<VehicleService>();
         }
         public int Id { get; set; }
         public AddressType AddressType { get; set; }
@@ -20,5 +21,6 @@
         public bool IsPrimary { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<VehicleService> VehicleServices { get; set; }
     }
 }

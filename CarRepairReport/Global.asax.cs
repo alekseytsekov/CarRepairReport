@@ -30,7 +30,7 @@ namespace CarRepairReport
             {
                 map.CreateMap<User, UserProfileVm>().ForMember(x=> x.Cars, y=> y.Ignore());
                 map.CreateMap<EditUserBm, UserProfileBm>();
-                map.CreateMap<InvestPartBm, CreateInvestVm>();
+                map.CreateMap<InvestPartBm, CreateInvestmentVm>();
                 map.CreateMap<InvestPartBm, CreateCarPartVm>();
             });
         }

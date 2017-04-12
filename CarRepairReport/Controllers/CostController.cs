@@ -3,38 +3,60 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using CarRepairReport.Models.BindingModels;
-    using System.Web.Http;
     using AutoMapper;
+    using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.Dtos;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Models.ViewModels.Commons;
+    using Microsoft.AspNet.Identity;
 
     [System.Web.Mvc.Authorize]
     [RoutePrefix("Cost")]
     public class CostController : Controller
     {
+        private ICarManager carManager;
+
+        public CostController(ICarManager carManager)
+        {
+            this.carManager = carManager;
+        }
+        
         [Route]
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         public JsonResult Cost([Bind(Prefix = "InvestPart")]InvestPartBm bm)
         {
             var result = new CostDto();
 
+            var appUserId = this.User.Identity.GetUserId();
+
+            var carId = bm.CarId;
+
+            if (carId < 1)
+            {
+                //error 
+            }
+
+            Cost investmentEntity = null;
+
             if (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0 && (bm.DistanceTraveled > 0 || bm.MountedOnMi > 0 || bm.MountedOnKm > 0))
             {
-                var newInvest = Mapper.Map<InvestPartBm,CreateInvestVm>(bm);
+                var newInvestment = Mapper.Map<InvestPartBm,CreateInvestmentVm>(bm);
 
-                var isInvestAdded = true;
+                investmentEntity = this.carManager.AddNewInvestment(newInvestment, carId, appUserId);
+
+                var isInvestAdded = investmentEntity != null;
 
                 if (isInvestAdded)
                 {
                     result.HasInvest = isInvestAdded;
-                    result.InvestMessage = this.GetMessage(newInvest.Name, isInvestAdded);
+                    result.InvestMessage = this.GetMessage(newInvestment.Name, isInvestAdded);
                 }
                 else
                 {
                     result.HasInvest = isInvestAdded;
                     result.HasError = !isInvestAdded;
-                    result.ErrorMessage = this.GetMessage(newInvest.Name, isInvestAdded);
+                    result.ErrorMessage = this.GetMessage(newInvestment.Name, isInvestAdded);
                 }
             }
 
@@ -49,14 +71,18 @@
 
                 var carPart = Mapper.Map<InvestPartBm, CreateCarPartVm>(bm);
 
-                for (int i = 0; i < quantity; i++)
-                {
-                    
-                    // send to manager  
-                }
-
                 var isCarPartAdded = true;
 
+                for (int i = 0; i < quantity; i++)
+                {
+                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, appUserId, investmentEntity);
+
+                    if (!isCarPartAdded)
+                    {
+                        break;
+                    }
+                }
+                
                 if (isCarPartAdded)
                 {
                     result.HasInvest = isCarPartAdded;

@@ -10,7 +10,7 @@
 
         public decimal Price { get; set; }
 
-        public int MountedOn { get; set; }
+        public int MountedOnKm { get; set; }
 
         public int ManufacturerId { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

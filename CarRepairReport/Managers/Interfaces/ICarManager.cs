@@ -1,8 +1,11 @@
 ﻿namespace CarRepairReport.Managers.Interfaces
 {
+    using System.Collections.Generic;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.ViewModels.CarVms;
+    using CarRepairReport.Models.ViewModels.Commons;
 
     public interface ICarManager
     {
@@ -10,5 +13,9 @@
         SimpleCarVm MapToSimpleVm(Car car);
         SimpleCarVm GetSimpleVm(string appUserId, int carId);
         bool RemoveCarFromUser(string appUserId, int id);
+        IEnumerable<string> GetVehicleServiceNames();
+        IDictionary<int, string> GetCarNames(string userId);
+        bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId, Cost investment);
+        Cost AddNewInvestment(CreateInvestmentVm newInvestment, int carId, string appUserId);
     }
 }

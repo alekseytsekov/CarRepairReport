@@ -57,7 +57,7 @@
             return this.set.ToArray();
         }
 
-        public IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public IEnumerable<T> Where(Expression<Func<T, bool>> predicate)
         {
             return this.set.Where(predicate);
         }

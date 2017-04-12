@@ -19,6 +19,6 @@
         T GetById(object id);
         IQueryable<T> GetAllWithRemoved();
         IEnumerable<T> AllWithRemoved();
-        IEnumerable<T> FindBy(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> Where(Expression<Func<T, bool>> predicate);
     }
 }

@@ -82,3 +82,8 @@ textarea {
     margin-top: 10px;
 }
 
+.limit-dropdown-width {
+    max-width: 92%;
+    overflow: hidden;
+}
+

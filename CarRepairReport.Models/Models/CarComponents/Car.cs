@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text;
     using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.UserModels;
 
@@ -15,6 +16,8 @@
         }
 
         public int Id { get; set; }
+
+        public string CarNickname { get; set; }
 
         public string Model { get; set; }
 
@@ -52,6 +55,21 @@
                 money += carPart.Price;
             }
             return money;
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(this.CarNickname))
+            {
+                sb.Append(this.CarNickname + ", ");
+            }
+
+            sb.Append(this.Model + ", ");
+            sb.Append(this.FirstRegistration.Year);
+
+            return sb.ToString();
         }
     }
 }

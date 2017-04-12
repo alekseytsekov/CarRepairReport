@@ -1,11 +1,15 @@
 ﻿namespace CarRepairReport.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Cryptography.X509Certificates;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Services.Interfaces;
 
-    public class CarService : Service , ICarService
+    public class CarService : Service, ICarService
     {
         public CarService(ICarRepairReportData context) : base(context)
         {
@@ -32,9 +36,9 @@
             }
 
             var entityGearbox = this.context.Gearboxes
-                .FirstOrDefault(x => 
-                x.GearBoxType == car.Gearbox.GearBoxType &&
-                x.NumberOfGears == car.Gearbox.NumberOfGears);
+                .FirstOrDefault(x =>
+                    x.GearBoxType == car.Gearbox.GearBoxType &&
+                    x.NumberOfGears == car.Gearbox.NumberOfGears);
 
             if (entityGearbox != null)
             {
@@ -52,7 +56,7 @@
 
         public Car GetById(int carId)
         {
-            return this.context.Cars.FirstOrDefault(x=> x.Id == carId && !x.IsDeleted);
+            return this.context.Cars.FirstOrDefault(x => x.Id == carId && !x.IsDeleted);
         }
 
         public bool RemoveCar(string appUserId, int id)
@@ -67,8 +71,65 @@
             }
 
             this.context.Cars.Remove(car);
-            
+
             this.context.Commit();
+
+            return true;
+        }
+
+        public IEnumerable<Car> AllUserCars(string userId)
+        {
+            var cars = this.context.Cars.Where(x => x.Owner.ApplicationUserId == userId && !x.IsDeleted).ToArray();
+
+            return cars;
+        }
+
+        public Manufacturer GetCarPartManufacturerByName(string manufacturerName)
+        {
+            return this.context.Manufacturers.FirstOrDefault(x => x.Name == manufacturerName);
+        }
+
+        public bool AddManufacturer(Manufacturer manufacturer)
+        {
+            try
+            {
+                this.context.Manufacturers.Add(manufacturer);
+                this.context.Commit();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool AddCarPart(CarPart newPart)
+        {
+            try
+            {
+                this.context.CarParts.Add(newPart);
+                this.context.Commit();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool AddInvestment(Cost investment)
+        {
+            try
+            {
+                this.context.Costs.Add(investment);
+                this.context.Commit();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
             return true;
         }
