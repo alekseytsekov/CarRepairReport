@@ -63,36 +63,6 @@
                                 <div class="col-md-10 text-muted">
                                     <div class="form-group">
                                         <div class="col-md-11 hr margin-top">
-                                            Car Running Distance
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    @Html.LabelFor(x => x.InvestPart.DistanceTraveled, htmlAttributes: new {@class = "form-group"})
-                                    @Html.EditorFor(x => x.InvestPart.DistanceTraveled, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-md-10">
-                                    @Html.LabelFor(x => x.InvestPart.MountedOnKm, htmlAttributes: new {@class = "form-group"})
-                                    @Html.EditorFor(x => x.InvestPart.MountedOnKm, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    @Html.LabelFor(x => x.InvestPart.MountedOnMi, htmlAttributes: new {@class = "form-group"})
-                                    @Html.EditorFor(x => x.InvestPart.MountedOnMi, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
-                                </div>
-                            </div>
-
-                            <div class="form-group margin-top">
-                                <div class="col-md-10 text-muted">
-                                    <div class="form-group">
-                                        <div class="col-md-11 hr margin-top">
                                             New Part
                                         </div>
                                     </div>
@@ -131,6 +101,36 @@
                                 <div class="col-md-10">
                                     @Html.LabelFor(x => x.InvestPart.ManufacturerName, htmlAttributes: new {@class = "form-group"})
                                     @Html.EditorFor(x => x.InvestPart.ManufacturerName, new {htmlAttributes = new {@class = "form-group"}})
+                                </div>
+                            </div>
+                            
+                            <div class="form-group margin-top">
+                                <div class="col-md-10 text-muted">
+                                    <div class="form-group">
+                                        <div class="col-md-11 hr margin-top">
+                                            Car Running Distance
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.DistanceTraveled, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.MountedOnKm, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.MountedOnKm, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @Html.LabelFor(x => x.InvestPart.MountedOnMi, htmlAttributes: new { @class = "form-group" })
+                                    @Html.EditorFor(x => x.InvestPart.MountedOnMi, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
                                 </div>
                             </div>
 

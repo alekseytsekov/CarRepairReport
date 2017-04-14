@@ -5,17 +5,21 @@
     public class CreateCarPartVm
     {
         public string SerialNumber { get; set; }
-
-        //[Required]
-        //[MinLength(2), MaxLength(50)]
+        
         public string PartName { get; set; }
-
-        //[Range(0.01d, 1000000d)]
+        
         public decimal PartPrice { get; set; }
-
-        //[Range(0, 100)]
+        
         public int Quantity { get; set; }
 
         public string ManufacturerName { get; set; }
+
+        public int DistanceTraveled { get; set; }
+
+        public int MountedOnKm { get; set; }
+
+        public int MountedOnMi { get; set; }
+
+        public string VehicleService { get; set; }
     }
 }

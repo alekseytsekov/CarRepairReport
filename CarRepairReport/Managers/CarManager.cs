@@ -19,11 +19,13 @@
 
         private ICarService carService;
         private IVehicleServiceService vehicleService;
+        private IAddressService addressService;
 
-        public CarManager(ICarService carService, IVehicleServiceService vehicleService)
+        public CarManager(ICarService carService, IVehicleServiceService vehicleService, IAddressService addressService)
         {
             this.carService = carService;
             this.vehicleService = vehicleService;
+            this.addressService = addressService;
         }
 
         public bool CreateCar(CreateCarBm bm, string appUserId)
@@ -81,7 +83,8 @@
                 FuelType = car.Engine.FuelType,
                 RunningDistance = car.RunningDistance,
                 NumberOfServices = car.CarParts.Count,
-                TotalSpent = car.SpendOnCar()
+                NumberOfCosts = car.Costs.Count,
+                TotalSpent = car.TotalSpendOnCar()
             };
 
             return vmCar;
@@ -136,7 +139,7 @@
             return carNames;
         }
 
-        public bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId, Cost investment)
+        public bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId)
         {
             var entityCar = this.carService.GetById(carId);
 
@@ -161,18 +164,79 @@
                     return false;
                 }
             }
+
+            // change car running distance .... 
+            var runningDistanceInKm = this.RunningDistanceToKm(carPart.MountedOnKm, carPart.MountedOnMi);
+
+            if (runningDistanceInKm > 0 && entityCar.RunningDistance < runningDistanceInKm)
+            {
+                entityCar.RunningDistance = runningDistanceInKm;
+            }
+            else if (carPart.DistanceTraveled > 0)
+            {
+                entityCar.RunningDistance += carPart.DistanceTraveled;
+            }
             
+            // create new part 
             var newPart = new CarPart()
             {
                 CreatedOn = DateTime.UtcNow,
-                SerialNumber = carPart.SerialNumber,
+                SerialNumber = carPart.SerialNumber.ToUpper(),
                 Price = carPart.PartPrice,
-                Name = carPart.PartName,
+                Name = carPart.PartName.ToLower(),
                 ManufacturerId = entityManufacturer.Id,
-                MountedOnKm = entityCar.RunningDistance
+                MountedOnKm = entityCar.RunningDistance,
+                Car = entityCar,
+                CarId = entityCar.Id
             };
+            
+            // create/register vehicle service
+            if (carPart.VehicleService.ToLower() == "by me")
+            {
+                var serviceName = carPart.VehicleService.ToLower();
+                var vehicleService = this.vehicleService.GetAllVehicleServices().FirstOrDefault(x => x.Name == serviceName);
 
-            investment.CarParts.Add(newPart);
+                if (vehicleService == null)
+                {
+                    vehicleService = new VehicleService()
+                    {
+                        Name = "by me",
+                        CreatedOn = DateTime.UtcNow
+                    };
+
+                    var address = this.addressService.GetAllAddresses().FirstOrDefault(x => x.StreetName == "My Street");
+
+                    vehicleService.Address = address;
+                    vehicleService.AddressId = address.Id;
+
+                    bool isAdded = this.vehicleService.AddVehicleService(vehicleService);
+
+                    if (!isAdded)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    newPart.VehicleService = vehicleService;
+                    newPart.VehicleServiceId = vehicleService.Id;
+                    vehicleService.CarParts.Add(newPart);
+                }
+            }
+            else
+            {
+                var serviceName = carPart.VehicleService.ToLower();
+                var vehicleService = this.vehicleService.GetAllVehicleServices().FirstOrDefault(x => x.Name == serviceName);
+
+                if (vehicleService != null)
+                {
+                    newPart.VehicleService = vehicleService;
+                    newPart.VehicleServiceId = vehicleService.Id;
+                    vehicleService.CarParts.Add(newPart);
+                    newPart.RequestedToVehicleService = true;
+                }
+            }
+            
             entityManufacturer.CarParts.Add(newPart);
             entityCar.CarParts.Add(newPart);
 
@@ -202,54 +266,6 @@
                 
             };
 
-            var runningDistanceInKm = this.RunningDistanceToKm(investment.MountedOnKm, investment.MountedOnMi);
-
-            if (runningDistanceInKm > 0 && entityCar.RunningDistance < runningDistanceInKm)
-            {
-                entityCar.RunningDistance = runningDistanceInKm;
-            }
-            else if(investment.DistanceTraveled > 0)
-            {
-                entityCar.RunningDistance += investment.DistanceTraveled;
-            }
-
-            newInvestment.MountedOn = entityCar.RunningDistance;
-
-            if (investment.VehicleService.ToLower() == "by me")
-            {
-                var serviceName = investment.VehicleService.ToLower();
-                var vehicleService = this.vehicleService.GetAllVehicleServices().FirstOrDefault(x => x.Name == serviceName);
-
-                if (vehicleService == null)
-                {
-                    vehicleService = new VehicleService()
-                    {
-                        Name = "by me",
-                        CreatedOn = DateTime.UtcNow
-                    };
-
-                    bool isAdded = this.vehicleService.AddVehicleService(vehicleService);
-
-                    if (!isAdded)
-                    {
-                        return null;
-                    }
-                }
-
-                vehicleService.Costs.Add(newInvestment);
-            }
-            else
-            {
-                var serviceName = investment.VehicleService.ToLower();
-                var vehicleService = this.vehicleService.GetAllVehicleServices().FirstOrDefault(x => x.Name == serviceName);
-
-                if (vehicleService != null)
-                {
-                    vehicleService.Costs.Add(newInvestment);
-                    newInvestment.RequestedToVehicleService = true;
-                }
-            }
-
             bool isInvestmentAdded = this.carService.AddInvestment(newInvestment);
 
             if (!isInvestmentAdded)
@@ -258,6 +274,7 @@
             }
 
             return newInvestment;
+            
         }
 
         private int RunningDistanceToKm(int kms, int miles)

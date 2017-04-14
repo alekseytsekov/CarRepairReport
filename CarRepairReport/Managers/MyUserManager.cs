@@ -84,8 +84,8 @@
 
             var address = user.Addresses.FirstOrDefault(x=> x.IsPrimary && x.Users.Any(u => u.ApplicationUserId == appUserId));
 
-            var users = this.userService.GetAllUsers();
-            var addresses = this.addressService.GetAllAddresses();
+            //var users = this.userService.GetAllUsers();
+            //var addresses = this.addressService.GetAllAddresses();
 
             if (address == null)
             {

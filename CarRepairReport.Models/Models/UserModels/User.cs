@@ -12,7 +12,6 @@
         {
             this.Addresses = new List<Address>();
             this.Cars = new HashSet<Car>();
-            this.Costs = new HashSet<Cost>();
         }
 
         [Key]
@@ -34,12 +33,16 @@
         public int UserSettingId { get; set; }
 
         public virtual UserSetting UserSetting { get; set; }
+
+        public int? VehicleServiceId { get; set; }
         
+        public virtual VehicleService VehicleService { get; set; }
+
+        public bool IsVehicleServiceOwner { get; set; }
+
         public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual ICollection<Car> Cars { get; set; }
-
-        public virtual ICollection<Cost> Costs { get; set; }
 
         public decimal GetTotalSpendOnCars()
         {

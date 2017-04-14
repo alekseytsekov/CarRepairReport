@@ -15,7 +15,7 @@
         bool RemoveCarFromUser(string appUserId, int id);
         IEnumerable<string> GetVehicleServiceNames();
         IDictionary<int, string> GetCarNames(string userId);
-        bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId, Cost investment);
+        bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId);
         Cost AddNewInvestment(CreateInvestmentVm newInvestment, int carId, string appUserId);
     }
 }

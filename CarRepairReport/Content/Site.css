@@ -63,6 +63,8 @@ textarea {
 
 .aside-home-left {
     min-height: 700px;
+    max-height: 700px;
+    overflow: hidden;
 }
 
 .aside-home-left .form-group {

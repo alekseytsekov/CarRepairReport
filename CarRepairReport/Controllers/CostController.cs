@@ -39,7 +39,7 @@
 
             Cost investmentEntity = null;
 
-            if (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0 && (bm.DistanceTraveled > 0 || bm.MountedOnMi > 0 || bm.MountedOnKm > 0))
+            if (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0)// && (bm.DistanceTraveled > 0 || bm.MountedOnMi > 0 || bm.MountedOnKm > 0))
             {
                 var newInvestment = Mapper.Map<InvestPartBm,CreateInvestmentVm>(bm);
 
@@ -60,7 +60,7 @@
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(bm.SerialNumber) && !string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0)
+            if (!string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0)
             {
                 var quantity = 1;
 
@@ -75,7 +75,7 @@
 
                 for (int i = 0; i < quantity; i++)
                 {
-                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, appUserId, investmentEntity);
+                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, appUserId);
 
                     if (!isCarPartAdded)
                     {

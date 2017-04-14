@@ -46,14 +46,34 @@
 
         public virtual ICollection<Cost> Costs { get; set; }
 
-        public decimal SpendOnCar()
+        public decimal TotalSpendOnCar()
+        {
+            var money = this.SpendOnCarParts() + this.SpendOnCosts();
+            
+            return money;
+        }
+
+        public decimal SpendOnCarParts()
         {
             var money = 0m;
 
-            foreach (var carPart in CarParts)
+            foreach (var carPart in this.CarParts)
             {
                 money += carPart.Price;
             }
+
+            return money;
+        }
+
+        public decimal SpendOnCosts()
+        {
+            var money = 0m;
+
+            foreach (var cost in this.Costs)
+            {
+                money += cost.Price;
+            }
+
             return money;
         }
 

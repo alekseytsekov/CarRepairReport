@@ -58,6 +58,7 @@
             <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().FuelType)</th>
             <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().RunningDistance)</th>
             <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().NumberOfServices)</th>
+            <th>@Html.LabelFor(x => x.Cars.FirstOrDefault().NumberOfCosts)</th>
             <th>@Html.LabelFor(x=> x.Cars.FirstOrDefault().TotalSpent)</th>
             <th></th>
             </thead>
@@ -71,6 +72,7 @@
                     <td>@car.FuelType.ToString()</td>
                     <td>@car.RunningDistance</td>
                     <td>@car.NumberOfServices</td>
+                    <td>@car.NumberOfCosts</td>
                     <td>@car.TotalSpent.ToString("F2")</td>
                     <td>@Html.ActionLink("Remove","Remove","Car",new {carId = car.Id}, htmlAttributes:new {@class ="btn btn-danger"})</td> @*| @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>*@
                 </tr>
@@ -78,6 +80,7 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

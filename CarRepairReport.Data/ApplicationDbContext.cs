@@ -21,6 +21,16 @@
             return new ApplicationDbContext();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<User>()
+            //    .HasOptional(u => u.VehicleService) 
+            //    .WithRequired(vs => vs.User)
+            //    .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual IDbSet<Language> Languages { get; set; }
         public virtual IDbSet<Address> Addresses { get; set; }
         public virtual IDbSet<City> Cities { get; set; }

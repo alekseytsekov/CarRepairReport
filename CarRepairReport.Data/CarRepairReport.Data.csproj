@@ -140,6 +140,22 @@
     <Compile Include="Migrations\201704122026186_changePropertyName.Designer.cs">
       <DependentUpon>201704122026186_changePropertyName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704141330200_addVehicleServiceAdminsEmployees.cs" />
+    <Compile Include="Migrations\201704141330200_addVehicleServiceAdminsEmployees.Designer.cs">
+      <DependentUpon>201704141330200_addVehicleServiceAdminsEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141350253_ModelReconstruction.cs" />
+    <Compile Include="Migrations\201704141350253_ModelReconstruction.Designer.cs">
+      <DependentUpon>201704141350253_ModelReconstruction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141434011_ModelReconstructionOnModels.cs" />
+    <Compile Include="Migrations\201704141434011_ModelReconstructionOnModels.Designer.cs">
+      <DependentUpon>201704141434011_ModelReconstructionOnModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704141449479_navigationPropertyToCarPartToCar.cs" />
+    <Compile Include="Migrations\201704141449479_navigationPropertyToCarPartToCar.Designer.cs">
+      <DependentUpon>201704141449479_navigationPropertyToCarPartToCar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -210,6 +226,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704122026186_changePropertyName.resx">
       <DependentUpon>201704122026186_changePropertyName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141330200_addVehicleServiceAdminsEmployees.resx">
+      <DependentUpon>201704141330200_addVehicleServiceAdminsEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141350253_ModelReconstruction.resx">
+      <DependentUpon>201704141350253_ModelReconstruction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141434011_ModelReconstructionOnModels.resx">
+      <DependentUpon>201704141434011_ModelReconstructionOnModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704141449479_navigationPropertyToCarPartToCar.resx">
+      <DependentUpon>201704141449479_navigationPropertyToCarPartToCar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
