@@ -74,6 +74,7 @@
     <Compile Include="BindingModels\EditUserBm.cs" />
     <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
+    <Compile Include="Dtos\CheckBoxDto.cs" />
     <Compile Include="Dtos\CostDto.cs" />
     <Compile Include="Enums\FuelType.cs" />
     <Compile Include="Enums\GearBoxType.cs" />
@@ -109,7 +110,8 @@
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
-    <Compile Include="ViewModels\EditUserVm.cs" />
+    <Compile Include="ViewModels\UserVms\CreateCarServiceVm.cs" />
+    <Compile Include="ViewModels\UserVms\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -119,7 +121,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\UserProfileVm.cs" />
+    <Compile Include="ViewModels\UserVms\UserProfileVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

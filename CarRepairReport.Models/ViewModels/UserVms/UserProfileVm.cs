@@ -1,6 +1,5 @@
-﻿namespace CarRepairReport.Models.ViewModels
+﻿namespace CarRepairReport.Models.ViewModels.UserVms
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using CarRepairReport.Models.Attributes;
@@ -41,6 +40,8 @@
         [MinLength(2), MaxLength(30)]
         [RegexValidation("^[a-zA-Z]{2,}$", "")]
         public string CountryName { get; set; }
+
+        public bool IsVehicleServiceOwner { get; set; }
 
         public ICollection<SimpleCarVm> Cars { get; set; }
 

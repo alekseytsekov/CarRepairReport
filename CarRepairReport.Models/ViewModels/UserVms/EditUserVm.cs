@@ -1,4 +1,4 @@
-﻿namespace CarRepairReport.Models.ViewModels
+﻿namespace CarRepairReport.Models.ViewModels.UserVms
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

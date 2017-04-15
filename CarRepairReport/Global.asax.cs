@@ -11,6 +11,7 @@ namespace CarRepairReport
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Models.ViewModels.Commons;
+    using CarRepairReport.Models.ViewModels.UserVms;
 
     public class MvcApplication : System.Web.HttpApplication
     {

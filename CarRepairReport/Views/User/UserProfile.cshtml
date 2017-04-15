@@ -1,5 +1,5 @@
 ﻿@using CarRepairReport.Extensions.HtmlHelpers
-@model CarRepairReport.Models.ViewModels.UserProfileVm
+@model CarRepairReport.Models.ViewModels.UserVms.UserProfileVm
 
 @{
     ViewBag.Title = "Profile";
@@ -13,6 +13,13 @@
         <div class="col col-sm-3">
             @Html.ActionLink(Html.LangValue("system.common.edit", Model.LanguageCode).ToString(), "Edit", null, new { @class = "btn btn-info" })
         </div>
+        @if (!Model.IsVehicleServiceOwner)
+        {
+            <div class="col col-sm-2 col-sm-offset-5">
+                @Html.ActionLink(Html.LangValue("Register Car Service", Model.LanguageCode).ToString(), "RegisterCarService", null, new { @class = "btn btn-info" })
+            </div>
+        }
+        
     </div> 
     <hr />
 

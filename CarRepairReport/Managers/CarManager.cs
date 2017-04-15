@@ -201,7 +201,11 @@
                     vehicleService = new VehicleService()
                     {
                         Name = "by me",
-                        CreatedOn = DateTime.UtcNow
+                        CreatedOn = DateTime.UtcNow,
+                        Description = "do it yourself, направи го сам, сделай сам",
+                        WorkingTime = "0-24",
+                        WorkingDays = "1,2,3,4,5,6,7",
+                        NonWorkingDays = "1,2,3,4,5,6,7"
                     };
 
                     var address = this.addressService.GetAllAddresses().FirstOrDefault(x => x.StreetName == "My Street");

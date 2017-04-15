@@ -5,7 +5,9 @@
     using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.ViewModels;
+    using CarRepairReport.Models.ViewModels.UserVms;
     using Microsoft.AspNet.Identity;
 
     [Authorize]
@@ -151,6 +153,44 @@
             }
 
             return this.RedirectToAction("UserProfile");
+        }
+
+        [HttpGet]
+        [Route("RegisterCarService")]
+        public ActionResult RegisterCarService()
+        {
+            if (false)
+            {
+                // already is owner .. return error page
+            }
+            var vm = new CreateCarServiceVm();
+
+            var wd = new []
+            {
+                new CheckBoxDto() { IntValue = 0, StringValue = "Monday"},
+                new CheckBoxDto() { IntValue = 1, StringValue = "Tuesday"},
+                new CheckBoxDto() { IntValue = 2, StringValue = "Wednesday"},
+                new CheckBoxDto() { IntValue = 3, StringValue = "Thursday"},
+                new CheckBoxDto() { IntValue = 4, StringValue = "Friday"},
+                new CheckBoxDto() { IntValue = 5, StringValue = "Saturday"},
+                new CheckBoxDto() { IntValue = 6, StringValue = "Sunday"},
+            };
+
+            var hd = new[]
+            {
+                new CheckBoxDto() { IntValue = 0, StringValue = "Monday"},
+                new CheckBoxDto() { IntValue = 1, StringValue = "Tuesday"},
+                new CheckBoxDto() { IntValue = 2, StringValue = "Wednesday"},
+                new CheckBoxDto() { IntValue = 3, StringValue = "Thursday"},
+                new CheckBoxDto() { IntValue = 4, StringValue = "Friday"},
+                new CheckBoxDto() { IntValue = 5, StringValue = "Saturday"},
+                new CheckBoxDto() { IntValue = 6, StringValue = "Sunday"},
+            };
+
+            vm.WorkingDays = wd;
+            vm.NonWorkingDays = hd;
+
+            return this.View(vm);
         }
     }
 }

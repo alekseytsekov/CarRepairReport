@@ -14,6 +14,7 @@
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.CarVms;
+    using CarRepairReport.Models.ViewModels.UserVms;
     using CarRepairReport.Services.Interfaces;
 
     public class MyUserManager : IMyUserManager

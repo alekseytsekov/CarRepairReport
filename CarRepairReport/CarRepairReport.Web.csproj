@@ -333,6 +333,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Car\Add.cshtml" />
     <Content Include="Views\Car\Remove.cshtml" />
+    <Content Include="Views\User\RegisterCarService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

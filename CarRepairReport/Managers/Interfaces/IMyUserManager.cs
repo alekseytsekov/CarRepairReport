@@ -6,6 +6,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
+    using CarRepairReport.Models.ViewModels.UserVms;
 
     public interface IMyUserManager
     {
