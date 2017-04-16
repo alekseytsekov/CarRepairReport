@@ -61,9 +61,9 @@ textarea {
     background-color: hsl(240, 25%, 95%);
 }
 
-.aside-home-left {
-    min-height: 700px;
-    max-height: 700px;
+.aside-home-left, .aside-home-right {
+    min-height: 800px;
+    max-height: 800px;
     overflow: hidden;
 }
 

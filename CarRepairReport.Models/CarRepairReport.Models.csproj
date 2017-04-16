@@ -89,6 +89,7 @@
     <Compile Include="Models\CarComponents\Gearbox.cs" />
     <Compile Include="Models\CarComponents\Manufacturer.cs" />
     <Compile Include="Models\CommonModels\Cost.cs" />
+    <Compile Include="Models\CommonModels\ServiceRating.cs" />
     <Compile Include="Models\LanguageModels\Language.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="IBaseModel.cs" />
@@ -112,6 +113,8 @@
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
+    <Compile Include="ViewModels\ManufacturerVms\ShortManufacturerInfoVm.cs" />
+    <Compile Include="ViewModels\ServiceVms\ShortServiceVm.cs" />
     <Compile Include="ViewModels\UserVms\CreateCarServiceVm.cs" />
     <Compile Include="ViewModels\UserVms\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />

@@ -45,5 +45,6 @@
         public virtual IDbSet<Manufacturer> Manufacturers { get; set; }
         public virtual IDbSet<Cost> Costs { get; set; }
         public virtual IDbSet<VehicleService> VehicleServices { get; set; }
+        public virtual IDbSet<ServiceRating> ServiceRatings { get; set; }
     }
 }

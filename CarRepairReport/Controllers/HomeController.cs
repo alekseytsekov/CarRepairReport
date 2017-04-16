@@ -1,18 +1,24 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.ViewModels.Commons;
+    using CarRepairReport.Models.ViewModels.ServiceVms;
     using Microsoft.AspNet.Identity;
 
     public class HomeController : Controller
     {
         private ICarManager carManager;
+        //private IVehicleServiceManager vehicleServiceManager;
 
         public HomeController(ICarManager carManager)
         {
             this.carManager = carManager;
+            //this.vehicleServiceManager = vehicleServiceManager;
         }
         
         public ActionResult Index()
@@ -20,11 +26,11 @@
             var vm = new HomeVm();
 
             vm.InvestPart = this.PrepareInvestPartModel();
-           
+            //vm.ShortServices = this.TakeVehicleServices();
             
             return this.View(vm);
         }
-
+        
         private InvestPartBm PrepareInvestPartModel()
         {
             var investPart = new InvestPartBm();

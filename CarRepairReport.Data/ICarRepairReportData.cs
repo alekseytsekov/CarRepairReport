@@ -30,6 +30,7 @@
         IBaseEntityRepository<Manufacturer> Manufacturers { get; }
         IBaseEntityRepository<Cost> Costs { get; }
         IBaseEntityRepository<VehicleService> VehicleServices { get; }
+        IBaseEntityRepository<ServiceRating> ServiceRatings { get; }
 
         ApplicationDbContext Context { get; }
     }

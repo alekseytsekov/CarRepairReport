@@ -36,6 +36,7 @@
         public ICollection<string> VehicleServices { get; set; }
 
         [Display(Name = "Choose a car:")]
+        [Range(1,int.MaxValue, ErrorMessage = "Please select a car!")]
         public int CarId { get; set; }
         public IDictionary<int,string> CarNames { get; set; }
     }

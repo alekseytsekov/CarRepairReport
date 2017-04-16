@@ -12,6 +12,7 @@
         {
             this.Addresses = new List<Address>();
             this.Cars = new HashSet<Car>();
+            this.ServiceRatings = new HashSet<ServiceRating>();
         }
 
         [Key]
@@ -43,6 +44,8 @@
         public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual ICollection<Car> Cars { get; set; }
+
+        public virtual ICollection<ServiceRating> ServiceRatings { get; set; }
 
         public decimal GetTotalSpendOnCars()
         {

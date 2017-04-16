@@ -164,6 +164,10 @@
     <Compile Include="Migrations\201704141636075_ValidationChecks.Designer.cs">
       <DependentUpon>201704141636075_ValidationChecks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704161238105_AddServiceRatingModel.cs" />
+    <Compile Include="Migrations\201704161238105_AddServiceRatingModel.Designer.cs">
+      <DependentUpon>201704161238105_AddServiceRatingModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -252,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704141636075_ValidationChecks.resx">
       <DependentUpon>201704141636075_ValidationChecks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704161238105_AddServiceRatingModel.resx">
+      <DependentUpon>201704161238105_AddServiceRatingModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

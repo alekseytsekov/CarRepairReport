@@ -235,7 +235,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VehicleServiceController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,9 +247,13 @@
     <Compile Include="Managers\CarManager.cs" />
     <Compile Include="Managers\Interfaces\ICarManager.cs" />
     <Compile Include="Managers\Interfaces\ILanguageManager.cs" />
+    <Compile Include="Managers\Interfaces\IManufacturerManager.cs" />
     <Compile Include="Managers\Interfaces\IMyUserManager.cs" />
+    <Compile Include="Managers\Interfaces\IVehicleServiceManager.cs" />
     <Compile Include="Managers\LanguageManager.cs" />
+    <Compile Include="Managers\ManufacturerManager.cs" />
     <Compile Include="Managers\MyUserManager.cs" />
+    <Compile Include="Managers\VehicleServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -334,6 +340,8 @@
     <Content Include="Views\Car\Add.cshtml" />
     <Content Include="Views\Car\Remove.cshtml" />
     <Content Include="Views\User\RegisterCarService.cshtml" />
+    <Content Include="Views\Shared\_TopVehicleServices.cshtml" />
+    <Content Include="Views\Manufacturer\ManufacturersShortInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +354,7 @@
     <Folder Include="Factories\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cost\" />
+    <Folder Include="Views\VehicleService\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

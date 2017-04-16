@@ -1,0 +1,22 @@
+﻿@using CarRepairReport.Extensions
+@model IEnumerable<CarRepairReport.Models.ViewModels.ManufacturerVms.ShortManufacturerInfoVm>
+
+@{
+    ViewBag.Title = "";
+}
+
+<table class="tab-content table table-hover table-striped">
+    <tbody>
+    @foreach (var m in Model)
+    {
+        <tr>
+            <td class="col-sm-3">
+                @Html.ActionLink(m.Name.ToCapital(), "Manufacturers", new { id = m.Id })
+            </td>
+            <td class="col-sm-3">@m.NumberOfParts</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+

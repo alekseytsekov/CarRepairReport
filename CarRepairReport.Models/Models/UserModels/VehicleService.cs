@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
@@ -13,6 +15,7 @@
         {
             this.CarParts = new HashSet<CarPart>();
             this.ServiceAdmins = new HashSet<User>();
+            this.ServiceRatings = new HashSet<ServiceRating>();
         }
         public int Id { get; set; }
 
@@ -40,5 +43,15 @@
         public string NonWorkingDays { get; set; }
         public virtual ICollection<User> ServiceAdmins { get; set; }
         public virtual ICollection<CarPart> CarParts { get; set; }
+        public virtual ICollection<ServiceRating> ServiceRatings { get; set; }
+
+        public int GetRating()
+        {
+            var positiveRatings = this.ServiceRatings.Count(x => x.IsPositive);
+
+            var negativeRatings = this.ServiceRatings.Count - positiveRatings;
+
+            return positiveRatings - negativeRatings;
+        }
     }
 }

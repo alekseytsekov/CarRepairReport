@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Services.Interfaces;
@@ -15,7 +16,6 @@
         public IEnumerable<VehicleService> GetAllVehicleServices()
         {
             var vehicleServices = this.context.VehicleServices.All();
-
             return vehicleServices;
         }
 
