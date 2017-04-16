@@ -176,21 +176,42 @@
                 new CheckBoxDto() { IntValue = 6, StringValue = "Sunday"},
             };
 
-            var hd = new[]
-            {
-                new CheckBoxDto() { IntValue = 0, StringValue = "Monday"},
-                new CheckBoxDto() { IntValue = 1, StringValue = "Tuesday"},
-                new CheckBoxDto() { IntValue = 2, StringValue = "Wednesday"},
-                new CheckBoxDto() { IntValue = 3, StringValue = "Thursday"},
-                new CheckBoxDto() { IntValue = 4, StringValue = "Friday"},
-                new CheckBoxDto() { IntValue = 5, StringValue = "Saturday"},
-                new CheckBoxDto() { IntValue = 6, StringValue = "Sunday"},
-            };
+            //var hd = new[]
+            //{
+            //    new CheckBoxDto() { IntValue = 0, StringValue = "Monday"},
+            //    new CheckBoxDto() { IntValue = 1, StringValue = "Tuesday"},
+            //    new CheckBoxDto() { IntValue = 2, StringValue = "Wednesday"},
+            //    new CheckBoxDto() { IntValue = 3, StringValue = "Thursday"},
+            //    new CheckBoxDto() { IntValue = 4, StringValue = "Friday"},
+            //    new CheckBoxDto() { IntValue = 5, StringValue = "Saturday"},
+            //    new CheckBoxDto() { IntValue = 6, StringValue = "Sunday"},
+            //};
 
             vm.WorkingDays = wd;
-            vm.NonWorkingDays = hd;
+            //vm.NonWorkingDays = hd;
 
             return this.View(vm);
+        }
+
+        [HttpPost]
+        [Route("RegisterCarService")]
+        public ActionResult RegisterCarService(CreateCarServiceBm bm)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                // return error page
+            }
+
+            var appUserId = this.User.Identity.GetUserId();
+
+            var result = this.userManager.RegisterVehicleService(bm, appUserId);
+
+            if (result != null)
+            {
+                // error page;
+            }
+
+            return this.RedirectToAction("UserProfile");
         }
     }
 }

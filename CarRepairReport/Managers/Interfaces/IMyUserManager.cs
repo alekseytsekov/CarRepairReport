@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
@@ -17,5 +18,6 @@
         EditUserVm GetEditModelByAppId(string appUserId);
 
         bool EditUserPersonalDetails(EditUserBm bm, string appUserId);
+        ResultDto RegisterVehicleService(CreateCarServiceBm bm, string appUserId);
     }
 }

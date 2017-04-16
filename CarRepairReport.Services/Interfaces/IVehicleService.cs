@@ -7,5 +7,6 @@
     {
         IEnumerable<VehicleService> GetAllVehicleServices();
         bool AddVehicleService(VehicleService vehicleService);
+        bool IsServiceNameUnique(string serviceName);
     }
 }

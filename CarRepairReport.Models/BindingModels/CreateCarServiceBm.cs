@@ -1,9 +1,9 @@
-﻿namespace CarRepairReport.Models.ViewModels.UserVms
+﻿namespace CarRepairReport.Models.BindingModels
 {
     using System.ComponentModel.DataAnnotations;
     using CarRepairReport.Models.Dtos;
 
-    public class CreateCarServiceVm : ViewBindingModel
+    public class CreateCarServiceBm
     {
         [Required]
         [MinLength(2), MaxLength(100)]
@@ -20,15 +20,11 @@
         [Required]
         [MinLength(2), MaxLength(100)]
         public string Country { get; set; }
-
-        //public byte[] Logo { get; set; }
-
-        [Display(Name = "From:")]
+        
         [Required]
-        [RegularExpression("^(2[0-3]|1[0-9]|[0-9]|0[0-9]):([0-5][0-9])$",ErrorMessage = "Invalid time format!")]
+        [RegularExpression("^(2[0-3]|1[0-9]|[0-9]|0[0-9]):([0-5][0-9])$", ErrorMessage = "Invalid time format!")]
         public string StartWorkingTime { get; set; }
-
-        [Display(Name = "To:")]
+        
         [Required]
         [RegularExpression("^(2[0-3]|1[0-9]|[0-9]|0[0-9]):([0-5][0-9])$", ErrorMessage = "Invalid time format!")]
         public string EndWorkingTime { get; set; }
@@ -36,9 +32,9 @@
         [Required]
         [MinLength(2), MaxLength(2100)]
         public string Description { get; set; }
-        
+
         public CheckBoxDto[] WorkingDays { get; set; }
 
-        public CheckBoxDto[] NonWorkingDays { get; set; }
+        //public byte[] Logo { get; set; }
     }
 }

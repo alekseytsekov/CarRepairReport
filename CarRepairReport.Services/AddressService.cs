@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using CarRepairReport.Data;
+    using CarRepairReport.Models;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Services.Interfaces;
@@ -13,7 +14,7 @@
         {
         }
 
-        public Address GenerateAddressToUser(string bmCountry, string bmCity, string bmNeighborhood, string bmStreetName, string appUserId, bool isPrimary)
+        public Address GenerateAddress(string bmCountry, string bmCity, string bmNeighborhood, string bmStreetName, string appUserId, bool isPrimary, AddressType addressType)
         {
             
             if (string.IsNullOrWhiteSpace(bmCountry) || string.IsNullOrWhiteSpace(bmCity))
@@ -57,14 +58,19 @@
             //var address =
             //    this.context.Addresses.FirstOrDefault(x => x.User.ApplicationUserId == appUserId && x.IsPrimary);
 
+            if (string.IsNullOrWhiteSpace(bmStreetName))
+            {
+                bmStreetName = string.Empty;
+            }
+
             var address =
-                this.context.Addresses.FirstOrDefault(a => a.IsPrimary && a.City.Id == city.Id);
+                this.context.Addresses.FirstOrDefault(a => a.City.Id == city.Id && a.StreetName == bmStreetName);
 
             if (address == null)
             {
                 address = new Address()
                 {
-                    StreetName = city.Name,
+                    StreetName = bmStreetName,
                     Neighborhood = country.Name,
                     CityId = city.Id,
                     City = city,
@@ -88,21 +94,36 @@
             //address.User = user;
 
             address.ModifiedOn = DateTime.UtcNow;
-            user.Addresses.Add(address);
-            //address.Users.Add(user);
 
-            user.ModifiedOn = DateTime.UtcNow;
-            this.context.MyUsers.Update(user);
+            switch (addressType)
+            {
+                case AddressType.Home:
+                    user.Addresses.Add(address);
+                    user.ModifiedOn = DateTime.UtcNow;
+                    this.context.MyUsers.Update(user);
+                    break;
+
+                case AddressType.Work:
+
+                    break;
+
+                case AddressType.Shipping:
+                break;
+
+                default:
+                    break;
+            }
+
+            
+
             //this.context.Addresses.Update(address);
             
-            
-
             this.context.Commit();
 
             return address;
         }
 
-        public IEnumerable<Address> GetAllAddresses()
+        public IQueryable<Address> GetAllAddresses()
         {
             return this.context.Addresses.GetAll();
         }

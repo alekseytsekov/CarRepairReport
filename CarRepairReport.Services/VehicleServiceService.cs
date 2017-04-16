@@ -33,5 +33,10 @@
 
             return true;
         }
+
+        public bool IsServiceNameUnique(string serviceName)
+        {
+            return !this.context.VehicleServices.Any(x => x.Name == serviceName);
+        }
     }
 }

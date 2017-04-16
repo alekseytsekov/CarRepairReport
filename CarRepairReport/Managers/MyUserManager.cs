@@ -7,7 +7,9 @@
     using AutoMapper;
     using CarRepairReport.Extensions;
     using CarRepairReport.Managers.Interfaces;
+    using CarRepairReport.Models;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.LanguageModels;
@@ -23,13 +25,15 @@
         private IUserService userService;
         private IAddressService addressService;
         private ICarManager carManager;
+        private IVehicleServiceService vehicleService;
 
-        public MyUserManager(ILanguageManager langManager, IUserService userService, IAddressService addressService, ICarManager carManager)
+        public MyUserManager(ILanguageManager langManager, IUserService userService, IAddressService addressService, ICarManager carManager, IVehicleServiceService vehicleService)
         {
             this.langManager = langManager;
             this.userService = userService;
             this.addressService = addressService;
             this.carManager = carManager;
+            this.vehicleService = vehicleService;
         }
         public Task CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext)
         {
@@ -117,7 +121,7 @@
 
             var isPrimary = true;
 
-            var address = this.addressService.GenerateAddressToUser(bm.CountryName, bm.CityName, bm.Neighborhood, bm.StreetName, appUserId, isPrimary);
+            var address = this.addressService.GenerateAddress(bm.CountryName, bm.CityName, bm.Neighborhood, bm.StreetName, appUserId, isPrimary, AddressType.Home);
 
             if (address == null)
             {
@@ -136,6 +140,63 @@
             var result = this.AddUserDetails(model, appUserId);
 
             return result;
+        }
+
+        public ResultDto RegisterVehicleService(CreateCarServiceBm bm, string appUserId)
+        {
+            bool isUniqueName = this.vehicleService.IsServiceNameUnique(bm.Name);
+
+            if (!isUniqueName)
+            {
+                return new ResultDto() {Message = "Already exists service with that name!"};
+            }
+
+            var address = this.addressService.GenerateAddress(bm.Country, bm.City, string.Empty, bm.StreetName, appUserId, true, AddressType.Work);
+
+            var workingDays = string.Empty;
+            var nonWorkingDays = string.Empty;
+
+            foreach (var wDay in bm.WorkingDays)
+            {
+                if (wDay.IsChecked)
+                {
+                    workingDays += wDay.StringValue + ", ";
+                }
+                else
+                {
+                    nonWorkingDays += wDay.StringValue + ", ";
+                }
+            }
+
+            workingDays = workingDays.Trim(' ').Trim(',');
+            nonWorkingDays = nonWorkingDays.Trim(' ').Trim(',');
+
+            var vehicleService = new VehicleService()
+            {
+                Name = bm.Name,
+                Address = address,
+                AddressId = address.Id,
+                Description = bm.Description,
+                //LogoUrl = bm.logo
+                WorkingTime = "{0}: " + bm.StartWorkingTime + " {1}: " + bm.EndWorkingTime,
+                WorkingDays = workingDays,
+                NonWorkingDays = nonWorkingDays
+            };
+
+            var user = this.userService.GetUserByAppId(appUserId);
+
+            user.IsVehicleServiceOwner = true;
+            user.VehicleService = vehicleService;
+            vehicleService.ServiceAdmins.Add(user);
+
+            var isAdded = this.vehicleService.AddVehicleService(vehicleService);
+
+            if (!isAdded)
+            {
+                return new ResultDto() { Message = "Something goes wrong!" };
+            }
+
+            return null;
         }
 
         public EditUserVm GetEditModelByAppId(string appUserId)

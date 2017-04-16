@@ -71,11 +71,13 @@
     <Compile Include="AddressType.cs" />
     <Compile Include="Attributes\RegexValidationAttribute.cs" />
     <Compile Include="BindingModels\CreateCarBm.cs" />
+    <Compile Include="BindingModels\CreateCarServiceBm.cs" />
     <Compile Include="BindingModels\EditUserBm.cs" />
     <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
     <Compile Include="Dtos\CheckBoxDto.cs" />
     <Compile Include="Dtos\CostDto.cs" />
+    <Compile Include="Dtos\ResultDto.cs" />
     <Compile Include="Enums\FuelType.cs" />
     <Compile Include="Enums\GearBoxType.cs" />
     <Compile Include="Models\AddressModels\Address.cs" />

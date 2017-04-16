@@ -12,6 +12,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal site-color">
+        
+        <br/>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
@@ -74,8 +76,8 @@
 
             <div class="form-group">
                 <div class="col-md-10">
-                    @Html.LabelFor(model => model.StartWorkingTime, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.StartWorkingTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(model => model.StartWorkingTime)
+                    @Html.EditorFor(model => model.StartWorkingTime, new { htmlAttributes = new { @class = "form-control", placeholder = "1:05 | 01:05" } })
                     @Html.ValidationMessageFor(model => model.StartWorkingTime, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -83,35 +85,50 @@
             <div class="form-group">
                 <div class="col-md-10">
                     @Html.LabelFor(model => model.EndWorkingTime, htmlAttributes: new { @class = "" })
-                    @Html.EditorFor(model => model.EndWorkingTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.EndWorkingTime, new { htmlAttributes = new { @class = "form-control", placeholder = "19:05 | 21:51" } })
                     @Html.ValidationMessageFor(model => model.EndWorkingTime, "", new { @class = "text-danger" })
                 </div>
             </div>
             
             <div class="form-group">
-                <div class="col-md-5">
+                <div class="col-md-5 col-md-offset-1">
                     @for (int i = 0; i < Model.WorkingDays.Length; i++)
                     {
-                        <div class="form-group">
-                            @Html.CheckBoxFor(x => x.WorkingDays[i].IsChecked)
-                            @Html.LabelFor(x => x.WorkingDays[i].StringValue)
-                        </div>
+                        if (i % 2 == 0)
+                        {
+                            <div class="form-group">
+                                @Html.HiddenFor(x => x.WorkingDays[i].StringValue)
+                                @Html.CheckBoxFor(x => x.WorkingDays[i].IsChecked)
+                                @Html.LabelFor(x => x.WorkingDays[i].IsChecked, Model.WorkingDays[i].StringValue)
+                                
+                                
+                            </div>
+                        }
 
                     }
                 </div>
                 
                 <div class="col-md-5">
-                    @for (int i = 0; i < Model.NonWorkingDays.Length; i++)
+                    @for (int i = 0; i < Model.WorkingDays.Length; i++)
                     {
-                        <div class="form-group">
-                            @Html.CheckBoxFor(x => x.NonWorkingDays[i].IsChecked)
-                            @Html.LabelFor(x => x.NonWorkingDays[i].StringValue)
-                        </div>
-                        
+                        if (i % 2 != 0)
+                        {
+                            @Html.HiddenFor(x => x.WorkingDays[i].StringValue)
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.WorkingDays[i].IsChecked)
+                                @Html.LabelFor(x => x.WorkingDays[i].IsChecked, Model.WorkingDays[i].StringValue)
+                                
+                            </div>
+                        }
                     }
                 </div>
             </div>
             
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p class="btn btn-default">Select Logo</p>
+                </div>
+            </div>
             
         </div>
 
@@ -120,9 +137,13 @@
                 <input type="submit" value="Register" class="btn btn-success" />
             </div>
         </div>
+        
+        <br/>
     </div>
 }
 
 <div>
     @Html.ActionLink("Back to Profile", "UserProfile")
 </div>
+
+
