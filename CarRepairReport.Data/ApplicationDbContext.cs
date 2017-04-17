@@ -30,7 +30,7 @@
 
             base.OnModelCreating(modelBuilder);
         }
-
+        
         public virtual IDbSet<Language> Languages { get; set; }
         public virtual IDbSet<Address> Addresses { get; set; }
         public virtual IDbSet<City> Cities { get; set; }
@@ -46,5 +46,6 @@
         public virtual IDbSet<Cost> Costs { get; set; }
         public virtual IDbSet<VehicleService> VehicleServices { get; set; }
         public virtual IDbSet<ServiceRating> ServiceRatings { get; set; }
+        public virtual IDbSet<MembershipInvitation> MembershipInvitations { get; set; }
     }
 }

@@ -45,6 +45,11 @@ textarea {
     border-bottom: 1px solid rgb(245, 245, 245);
 }
 
+.wrapper {
+    padding: 20px 0;
+    padding-left: 10px;
+}
+
 .flex {
     
     display: flex;
@@ -98,6 +103,17 @@ textarea {
     padding: 15px;
 }
 
+/*.service-description {
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}*/
+
+.service-promotions, .service-comments {
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+    margin: 5px;
+}
+
 .service-promotions {
     min-height: 200px;
     max-height: 200px;
@@ -106,5 +122,24 @@ textarea {
 .service-comments {
     overflow-y: scroll;
     max-height: 380px;
+}
+
+
+.button-control {
+    width: 100%;
+}
+
+.button-control:hover {
+    padding-left: 10px;
+    color: hsl(240, 25%, 95%);
+    background-color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.button-control:active {
+    color: black;
+    background-color: white;
+    font-size: 20px;
 }
 

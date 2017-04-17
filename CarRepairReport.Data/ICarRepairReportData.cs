@@ -31,6 +31,7 @@
         IBaseEntityRepository<Cost> Costs { get; }
         IBaseEntityRepository<VehicleService> VehicleServices { get; }
         IBaseEntityRepository<ServiceRating> ServiceRatings { get; }
+        IBaseEntityRepository<MembershipInvitation> MembershipInvitations { get; }
 
         ApplicationDbContext Context { get; }
     }

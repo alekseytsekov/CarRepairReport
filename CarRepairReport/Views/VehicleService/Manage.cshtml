@@ -1,0 +1,38 @@
+﻿@model CarRepairReport.Models.ViewModels.ServiceVms.ManagementVehicleServiceVm
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div class="row service-management-wrapper">
+    <div class="col-sm-3 site-color wrapper">
+        <div class="row button-control">
+            <div id="invite-member" class="col-sm-12">
+                Invite Member
+            </div>
+        </div>
+        
+        <div class="row button-control">
+            <div class="col-sm-12">
+                Confirm serviced parts
+            </div>
+        </div>
+
+    </div>
+    <div id="control-result" class="col-sm-8 service-management-content">
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var resultContainerId = '#control-result';
+
+    var inviteUrl = '@Url.Action("Invite", new { serviceId = Model.Id})';
+
+    $('#invite-member')
+        .click(function() {
+            $(resultContainerId).load(inviteUrl);
+        });
+</script>
+

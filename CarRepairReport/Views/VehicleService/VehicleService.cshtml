@@ -8,13 +8,33 @@
 }
 
 <div class="service-wrapper">
+
+    @if (Model.HasUserManagementRights)
+    {
+        int a = 0;
+
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                @Html.ActionLink("Manage", "Manage", new {id= Model.Id}, new { @class = "btn btn-default" })
+                <br />
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            @Html.ActionLink("Manage", "Manage", new { id = Model.Id }, new { @class = "btn btn-default" })
+            <br />
+        </div>
+    </div>
+
     <div class="row">
         <div class="col col-sm-3 logo-img text-center">
             <img src="@Model.LogoUrl" alt="Vehicle Service Logo" />
             <h3>@Model.Name</h3>
         </div>
 
-        <div class="col col-sm-6">
+        <div class="col col-sm-6 service-description">
             @Model.Description
         </div>
 
@@ -28,7 +48,7 @@
                 <div class="col col-sm-12">
                     @Model.StreetName
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="col col-sm-12">
@@ -40,15 +60,15 @@
                     @Model.CountryName.ToCapital()
                 </div>
             </div>
-            
-            <br/>
+
+            <br />
 
             <div class="row text-muted">
                 <div class="col col-sm-12">
                     @Model.WorkingTime
                 </div>
             </div>
-            
+
             <div class="row text-muted">
                 <div class="col col-sm-12 text-right">
                     @Html.DisplayNameFor(x => x.WorkingDays)
@@ -62,7 +82,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col col-sm-3 site-color">
             <div class="row">
@@ -75,7 +95,7 @@
                     Total serviced parts: @Model.CarParts.Count
                 </div>
             </div>
-            
+
             @foreach (var group in groupByMake)
             {
                 <div class="row">
@@ -91,7 +111,7 @@
                     promotions ...
                 </div>
             </div>
-            
+
             <div class="row service-comments">
                 <div class="col-sm-12">
                     <div class="row">
@@ -289,40 +309,41 @@
                             asd
                         </div>
                     </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        asd
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        asd
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        asd
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        asd
-                    </div>
-                </div>
                     <div class="row">
                         <div class="col-sm-12">
                             asd
                         </div>
-                </div><div class="row">
-                    <div class="col-sm-12">
-                        asd
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        asd
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
                             zzxczcdczcdzc
@@ -333,4 +354,3 @@
         </div>
     </div>
 </div>
-

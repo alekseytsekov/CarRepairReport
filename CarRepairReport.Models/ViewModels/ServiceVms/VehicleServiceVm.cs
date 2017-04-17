@@ -10,6 +10,10 @@
             this.CarParts = new HashSet<BasicCarPartVm>();
         }
 
+        public int Id { get; set; }
+
+        public bool HasUserManagementRights { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; } 

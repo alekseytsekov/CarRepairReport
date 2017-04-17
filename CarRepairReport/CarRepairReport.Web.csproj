@@ -238,6 +238,7 @@
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VehicleServiceController.cs" />
+    <Compile Include="Extensions\AuthenticationExtensions\PrincipalExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -343,6 +344,8 @@
     <Content Include="Views\Shared\_TopVehicleServices.cshtml" />
     <Content Include="Views\Manufacturer\ManufacturersShortInfo.cshtml" />
     <Content Include="Views\VehicleService\VehicleService.cshtml" />
+    <Content Include="Views\VehicleService\Manage.cshtml" />
+    <Content Include="Views\VehicleService\Invite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

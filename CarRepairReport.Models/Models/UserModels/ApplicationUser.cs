@@ -21,5 +21,6 @@
         public DateTime? ModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
         public string Nickname { get; set; }
+        
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="BindingModels\EditUserBm.cs" />
     <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
+    <Compile Include="BindingModels\VehicleServiceBms\InviteMemberBm.cs" />
     <Compile Include="Dtos\CheckBoxDto.cs" />
     <Compile Include="Dtos\CostDto.cs" />
     <Compile Include="Dtos\ResultDto.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Models\CarComponents\Gearbox.cs" />
     <Compile Include="Models\CarComponents\Manufacturer.cs" />
     <Compile Include="Models\CommonModels\Cost.cs" />
+    <Compile Include="Models\CommonModels\MembershipInvitation.cs" />
     <Compile Include="Models\CommonModels\ServiceRating.cs" />
     <Compile Include="Models\LanguageModels\Language.cs" />
     <Compile Include="BaseModel.cs" />
@@ -111,10 +113,13 @@
     <Compile Include="ViewModels\CarVms\BasicCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
+    <Compile Include="ViewModels\CarVms\RequestCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\ManufacturerVms\ShortManufacturerInfoVm.cs" />
+    <Compile Include="ViewModels\ServiceVms\InviteMemberVm.cs" />
+    <Compile Include="ViewModels\ServiceVms\ManagementVehicleServiceVm.cs" />
     <Compile Include="ViewModels\ServiceVms\ShortServiceVm.cs" />
     <Compile Include="ViewModels\ServiceVms\VehicleServiceVm.cs" />
     <Compile Include="ViewModels\UserVms\CreateCarServiceVm.cs" />

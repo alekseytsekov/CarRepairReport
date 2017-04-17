@@ -4,6 +4,9 @@
     using System.Linq;
     using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
+    using CarRepairReport.Models.BindingModels.VehicleServiceBms;
+    using CarRepairReport.Models.Dtos;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels.ServiceVms;
     using CarRepairReport.Services.Interfaces;
@@ -49,6 +52,24 @@
             }
 
             return vm;
+        }
+
+        public ResultDto SendInvitation(InviteMemberBm bm)
+        {
+            var membershipInvitation = new MembershipInvitation()
+            {
+                VehicleServiceId = bm.Id,
+                MemberEmail = bm.MemberEmail
+            };
+
+            bool isAdded = this.vehicleService.AddMembershipInvitation(membershipInvitation);
+
+            if (!isAdded)
+            {
+                return new ResultDto() {IsSucceed = false, Message = "Cannot add membership invitation!"};
+            }
+
+            return null;
         }
     }
 }
