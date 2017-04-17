@@ -342,6 +342,7 @@
     <Content Include="Views\User\RegisterCarService.cshtml" />
     <Content Include="Views\Shared\_TopVehicleServices.cshtml" />
     <Content Include="Views\Manufacturer\ManufacturersShortInfo.cshtml" />
+    <Content Include="Views\VehicleService\VehicleService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,7 +355,6 @@
     <Folder Include="Factories\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cost\" />
-    <Folder Include="Views\VehicleService\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

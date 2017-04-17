@@ -38,5 +38,10 @@
         {
             return !this.context.VehicleServices.Any(x => x.Name == serviceName);
         }
+
+        public VehicleService GetVehiceService(int id)
+        {
+            return this.context.VehicleServices.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

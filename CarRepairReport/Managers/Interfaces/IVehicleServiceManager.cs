@@ -6,5 +6,6 @@
     public interface IVehicleServiceManager
     {
         ICollection<ShortServiceVm> GetTopServicesShortInfo(int take);
+        VehicleServiceVm GetVm(int id);
     }
 }

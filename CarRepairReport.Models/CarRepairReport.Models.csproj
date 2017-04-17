@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\CarVms\BasicCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarPartVm.cs" />
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\ManufacturerVms\ShortManufacturerInfoVm.cs" />
     <Compile Include="ViewModels\ServiceVms\ShortServiceVm.cs" />
+    <Compile Include="ViewModels\ServiceVms\VehicleServiceVm.cs" />
     <Compile Include="ViewModels\UserVms\CreateCarServiceVm.cs" />
     <Compile Include="ViewModels\UserVms\EditUserVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />

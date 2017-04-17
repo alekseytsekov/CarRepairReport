@@ -19,7 +19,16 @@
         [Route("service/{id}")]
         public ActionResult VehicleService(int id)
         {
-            return View();
+            VehicleServiceVm vm = this.vehicleServiceManager.GetVm(id);
+
+            if (vm == null)
+            {
+                // error page not found
+            }
+
+            vm.WorkingTime = string.Format(vm.WorkingTime, "From", "To");
+
+            return this.View(vm);
         }
 
         [ChildActionOnly]

@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    overflow: hidden;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -61,10 +62,10 @@ textarea {
     background-color: hsl(240, 25%, 95%);
 }
 
-.aside-home-left, .aside-home-right {
-    min-height: 800px;
-    max-height: 800px;
-    overflow: hidden;
+.aside-home-left, .aside-home-right, .service-wrapper {
+    min-height: 780px;
+    max-height: 780px;
+    /*overflow: auto;*/
 }
 
 .aside-home-left .form-group {
@@ -89,5 +90,21 @@ textarea {
     overflow: hidden;
 }
 
+.logo-img > img {
+    width: 100%;
+}
 
+.service-wrapper {
+    padding: 15px;
+}
+
+.service-promotions {
+    min-height: 200px;
+    max-height: 200px;
+}
+
+.service-comments {
+    overflow-y: scroll;
+    max-height: 380px;
+}
 

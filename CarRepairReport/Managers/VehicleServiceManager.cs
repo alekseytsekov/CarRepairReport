@@ -29,5 +29,26 @@
 
             return vms.ToList();
         }
+
+        public VehicleServiceVm GetVm(int id)
+        {
+            var vService = this.vehicleService.GetVehiceService(id);
+
+            if (vService == null)
+            {
+                return null;
+            }
+
+            var vm = Mapper.Map<VehicleService,VehicleServiceVm>(vService);
+
+            var groupedBy = vm.CarParts.GroupBy(x => x.CarMake);
+
+            foreach (var gr in groupedBy)
+            {
+                int a = gr.Count();
+            }
+
+            return vm;
+        }
     }
 }

@@ -27,7 +27,7 @@
         [MinLength(2), MaxLength(1000)]
         public string Description { get; set; }
         public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
         public string LogoUrl { get; set; }
 
         [Required]

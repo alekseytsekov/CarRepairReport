@@ -43,6 +43,7 @@
                                 <div class="col-md-10">
                                     @Html.LabelFor(x => x.InvestPart.CarId)
                                     @Html.DropDownListFor(x => Model.InvestPart.CarId, Model.InvestPart.CarNames.Select(x => new SelectListItem() { Text = x.Value , Value = x.Key.ToString() }),new {@class = "limit-dropdown-width"})
+                                    <br/>
                                     @Html.ValidationMessageFor(model => model.InvestPart.CarId, "", new { @class = "text-danger" })
                                 </div>
                             </div>

@@ -8,5 +8,6 @@
         IEnumerable<VehicleService> GetAllVehicleServices();
         bool AddVehicleService(VehicleService vehicleService);
         bool IsServiceNameUnique(string serviceName);
+        VehicleService GetVehiceService(int id);
     }
 }

@@ -1,0 +1,336 @@
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.ServiceVms.VehicleServiceVm
+
+@{
+    ViewBag.Title = "Vehicle Service";
+
+    var groupByMake = Model.CarParts.GroupBy(x => x.CarMake);
+}
+
+<div class="service-wrapper">
+    <div class="row">
+        <div class="col col-sm-3 logo-img text-center">
+            <img src="@Model.LogoUrl" alt="Vehicle Service Logo" />
+            <h3>@Model.Name</h3>
+        </div>
+
+        <div class="col col-sm-6">
+            @Model.Description
+        </div>
+
+        <div class="col col-sm-3 text-right">
+            <div class="row">
+                <div class="col col-sm-12">
+                    <h4>Address</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    @Model.StreetName
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    @Model.CityName.ToCapital()
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    @Model.CountryName.ToCapital()
+                </div>
+            </div>
+            
+            <br/>
+
+            <div class="row text-muted">
+                <div class="col col-sm-12">
+                    @Model.WorkingTime
+                </div>
+            </div>
+            
+            <div class="row text-muted">
+                <div class="col col-sm-12 text-right">
+                    @Html.DisplayNameFor(x => x.WorkingDays)
+                </div>
+            </div>
+
+            <div class="row text-muted">
+                <div class="col col-sm-12">
+                    @Model.WorkingDays
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col col-sm-3 site-color">
+            <div class="row">
+                <div class="col-sm-12">
+                    Rating: @Model.Rating
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    Total serviced parts: @Model.CarParts.Count
+                </div>
+            </div>
+            
+            @foreach (var group in groupByMake)
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        @group: @group.Count() parts
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col col-sm-9">
+            <div class="row service-promotions">
+                <div class="col-sm-12">
+                    promotions ...
+                </div>
+            </div>
+            
+            <div class="row service-comments">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            asd
+                        </div>
+                </div><div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        asd
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            zzxczcdczcdzc
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
