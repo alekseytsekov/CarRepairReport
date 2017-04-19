@@ -11,10 +11,11 @@
 
     [Authorize]
     [RoutePrefix("Cars")]
-    public class CarController : Controller
+    public class CarController : BaseController
     {
         private ICarManager carManager;
-        public CarController(ICarManager carManager)
+
+        public CarController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
         {
             this.carManager = carManager;
         }

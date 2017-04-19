@@ -8,7 +8,7 @@
     <div class="col-sm-3 site-color wrapper">
         <div class="row button-control">
             <div id="invite-member" class="col-sm-12">
-                Invite Member
+                Members
             </div>
         </div>
         
@@ -28,7 +28,7 @@
 
     var resultContainerId = '#control-result';
 
-    var inviteUrl = '@Url.Action("Invite", new { serviceId = Model.Id})';
+    var inviteUrl = '@Url.Action("Members", new { serviceId = Model.Id})';
 
     $('#invite-member')
         .click(function() {

@@ -8,11 +8,11 @@
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.ViewModels.ServiceVms;
 
-    public class VehicleServiceController : Controller
+    public class VehicleServiceController : BaseController
     {
         private IVehicleServiceManager vehicleServiceManager;
 
-        public VehicleServiceController(IVehicleServiceManager vehicleServiceManager)
+        public VehicleServiceController(IVehicleServiceManager vehicleServiceManager, IMyUserManager myUserManager) : base(myUserManager)
         {
             this.vehicleServiceManager = vehicleServiceManager;
         }
@@ -63,8 +63,8 @@
 
         [HttpGet]
         //[Authorize(Roles = "service-member,service-owner")]
-        [Route("invite/{serviceId}")]
-        public ActionResult Invite(int serviceId)
+        [Route("members/{serviceId}")]
+        public ActionResult Members(int serviceId)
         {
             var vm = new InviteMemberVm() {Id = serviceId};
 

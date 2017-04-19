@@ -56,9 +56,17 @@
 
         public ResultDto SendInvitation(InviteMemberBm bm)
         {
+            var vService = this.vehicleService.GetVehiceService(bm.Id);
+
+            if (vService == null)
+            {
+                return new ResultDto() { IsSucceed = false, Message = "Cannot send membership invitation!" };
+            }
+
             var membershipInvitation = new MembershipInvitation()
             {
                 VehicleServiceId = bm.Id,
+                VehicleServiceName = vService.Name,
                 MemberEmail = bm.MemberEmail
             };
 
@@ -66,7 +74,7 @@
 
             if (!isAdded)
             {
-                return new ResultDto() {IsSucceed = false, Message = "Cannot add membership invitation!"};
+                return new ResultDto() {IsSucceed = false, Message = "Cannot send membership invitation!"};
             }
 
             return null;

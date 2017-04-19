@@ -54,10 +54,28 @@
                 return false;
             }
 
+            // check for spam ... if there is active invitation, service cannot send another one.
+            var isDuplicate = this.context.MembershipInvitations.Any(x =>
+                x.VehicleServiceId == membershipInvitation.VehicleServiceId &&
+                x.VehicleServiceName == membershipInvitation.VehicleServiceName &&
+                x.MemberEmail == membershipInvitation.MemberEmail &&
+                !x.IsDeleted);
+
+            var alreadyMember = this.context.MembershipInvitations.Any(x =>
+                x.VehicleServiceId == membershipInvitation.VehicleServiceId &&
+                x.VehicleServiceName == membershipInvitation.VehicleServiceName &&
+                x.MemberEmail == membershipInvitation.MemberEmail &&
+                x.IsAccepted);
+
+            if (isDuplicate || alreadyMember)
+            {
+                return false;
+            }
+
             try
             {
                 this.context.MembershipInvitations.Add(membershipInvitation);
-                //this.context.Commit();
+                this.context.Commit();
             }
             catch (Exception)
             {

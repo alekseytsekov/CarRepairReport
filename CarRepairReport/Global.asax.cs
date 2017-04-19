@@ -8,6 +8,7 @@ namespace CarRepairReport
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.CarComponents;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.CarVms;
@@ -62,6 +63,11 @@ namespace CarRepairReport
                     .ForMember(x => x.Rating, y => y.MapFrom(s => s.GetRating()))
                     .ForMember(x => x.CarParts, y => y.MapFrom(s => s.CarParts))
                     .ForMember(x => x.LogoUrl, y => y.MapFrom(s => s.LogoUrl));
+
+                map.CreateMap<MembershipInvitation, MembershipInvitationVm>()
+                    .ForMember(x => x.Name, y => y.MapFrom(s => s.VehicleServiceName))
+                    .ForMember(x => x.SenderId, y => y.MapFrom(s => s.VehicleServiceId));
+                
             });
         }
         

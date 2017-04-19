@@ -10,12 +10,12 @@
     using CarRepairReport.Models.ViewModels.ServiceVms;
     using Microsoft.AspNet.Identity;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private ICarManager carManager;
         //private IVehicleServiceManager vehicleServiceManager;
 
-        public HomeController(ICarManager carManager)
+        public HomeController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
         {
             this.carManager = carManager;
             //this.vehicleServiceManager = vehicleServiceManager;
@@ -26,6 +26,7 @@
             var vm = new HomeVm();
 
             vm.InvestPart = this.PrepareInvestPartModel();
+            //vm.Invitations = this.GetInvitations();
             //vm.ShortServices = this.TakeVehicleServices();
             
             return this.View(vm);

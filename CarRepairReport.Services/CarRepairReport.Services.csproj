@@ -59,8 +59,10 @@
   <ItemGroup>
     <Compile Include="AddressService.cs" />
     <Compile Include="CarService.cs" />
+    <Compile Include="CommonService.cs" />
     <Compile Include="Interfaces\IAddressService.cs" />
     <Compile Include="Interfaces\ICarService.cs" />
+    <Compile Include="Interfaces\ICommonService.cs" />
     <Compile Include="Interfaces\ILanguageService.cs" />
     <Compile Include="Interfaces\IManufacturerService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />

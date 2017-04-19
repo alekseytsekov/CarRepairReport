@@ -1,0 +1,111 @@
+﻿@using CarRepairReport.Extensions
+@model IEnumerable<CarRepairReport.Models.ViewModels.Commons.MembershipInvitationVm>
+
+@{
+    ViewBag.Title = "Invitations";
+}
+
+<span id="membership-invites" class="navbar-brand pull-right cursor-pointer">@Model.Count()</span><span class="navbar-brand pull-right glyphicon-envelope invitation-icon"></span>
+
+@*<div class="membership-invitations-container navbar-brand pull-right">
+    <div>alex</div>
+    <div>alex</div>
+    <div>alex</div>
+    <div>alex</div>
+    <div>alex</div>
+</div>*@
+
+<!-- The Modal -->
+<div id="membership-invites-content" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        @if (Model.Any())
+        {
+            <table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span>@item.Name.ToCapital()</span>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Accept", "", new {/* id=item.PrimaryKey */}, new {@class = "btn btn-success"}) |
+                            @Html.ActionLink("Cancel", "", new {/* id=item.PrimaryKey */}, new {@class = "btn btn-danger"})
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div>No membership invites!</div>
+        }
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    // Get the modal
+    var modal = document.getElementById('membership-invites-content');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("membership-invites");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SenderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>*@

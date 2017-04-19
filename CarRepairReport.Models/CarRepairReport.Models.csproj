@@ -117,6 +117,7 @@
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
+    <Compile Include="ViewModels\Commons\MembershipInvitationVm.cs" />
     <Compile Include="ViewModels\ManufacturerVms\ShortManufacturerInfoVm.cs" />
     <Compile Include="ViewModels\ServiceVms\InviteMemberVm.cs" />
     <Compile Include="ViewModels\ServiceVms\ManagementVehicleServiceVm.cs" />

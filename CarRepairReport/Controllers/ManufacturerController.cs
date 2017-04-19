@@ -6,11 +6,11 @@
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.ViewModels.ManufacturerVms;
 
-    public class ManufacturerController : Controller
+    public class ManufacturerController : BaseController
     {
         private IManufacturerManager manufacturerManager;
 
-        public ManufacturerController(IManufacturerManager manufacturerManager)
+        public ManufacturerController(IManufacturerManager manufacturerManager, IMyUserManager myUserManager) : base(myUserManager)
         {
             this.manufacturerManager = manufacturerManager;
         }

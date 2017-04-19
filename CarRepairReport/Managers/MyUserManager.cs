@@ -1,6 +1,7 @@
 ﻿namespace CarRepairReport.Managers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
@@ -10,12 +11,10 @@
     using CarRepairReport.Models;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Dtos;
-    using CarRepairReport.Models.Models;
-    using CarRepairReport.Models.Models.AddressModels;
+    using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
-    using CarRepairReport.Models.ViewModels;
-    using CarRepairReport.Models.ViewModels.CarVms;
+    using CarRepairReport.Models.ViewModels.Commons;
     using CarRepairReport.Models.ViewModels.UserVms;
     using CarRepairReport.Services.Interfaces;
 
@@ -26,14 +25,21 @@
         private IAddressService addressService;
         private ICarManager carManager;
         private IVehicleServiceService vehicleService;
+        private ICommonService commonService;
 
-        public MyUserManager(ILanguageManager langManager, IUserService userService, IAddressService addressService, ICarManager carManager, IVehicleServiceService vehicleService)
+        public MyUserManager(ILanguageManager langManager, 
+                             IUserService userService, 
+                             IAddressService addressService, 
+                             ICarManager carManager,
+                             IVehicleServiceService vehicleService,
+                             ICommonService commonService)
         {
             this.langManager = langManager;
             this.userService = userService;
             this.addressService = addressService;
             this.carManager = carManager;
             this.vehicleService = vehicleService;
+            this.commonService = commonService;
         }
         public Task CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext)
         {
@@ -197,6 +203,15 @@
             }
 
             return null;
+        }
+
+        public ICollection<MembershipInvitationVm> GetInvitations(string email)
+        {
+            var invitations = this.commonService.GetInvitationsByEmail(email);
+
+            var vms = Mapper.Map<IEnumerable<MembershipInvitation>, IEnumerable<MembershipInvitationVm>>(invitations);
+
+            return vms.ToList();
         }
 
         public EditUserVm GetEditModelByAppId(string appUserId)

@@ -11,14 +11,14 @@
     using Microsoft.AspNet.Identity;
 
     [Authorize]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        private IMyUserManager userManager;
+        //private IMyUserManager userManager;
         private ILanguageManager langManager;
         
-        public UserController(IMyUserManager userManager, ILanguageManager langManager)
-        {
-            this.userManager = userManager;
+        public UserController(ILanguageManager langManager, IMyUserManager myUserManager) : base(myUserManager)
+        { 
+            //this.userManager = userManager;
             this.langManager = langManager;
         }
         
@@ -29,7 +29,7 @@
         {
             var appUserId = this.User.Identity.GetUserId();
 
-            UserProfileVm vm = this.userManager.GetUserProfileByAppUserId(appUserId);
+            UserProfileVm vm = this.myUserManager.GetUserProfileByAppUserId(appUserId);
             
             if (vm == null)
             {
@@ -80,7 +80,7 @@
                 return this.RedirectToAction("AddProfile");
             }
 
-            var isSuccess = this.userManager.AddUserDetails(bm, this.User.Identity.GetUserId());
+            var isSuccess = this.myUserManager.AddUserDetails(bm, this.User.Identity.GetUserId());
 
             if (!isSuccess)
             {
@@ -104,7 +104,7 @@
             
             var userId = this.User.Identity.GetUserId();
 
-            EditUserVm vm = this.userManager.GetEditModelByAppId(userId);
+            EditUserVm vm = this.myUserManager.GetEditModelByAppId(userId);
 
             if (vm.Errors.Any())
             {
@@ -145,7 +145,7 @@
                 //return this.RedirectToAction("Edit");
             }
 
-            var result = this.userManager.EditUserPersonalDetails(bm, this.User.Identity.GetUserId());
+            var result = this.myUserManager.EditUserPersonalDetails(bm, this.User.Identity.GetUserId());
 
             if (!result)
             {
@@ -204,7 +204,7 @@
 
             var appUserId = this.User.Identity.GetUserId();
 
-            var result = this.userManager.RegisterVehicleService(bm, appUserId);
+            var result = this.myUserManager.RegisterVehicleService(bm, appUserId);
 
             if (result != null)
             {

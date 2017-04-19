@@ -10,6 +10,10 @@
         public int VehicleServiceId { get; set; }
 
         [Required]
+        [MinLength(1), MaxLength(100)]
+        public string VehicleServiceName { get; set; }
+
+        [Required]
         [MinLength(3),MaxLength(100)]
         public string MemberEmail { get; set; }
 

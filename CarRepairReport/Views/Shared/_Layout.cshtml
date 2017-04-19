@@ -28,8 +28,10 @@
                     <li>@Html.ActionLink("Garage", "", "")</li>
                     <li>@Html.ActionLink("Forum", "", "")</li>
                 </ul>
+                
                 @Html.Partial("_LoginPartial")
                 @Html.Partial("_Language")
+                @Html.Action("ShowInvitations", "Home")
             </div>
         </div>
     </div>

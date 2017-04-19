@@ -166,7 +166,7 @@ namespace CarRepairReport.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    this.myUserManager.CreateMyUserAsync(user, this.HttpContext);
+                    await this.myUserManager.CreateMyUserAsync(user, this.HttpContext);
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

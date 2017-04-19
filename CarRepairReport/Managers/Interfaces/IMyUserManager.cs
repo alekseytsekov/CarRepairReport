@@ -1,5 +1,6 @@
 ﻿namespace CarRepairReport.Managers.Interfaces
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Web;
     using CarRepairReport.Models.BindingModels;
@@ -7,6 +8,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
+    using CarRepairReport.Models.ViewModels.Commons;
     using CarRepairReport.Models.ViewModels.UserVms;
 
     public interface IMyUserManager
@@ -19,5 +21,6 @@
 
         bool EditUserPersonalDetails(EditUserBm bm, string appUserId);
         ResultDto RegisterVehicleService(CreateCarServiceBm bm, string appUserId);
+        ICollection<MembershipInvitationVm> GetInvitations(string email);
     }
 }

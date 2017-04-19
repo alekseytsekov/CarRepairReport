@@ -80,6 +80,7 @@ namespace CarRepairReport
             kernel.Bind<IVehicleServiceManager>().To<VehicleServiceManager>().InRequestScope();
             kernel.Bind<IManufacturerManager>().To<ManufacturerManager>().InRequestScope();
             kernel.Bind<IManufacturerService>().To<ManufacturerService>().InRequestScope();
+            kernel.Bind<ICommonService>().To<CommonService>().InRequestScope();
         }        
     }
 }
