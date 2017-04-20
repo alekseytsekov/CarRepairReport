@@ -27,13 +27,14 @@
             <table>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr id="membership-invitation-@(item.Id)">
                         <td>
                             <span>@item.Name.ToCapital()</span>
                         </td>
                         <td>
-                            @Html.ActionLink("Accept", "", new {/* id=item.PrimaryKey */}, new {@class = "btn btn-success"}) |
-                            @Html.ActionLink("Cancel", "", new {/* id=item.PrimaryKey */}, new {@class = "btn btn-danger"})
+                            @Ajax.ActionLink("Accept", "MembershipInvitation", "User", new { Id = item.Id, IsAccepted = true }, new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you sure?", OnComplete = "processAnswer" }, new { @class = "btn btn-success" }) |
+                            @Ajax.ActionLink("Cancel", "MembershipInvitation", "User", new { Id = item.Id, IsAccepted = false }, new AjaxOptions() {HttpMethod = "POST", Confirm = "Are you sure?", OnComplete = "processAnswer" }, new { @class = "btn btn-danger" }) |
+                            @*Html.ActionLink("Cancel", "", new { Id = item.Id, IsAccepted = false }, new {class = "btn btn-danger"})*@
                         </td>
                     </tr>
                 }
@@ -48,6 +49,29 @@
 </div>
 
 <script type="text/javascript">
+
+    function processAnswer(result) {
+
+        //console.log(result);
+
+        if (result.responseJSON.IsSucceed) {
+
+            $(result.responseJSON.Message)[0].style.display = "none";
+
+
+            var currentInvitations = $('#membership-invites')[0].innerText;
+
+            $('#membership-invites')[0].innerText = currentInvitations - 1;
+
+            if (currentInvitations === 1 || currentInvitations === "1") {
+                closeModal();
+            }
+
+        } else {
+            alert(result.responseJSON.Message);
+        }
+    }
+
     // Get the modal
     var modal = document.getElementById('membership-invites-content');
 
@@ -73,39 +97,10 @@
             modal.style.display = "none";
         }
     }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
 </script>
 
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SenderId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th></th>
-    </tr>
 
-foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SenderId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>*@

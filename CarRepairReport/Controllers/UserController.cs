@@ -5,6 +5,7 @@
     using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.BindingModels.CommonBms;
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.UserVms;
@@ -22,7 +23,6 @@
             this.langManager = langManager;
         }
         
-        // GET: User
         [HttpGet]
         [Route("Profile/Info")]
         public ActionResult UserProfile()
@@ -212,6 +212,27 @@
             }
 
             return this.RedirectToAction("UserProfile");
+        }
+
+        [HttpPost]
+        [Route("MembershipInvitation")]
+        public JsonResult MembershipInvitation(AnswerBm bm)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return new JsonResult() {Data = new ResultDto() {Message = "Cannot process request!"} };
+            }
+
+            var appUserId = this.User.Identity.GetUserId();
+
+            bool isProccessed = this.myUserManager.ProcessMembershipInvitation(bm, appUserId);
+
+            if (!isProccessed)
+            {
+                return new JsonResult() { Data = new ResultDto() { Message = "Cannot process request!" }};
+            }
+
+            return new JsonResult() { Data = new ResultDto() { IsSucceed = true, Message = "#membership-invitation-" + bm.Id } }; ;
         }
     }
 }

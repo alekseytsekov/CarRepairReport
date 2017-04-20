@@ -14,7 +14,7 @@
         public VehicleService()
         {
             this.CarParts = new HashSet<CarPart>();
-            this.ServiceAdmins = new HashSet<User>();
+            this.ServiceMembers = new HashSet<User>();
             this.ServiceRatings = new HashSet<ServiceRating>();
         }
         public int Id { get; set; }
@@ -41,7 +41,7 @@
         [Required]
         [MinLength(2), MaxLength(200)]
         public string NonWorkingDays { get; set; }
-        public virtual ICollection<User> ServiceAdmins { get; set; }
+        public virtual ICollection<User> ServiceMembers { get; set; }
         public virtual ICollection<CarPart> CarParts { get; set; }
         public virtual ICollection<ServiceRating> ServiceRatings { get; set; }
 

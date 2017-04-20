@@ -31,7 +31,12 @@
                 
                 @Html.Partial("_LoginPartial")
                 @Html.Partial("_Language")
-                @Html.Action("ShowInvitations", "Home")
+
+                @if (this.Request.IsAuthenticated)
+                {
+                    @Html.Action("ShowInvitations", "Home")
+                }
+                
             </div>
         </div>
     </div>

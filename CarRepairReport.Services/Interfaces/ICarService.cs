@@ -4,7 +4,7 @@
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
 
-    public interface ICarService
+    public interface ICarService : IService
     {
         bool AddCar(Car car, string appUserId);
         Car GetById(int carId);

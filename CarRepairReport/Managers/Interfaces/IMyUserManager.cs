@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.BindingModels.CommonBms;
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
@@ -22,5 +23,6 @@
         bool EditUserPersonalDetails(EditUserBm bm, string appUserId);
         ResultDto RegisterVehicleService(CreateCarServiceBm bm, string appUserId);
         ICollection<MembershipInvitationVm> GetInvitations(string email);
+        bool ProcessMembershipInvitation(AnswerBm bm, string appUserId);
     }
 }

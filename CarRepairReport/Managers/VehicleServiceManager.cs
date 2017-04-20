@@ -63,6 +63,14 @@
                 return new ResultDto() { IsSucceed = false, Message = "Cannot send membership invitation!" };
             }
 
+            var isSame = vService.ServiceMembers
+                .FirstOrDefault(x => x.IsVehicleServiceOwner).ApplicationUser.Email == bm.MemberEmail;
+
+            if (isSame)
+            {
+                return new ResultDto() { IsSucceed = false, Message = "Cannot send membership invitation!" };
+            }
+
             var membershipInvitation = new MembershipInvitation()
             {
                 VehicleServiceId = bm.Id,

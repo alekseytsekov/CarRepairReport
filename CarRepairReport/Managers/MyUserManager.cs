@@ -10,6 +10,7 @@
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.BindingModels.CommonBms;
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.LanguageModels;
@@ -193,7 +194,7 @@
 
             user.IsVehicleServiceOwner = true;
             user.VehicleService = vehicleService;
-            vehicleService.ServiceAdmins.Add(user);
+            vehicleService.ServiceMembers.Add(user);
 
             var isAdded = this.vehicleService.AddVehicleService(vehicleService);
 
@@ -212,6 +213,66 @@
             var vms = Mapper.Map<IEnumerable<MembershipInvitation>, IEnumerable<MembershipInvitationVm>>(invitations);
 
             return vms.ToList();
+        }
+
+        public bool ProcessMembershipInvitation(AnswerBm bm, string appUserId)
+        {
+            var membershipInvitation = this.commonService.GetMembershipInvitationById(bm.Id);
+
+            if (membershipInvitation == null)
+            {
+                return false;
+            }
+
+            var user =
+                this.userService.GetAllUsers().FirstOrDefault(x => x.ApplicationUser.Email == membershipInvitation.MemberEmail);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            // check is it same user or same invitation
+            if (user.ApplicationUserId != appUserId)
+            {
+                return false;
+            }
+
+            var vehicleServiceEntity = this.vehicleService.GetVehiceService(membershipInvitation.VehicleServiceId);
+
+            if (vehicleServiceEntity == null)
+            {
+                return false;   
+            }
+
+            if (user.VehicleServiceId == vehicleServiceEntity.Id)
+            {
+                return false;
+            }
+
+            if (bm.IsAccepted)
+            {
+                user.VehicleService = vehicleServiceEntity;
+                user.VehicleServiceId = vehicleServiceEntity.Id;
+                vehicleServiceEntity.ServiceMembers.Add(user);
+                membershipInvitation.IsAccepted = true;
+                membershipInvitation.IsDeleted = true;
+                
+            }
+            else
+            {
+                membershipInvitation.IsAccepted = false;
+                membershipInvitation.IsDeleted = true;
+            }
+
+            var isUpdated = this.userService.Update();
+
+            if (!isUpdated)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public EditUserVm GetEditModelByAppId(string appUserId)

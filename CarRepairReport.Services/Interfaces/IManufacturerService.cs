@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using CarRepairReport.Models.Models.CarComponents;
 
-    public interface IManufacturerService
+    public interface IManufacturerService : IService
     {
         IEnumerable<Manufacturer> All();
     }

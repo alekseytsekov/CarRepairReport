@@ -4,7 +4,7 @@
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
 
-    public interface IUserService
+    public interface IUserService: IService
     {
         bool Add(User user);
         User GetUserById(string userId);

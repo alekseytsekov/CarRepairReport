@@ -65,6 +65,7 @@
     <Compile Include="Interfaces\ICommonService.cs" />
     <Compile Include="Interfaces\ILanguageService.cs" />
     <Compile Include="Interfaces\IManufacturerService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\IVehicleService.cs" />
     <Compile Include="Interfaces\Service.cs" />

@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AddressType.cs" />
     <Compile Include="Attributes\RegexValidationAttribute.cs" />
+    <Compile Include="BindingModels\CommonBms\AnswerBm.cs" />
     <Compile Include="BindingModels\CreateCarBm.cs" />
     <Compile Include="BindingModels\CreateCarServiceBm.cs" />
     <Compile Include="BindingModels\EditUserBm.cs" />

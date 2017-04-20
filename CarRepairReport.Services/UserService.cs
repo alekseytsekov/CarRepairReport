@@ -1,10 +1,12 @@
 ﻿namespace CarRepairReport.Services
 {
+    using System;
     using System.Collections.Generic;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Services.Interfaces;
+
     public class UserService : Service, IUserService
     {
         public UserService(ICarRepairReportData context) : base(context)
@@ -47,7 +49,7 @@
 
             return true;
         }
-
+        
         public User GetUserByAppId(string appUserId)
         {
             return this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);

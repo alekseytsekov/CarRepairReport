@@ -17,5 +17,12 @@
 
             return invitations;
         }
+
+        public MembershipInvitation GetMembershipInvitationById(int id)
+        {
+            var mInvitation = this.context.MembershipInvitations.FirstOrDefault(x => x.Id == id);
+
+            return mInvitation;
+        }
     }
 }

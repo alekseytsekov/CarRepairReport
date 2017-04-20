@@ -4,7 +4,7 @@
     using CarRepairReport.Models.Models.CommonModels;
     using CarRepairReport.Models.Models.UserModels;
 
-    public interface IVehicleServiceService
+    public interface IVehicleServiceService : IService
     {
         IEnumerable<VehicleService> GetAllVehicleServices();
         bool AddVehicleService(VehicleService vehicleService);
