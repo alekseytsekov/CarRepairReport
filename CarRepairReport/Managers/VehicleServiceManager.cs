@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Linq;
     using AutoMapper;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels.CommonBms;
     using CarRepairReport.Models.BindingModels.VehicleServiceBms;
@@ -198,6 +200,22 @@
         public int GetRating(int serviceId)
         {
             return this.vehicleService.GetVehiceService(serviceId).GetRating();
+        }
+
+        public IEnumerable<VehicleServiceCommentVm> GetComments(int serviceId)
+        {
+            var vehicleService = this.vehicleService.GetVehiceService(serviceId);
+
+            if (vehicleService == null)
+            {
+                return null;
+            }
+
+            var ratings = vehicleService.ServiceRatings.OrderByDescending(x => x.CreatedOn).Take(Configurations.VehicleServiceVotesOnPage);
+
+            var comments = Mapper.Map<IEnumerable<ServiceRating>, IEnumerable<VehicleServiceCommentVm>>(ratings);
+
+            return comments;
         }
     }
 }

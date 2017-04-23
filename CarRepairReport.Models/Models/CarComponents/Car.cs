@@ -27,7 +27,7 @@
 
         public int GearboxId { get; set; }
 
-        public Gearbox Gearbox { get; set; }
+        public virtual Gearbox Gearbox { get; set; }
 
         public int EngineId { get; set; }
 

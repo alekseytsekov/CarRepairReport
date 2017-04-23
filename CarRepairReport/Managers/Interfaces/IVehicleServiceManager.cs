@@ -16,5 +16,6 @@
         bool ProcessCarPart(string appUserId, AnswerBm bm);
         bool ProcessVote(AnswerBm bm, string appUserId);
         int GetRating(int serviceId);
+        IEnumerable<VehicleServiceCommentVm> GetComments(int serviceId);
     }
 }

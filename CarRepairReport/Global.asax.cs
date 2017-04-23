@@ -81,7 +81,47 @@ namespace CarRepairReport
                 map.CreateMap<MembershipInvitation, MembershipInvitationVm>()
                     .ForMember(x => x.Name, y => y.MapFrom(s => s.VehicleServiceName))
                     .ForMember(x => x.SenderId, y => y.MapFrom(s => s.VehicleServiceId));
-                
+
+                map.CreateMap<ServiceRating, VehicleServiceCommentVm>()
+                    .ForMember(x => x.Author, y => y.MapFrom(s => s.User.FirstName + " " + s.User.LastName))
+                    .ForMember(x => x.Date, y => y.MapFrom(s => s.CreatedOn.ToString("d")))
+                    .ForMember(x => x.Comment, y => y.MapFrom(s => s.Message))
+                    .ForMember(x => x.IsPositive, y => y.MapFrom(s => s.IsPositive));
+
+                map.CreateMap<Car, FullCarVm>()
+                    .ForMember(x => x.CarNickname, y => y.MapFrom(s => s.CarNickname))
+                    .ForMember(x => x.Make, y => y.MapFrom(s => s.Make))
+                    .ForMember(x => x.Model, y => y.MapFrom(s => s.Model))
+                    .ForMember(x => x.VIN, y => y.MapFrom(s => s.VIN))
+                    .ForMember(x => x.FirstRegistration, y => y.MapFrom(s => s.FirstRegistration))
+                    .ForMember(x => x.RunningDistance, y => y.MapFrom(s => s.RunningDistance))
+                    .ForMember(x => x.SpendOnCosts, y => y.MapFrom(s => s.SpendOnCosts()))
+                    .ForMember(x => x.SpendOnCarParts, y => y.MapFrom(s => s.SpendOnCarParts()))
+                    .ForMember(x => x.TotalSpendOnCar, y => y.MapFrom(s => s.TotalSpendOnCar()))
+                    .ForMember(x => x.Engine,
+                        y =>
+                            y.MapFrom(
+                                s => s.Engine.EnginePower + ", " + s.Engine.EngineSize.ToString("F1") + ", " + s.Engine.FuelType))
+                    .ForMember(x => x.Gearbox, y => y.MapFrom(s => s.Gearbox.GearBoxType + ", " + s.Gearbox.NumberOfGears));
+
+                map.CreateMap<CarPart, CarPartVm>()
+                    .ForMember(x => x.Name, y => y.MapFrom(s => s.Name))
+                    .ForMember(x => x.SerialNumber, y => y.MapFrom(s => s.SerialNumber))
+                    .ForMember(x => x.RegisterOn, y => y.MapFrom(s => s.CreatedOn))
+                    .ForMember(x => x.Price, y => y.MapFrom(s => s.Price))
+                    .ForMember(x => x.MountedOn, y => y.MapFrom(s => s.MountedOnKm))
+                    .ForMember(x => x.Manufacturer, y => y.MapFrom(s => s.Manufacturer.Name))
+                    .ForMember(x => x.VehicleService, y => y.MapFrom(s => s.VehicleService.Name))
+                    .ForMember(x => x.RequestedToVehicleService, y => y.MapFrom(s => s.RequestedToVehicleService))
+                    .ForMember(x => x.IsSeenByVehicleService, y => y.MapFrom(s => s.IsSeenByVehicleService))
+                    .ForMember(x => x.IsApprovedByVehicleService, y => y.MapFrom(s => s.IsApprovedByVehicleService))
+                    .ForMember(x => x.Description, y=> y.MapFrom(s => s.Description));
+
+                map.CreateMap<Cost, CostVm>()
+                    .ForMember(x => x.Name, y => y.MapFrom(s => s.Name))
+                    .ForMember(x => x.Price, y => y.MapFrom(s => s.Price))
+                    .ForMember(x => x.RegisterOn, y => y.MapFrom(s => s.CreatedOn));
+
             });
         }
 

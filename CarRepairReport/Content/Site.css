@@ -114,6 +114,10 @@ textarea {
     margin: 5px;
 }
 
+.vs-short-info {
+    border-radius: 5px;
+}
+
 .service-promotions {
     min-height: 200px;
     max-height: 200px;
@@ -249,3 +253,27 @@ textarea {
 .vote-container textarea {
     max-width: 100%;
 }
+
+/*********** vehicle service comments  *********/
+
+.vehicle-service-comment {
+    padding: 5px;
+    border: 1px solid rgb(200,200,200);
+    border-radius: 5px;
+    margin: 5px;
+    overflow: hidden;
+}
+
+.vehicle-service-comment h4 {
+    display: inline-block;
+}
+
+.vs-comment-info {
+    line-height: 3rem;
+}
+
+.vs-comment-comment {
+    background-color: white;
+    border-radius: 5px;
+}
+

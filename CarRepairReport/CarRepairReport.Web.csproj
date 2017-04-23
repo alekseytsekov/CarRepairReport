@@ -233,6 +233,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\CostController.cs" />
+    <Compile Include="Controllers\GarageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -351,6 +352,8 @@
     <Content Include="Views\VehicleService\ConfirmServicedParts.cshtml" />
     <Content Include="Views\Shared\BadRequestError.cshtml" />
     <Content Include="Views\VehicleService\VehicleServiceVote.cshtml" />
+    <Content Include="Views\VehicleService\GetComments.cshtml" />
+    <Content Include="Views\Garage\Cars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AutoMapper;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models.CarComponents;
@@ -289,6 +290,28 @@
 
             return newInvestment;
             
+        }
+
+        public FullCarVm GetFullCarInfo(int carId, string appUserId)
+        {
+            var carEntity = this.carService.GetById(carId);
+
+            if (carEntity == null)
+            {
+                return null;
+            }
+
+            if (carEntity.Owner.ApplicationUserId != appUserId)
+            {
+                return null;
+            }
+
+            var vm = Mapper.Map<Car, FullCarVm>(carEntity);
+
+            vm.CarParts = vm.CarParts.OrderByDescending(x => x.RegisterOn).ToArray();
+            vm.Costs = vm.Costs.OrderByDescending(x => x.RegisterOn).ToArray();
+
+            return vm;
         }
 
         private VehicleService CreateDefaultVehicleService()

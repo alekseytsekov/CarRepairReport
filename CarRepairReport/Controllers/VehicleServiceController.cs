@@ -167,5 +167,14 @@
 
             return new JsonResult() { Data = new ResultDto(rating.ToString(), true) };
         }
+
+        [HttpGet]
+        [ChildActionOnly]
+        public ActionResult GetComments(int id)
+        {
+            IEnumerable<VehicleServiceCommentVm> vms = this.vehicleServiceManager.GetComments(id);
+
+            return this.PartialView(vms);
+        }
     }
 }
