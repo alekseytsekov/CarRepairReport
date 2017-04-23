@@ -2,16 +2,12 @@
 {
     using System;
     using CarRepairReport.Data;
+    using CarRepairReport.Models.Models.CommonModels;
 
     public abstract class Service : IService
     {
         protected ICarRepairReportData context;
-
-        //protected Service() : this(new CarRepairReportData())
-        //{
-            
-        //}
-
+        
         protected Service(ICarRepairReportData context)
         {
             this.context = context;
@@ -23,12 +19,20 @@
             {
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
             }
 
             return true;
+        }
+
+        protected bool LogError(Exception ex)
+        {
+            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = ex.Message, StackTrace = ex.StackTrace });
+            this.context.Commit();
+
+            return false;
         }
     }
 }

@@ -27,9 +27,9 @@
                 this.context.VehicleServices.Add(vehicleService);
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
             }
 
             return true;
@@ -77,9 +77,24 @@
                 this.context.MembershipInvitations.Add(membershipInvitation);
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
+            }
+
+            return true;
+        }
+
+        public bool AddServiceRating(ServiceRating serviceRating)
+        {
+            try
+            {
+                this.context.ServiceRatings.Add(serviceRating);
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
             }
 
             return true;

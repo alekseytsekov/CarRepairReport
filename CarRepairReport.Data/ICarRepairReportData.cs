@@ -32,6 +32,7 @@
         IBaseEntityRepository<VehicleService> VehicleServices { get; }
         IBaseEntityRepository<ServiceRating> ServiceRatings { get; }
         IBaseEntityRepository<MembershipInvitation> MembershipInvitations { get; }
+        IBaseEntityRepository<ErrorLog> ErrorLogs { get; }
 
         ApplicationDbContext Context { get; }
     }

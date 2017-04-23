@@ -2,8 +2,14 @@
 {
     public class ResultDto
     {
-        public bool IsSucceed { get; set; }
+        public ResultDto(string message, bool isSucced = false)
+        {
+            this.Message = message;
+            this.IsSucceed = isSucced;
+        }
 
-        public string Message { get; set; }
+        public bool IsSucceed { get; }
+
+        public string Message { get; }
     }
 }

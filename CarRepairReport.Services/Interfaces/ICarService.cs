@@ -14,5 +14,6 @@
         bool AddManufacturer(Manufacturer entityManufacturer);
         bool AddCarPart(CarPart newPart);
         bool AddInvestment(Cost newInvestment);
+        CarPart GetCarPartById(int id);
     }
 }

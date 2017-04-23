@@ -220,3 +220,32 @@ textarea {
     cursor: pointer;
 }
 
+/********      vehicle service vote       ******/
+
+.vote-container .up {
+    transform: scale(1);
+    transition: all 200ms;
+    cursor: pointer;
+}
+
+.vote-container .up:hover {
+    transition: all 200ms;
+    transform: scale(1.5);
+    color: green;
+}
+
+.vote-container .down {
+    transform: scale(1);
+    transition: all 200ms;
+    cursor: pointer;
+}
+
+.vote-container .down:hover {
+    transition: all 200ms;
+    transform: scale(1.5);
+    color: red;
+}
+
+.vote-container textarea {
+    max-width: 100%;
+}

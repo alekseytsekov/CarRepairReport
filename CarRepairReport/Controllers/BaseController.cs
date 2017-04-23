@@ -32,5 +32,10 @@
 
             return this.PartialView("_Invitations", invitations);
         }
+
+        protected string GetAppUserId()
+        {
+            return this.User.Identity.GetUserId();
+        }
     }
 }

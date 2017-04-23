@@ -47,5 +47,6 @@
         public virtual IDbSet<VehicleService> VehicleServices { get; set; }
         public virtual IDbSet<ServiceRating> ServiceRatings { get; set; }
         public virtual IDbSet<MembershipInvitation> MembershipInvitations { get; set; }
+        public virtual IDbSet<ErrorLog> ErrorLogs { get; set; }
     }
 }

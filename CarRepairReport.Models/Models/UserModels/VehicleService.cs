@@ -47,9 +47,9 @@
 
         public int GetRating()
         {
-            var positiveRatings = this.ServiceRatings.Count(x => x.IsPositive);
+            var positiveRatings = this.ServiceRatings.Count(x => x.IsPositive && !x.IsDeleted);
 
-            var negativeRatings = this.ServiceRatings.Count - positiveRatings;
+            var negativeRatings = this.ServiceRatings.Count(x => !x.IsDeleted) - positiveRatings;
 
             return positiveRatings - negativeRatings;
         }

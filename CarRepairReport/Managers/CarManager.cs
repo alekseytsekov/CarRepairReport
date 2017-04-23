@@ -176,7 +176,12 @@
             {
                 entityCar.RunningDistance += carPart.DistanceTraveled;
             }
-            
+
+            if (string.IsNullOrWhiteSpace(carPart.SerialNumber))
+            {
+                carPart.SerialNumber = string.Empty;
+            }
+
             // create new part 
             var newPart = new CarPart()
             {
@@ -198,15 +203,7 @@
 
                 if (vehicleService == null)
                 {
-                    vehicleService = new VehicleService()
-                    {
-                        Name = "by me",
-                        CreatedOn = DateTime.UtcNow,
-                        Description = "do it yourself, направи го сам, сделай сам",
-                        WorkingTime = "0-24",
-                        WorkingDays = "1,2,3,4,5,6,7",
-                        NonWorkingDays = "1,2,3,4,5,6,7"
-                    };
+                    vehicleService = this.CreateDefaultVehicleService();
 
                     var address = this.addressService.GetAllAddresses().FirstOrDefault(x => x.StreetName == "My Street");
 
@@ -238,6 +235,19 @@
                     newPart.VehicleServiceId = vehicleService.Id;
                     vehicleService.CarParts.Add(newPart);
                     newPart.RequestedToVehicleService = true;
+                }
+                else
+                {
+                    vehicleService = this.vehicleService.GetAllVehicleServices().FirstOrDefault(x => x.Name == "by me");
+
+                    if (vehicleService == null)
+                    {
+                        vehicleService = this.CreateDefaultVehicleService();
+                    }
+
+                    newPart.VehicleService = vehicleService;
+                    newPart.VehicleServiceId = vehicleService.Id;
+                    vehicleService.CarParts.Add(newPart);
                 }
             }
             
@@ -281,7 +291,20 @@
             
         }
 
-        
+        private VehicleService CreateDefaultVehicleService()
+        {
+            var newVehicleService = new VehicleService()
+            {
+                Name = "by me",
+                CreatedOn = DateTime.UtcNow,
+                Description = "do it yourself, направи го сам, сделай сам",
+                WorkingTime = "0-24",
+                WorkingDays = "1,2,3,4,5,6,7",
+                NonWorkingDays = "1,2,3,4,5,6,7"
+            };
+
+            return newVehicleService;
+        }
 
         private int RunningDistanceToKm(int kms, int miles)
         {

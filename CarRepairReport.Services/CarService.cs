@@ -49,8 +49,15 @@
             car.OwnerId = user.Id;
             user.Cars.Add(car);
 
-            this.context.Commit();
-
+            try
+            {
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
+            }
+            
             return true;
         }
 
@@ -70,9 +77,18 @@
                 return false;
             }
 
-            this.context.Cars.Remove(car);
 
-            this.context.Commit();
+            try
+            {
+                this.context.Cars.Remove(car);
+
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
+            }
+            
 
             return true;
         }
@@ -96,9 +112,9 @@
                 this.context.Manufacturers.Add(manufacturer);
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
             }
 
             return true;
@@ -111,9 +127,9 @@
                 this.context.CarParts.Add(newPart);
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
             }
 
             return true;
@@ -126,12 +142,17 @@
                 this.context.Costs.Add(investment);
                 this.context.Commit();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                return this.LogError(ex);
             }
 
             return true;
+        }
+
+        public CarPart GetCarPartById(int id)
+        {
+            return this.context.CarParts.GetById(id);
         }
     }
 }

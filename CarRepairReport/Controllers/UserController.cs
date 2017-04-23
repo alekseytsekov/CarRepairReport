@@ -220,7 +220,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return new JsonResult() {Data = new ResultDto() {Message = "Cannot process request!"} };
+                return new JsonResult() {Data = new ResultDto("Cannot process request!")};
             }
 
             var appUserId = this.User.Identity.GetUserId();
@@ -229,10 +229,12 @@
 
             if (!isProccessed)
             {
-                return new JsonResult() { Data = new ResultDto() { Message = "Cannot process request!" }};
+                return new JsonResult() { Data = new ResultDto("Cannot process request!") };
             }
 
-            return new JsonResult() { Data = new ResultDto() { IsSucceed = true, Message = "#membership-invitation-" + bm.Id } }; ;
+            var msg = "#membership-invitation-" + bm.Id;
+
+            return new JsonResult() { Data = new ResultDto(msg, true) }; ;
         }
     }
 }

@@ -3,17 +3,11 @@
 
 @{
     ViewBag.Title = "Invitations";
+    //Layout = "../VehicleService/Manage.cshtml";
 }
 
 <span id="membership-invites" class="navbar-brand pull-right cursor-pointer">@Model.Count()</span><span class="navbar-brand pull-right glyphicon-envelope invitation-icon"></span>
 
-@*<div class="membership-invitations-container navbar-brand pull-right">
-    <div>alex</div>
-    <div>alex</div>
-    <div>alex</div>
-    <div>alex</div>
-    <div>alex</div>
-</div>*@
 
 <!-- The Modal -->
 <div id="membership-invites-content" class="modal">
@@ -34,7 +28,7 @@
                         <td>
                             @Ajax.ActionLink("Accept", "MembershipInvitation", "User", new { Id = item.Id, IsAccepted = true }, new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you sure?", OnComplete = "processAnswer" }, new { @class = "btn btn-success" }) |
                             @Ajax.ActionLink("Cancel", "MembershipInvitation", "User", new { Id = item.Id, IsAccepted = false }, new AjaxOptions() {HttpMethod = "POST", Confirm = "Are you sure?", OnComplete = "processAnswer" }, new { @class = "btn btn-danger" }) |
-                            @*Html.ActionLink("Cancel", "", new { Id = item.Id, IsAccepted = false }, new {class = "btn btn-danger"})*@
+                          
                         </td>
                     </tr>
                 }

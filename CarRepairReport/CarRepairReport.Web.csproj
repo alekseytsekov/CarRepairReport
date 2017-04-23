@@ -348,6 +348,9 @@
     <Content Include="Views\VehicleService\Manage.cshtml" />
     <Content Include="Views\VehicleService\Members.cshtml" />
     <Content Include="Views\Shared\_Invitations.cshtml" />
+    <Content Include="Views\VehicleService\ConfirmServicedParts.cshtml" />
+    <Content Include="Views\Shared\BadRequestError.cshtml" />
+    <Content Include="Views\VehicleService\VehicleServiceVote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,7 @@
         </div>
         
         <div class="row button-control">
-            <div class="col-sm-12">
+            <div id="confirm-serviced-parts" class="col-sm-12">
                 Confirm serviced parts
             </div>
         </div>
@@ -29,10 +29,15 @@
     var resultContainerId = '#control-result';
 
     var inviteUrl = '@Url.Action("Members", new { serviceId = Model.Id})';
+    var confirmServicedPartsUrl = '@Url.Action("ConfirmServicedParts", "VehicleService", new { serviceId = Model.Id})';
+    
+    $('#invite-member') .click(function() {
+        $(resultContainerId).load(inviteUrl);
+    });
 
-    $('#invite-member')
-        .click(function() {
-            $(resultContainerId).load(inviteUrl);
-        });
+    $('#confirm-serviced-parts').click(function() {
+        $(resultContainerId).load(confirmServicedPartsUrl);
+    });
+
 </script>
 

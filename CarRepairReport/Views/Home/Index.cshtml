@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.Commons.HomeVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.Commons.HomeVm
 
 @{
     ViewBag.Title = "Car Repair Report";
@@ -117,10 +118,10 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-10">
+                                @*<div class="col-md-10">
                                     @Html.LabelFor(x => x.InvestPart.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
                                     @Html.EditorFor(x => x.InvestPart.DistanceTraveled, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                </div>
+                                </div>*@
                             </div>
                             <div class="form-group">
 
@@ -149,7 +150,7 @@
                             <div class="form-group margin-me">
                                 <div class="col-md-10">
                                     @Html.LabelFor(x => x.InvestPart.VehicleService)
-                                    @Html.DropDownListFor(x => Model.InvestPart.VehicleService, Model.InvestPart.VehicleServices.Select(x => new SelectListItem() {Text = x, Value = x}))
+                                    @Html.DropDownListFor(x => Model.InvestPart.VehicleService, Model.InvestPart.VehicleServices.Select(x => new SelectListItem() {Text = x.ToCapital(), Value = x}))
                                 </div>
                             </div>
 

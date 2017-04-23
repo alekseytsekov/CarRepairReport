@@ -43,13 +43,20 @@
             //entity.Birthday = user.Birthday;
             entity.ImageUrl = entity.ImageUrl;
 
-            this.context.MyUsers.Update(entity);
+            try
+            {
+                this.context.MyUsers.Update(entity);
 
-            this.context.Commit();
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
+            }
 
             return true;
         }
-        
+
         public User GetUserByAppId(string appUserId)
         {
             return this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);
@@ -72,9 +79,16 @@
             entity.FirstName = firstName;
             entity.LastName = lastName;
 
-            this.context.MyUsers.Update(entity);
-            this.context.Commit();
-
+            try
+            {
+                this.context.MyUsers.Update(entity);
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
+            }
+            
             return true;
         }
 

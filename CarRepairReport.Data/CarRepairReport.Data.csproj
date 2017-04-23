@@ -176,6 +176,22 @@
     <Compile Include="Migrations\201704191757446_AddPropToMembershipInvitation.Designer.cs">
       <DependentUpon>201704191757446_AddPropToMembershipInvitation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704221113337_AddPropToCarPart.cs" />
+    <Compile Include="Migrations\201704221113337_AddPropToCarPart.Designer.cs">
+      <DependentUpon>201704221113337_AddPropToCarPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704230820403_RemoveOneOfValidationOfCarPart.cs" />
+    <Compile Include="Migrations\201704230820403_RemoveOneOfValidationOfCarPart.Designer.cs">
+      <DependentUpon>201704230820403_RemoveOneOfValidationOfCarPart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704231102021_AddPropToServiceRating.cs" />
+    <Compile Include="Migrations\201704231102021_AddPropToServiceRating.Designer.cs">
+      <DependentUpon>201704231102021_AddPropToServiceRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704231121011_addErrorLogModel.cs" />
+    <Compile Include="Migrations\201704231121011_addErrorLogModel.Designer.cs">
+      <DependentUpon>201704231121011_addErrorLogModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -273,6 +289,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704191757446_AddPropToMembershipInvitation.resx">
       <DependentUpon>201704191757446_AddPropToMembershipInvitation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704221113337_AddPropToCarPart.resx">
+      <DependentUpon>201704221113337_AddPropToCarPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704230820403_RemoveOneOfValidationOfCarPart.resx">
+      <DependentUpon>201704230820403_RemoveOneOfValidationOfCarPart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704231102021_AddPropToServiceRating.resx">
+      <DependentUpon>201704231102021_AddPropToServiceRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704231121011_addErrorLogModel.resx">
+      <DependentUpon>201704231121011_addErrorLogModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,6 @@
 ﻿namespace CarRepairReport.Services
 {
+    using System;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.LanguageModels;
@@ -47,8 +48,15 @@
             //        return false;
             //}
 
-            this.context.Commit();
-
+            try
+            {
+                this.context.Commit();
+            }
+            catch (Exception ex)
+            {
+                return this.LogError(ex);
+            }
+            
             return true;
         }
 

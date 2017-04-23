@@ -155,7 +155,7 @@
 
             if (!isUniqueName)
             {
-                return new ResultDto() {Message = "Already exists service with that name!"};
+                return new ResultDto("Already exists service with that name!");
             }
 
             var address = this.addressService.GenerateAddress(bm.Country, bm.City, string.Empty, bm.StreetName, appUserId, true, AddressType.Work);
@@ -180,7 +180,7 @@
 
             var vehicleService = new VehicleService()
             {
-                Name = bm.Name,
+                Name = bm.Name.ToLower(),
                 Address = address,
                 AddressId = address.Id,
                 Description = bm.Description,
@@ -200,7 +200,7 @@
 
             if (!isAdded)
             {
-                return new ResultDto() { Message = "Something goes wrong!" };
+                return new ResultDto("Something goes wrong!") ;
             }
 
             return null;

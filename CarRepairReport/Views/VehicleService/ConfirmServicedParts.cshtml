@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CarRepairReport.Models.ViewModels.CarVms.RequestCarPartVm>
+
+@{
+    ViewBag.Title = "ConfirmServicedParts";
+}
+
+<h2>Confirm Serviced Parts</h2>
+
+@if (Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PartName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManufacturerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Date)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="carpart-request-@(item.Id)">
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManufacturerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Ajax.ActionLink("Confirm", "ProcessingServicedParts", "VehicleService", new { Id = item.Id, IsAccepted = true }, new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you Confirm?", OnComplete = "processConfirmAnswer" }, new { @class = "btn btn-success" })
+                    
+                </td>
+                <td>
+                    @Ajax.ActionLink("Deny", "ProcessingServicedParts", "VehicleService", new { Id = item.Id, IsAccepted = false }, new AjaxOptions() { HttpMethod = "POST", Confirm = "Are you Deny?", OnComplete = "processConfirmAnswer" }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <div>There are no parts for service confirmation.</div>
+}
+
+
+@*@section scripts
+{
+    <script type="text/javascript">
+        
+        function processConfirmAnswer(result) {
+
+            if (result.responseJSON.IsSucceed) {
+
+                $(result.responseJSON.Message)[0].style.display = "none";
+
+            } else {
+                alert(result.responseJSON.Message);
+            }
+        }
+    </script>
+}*@
+
+<script type="text/javascript">
+
+        function processConfirmAnswer(result) {
+
+            if (result.responseJSON.IsSucceed) {
+
+                $(result.responseJSON.Message)[0].style.display = "none";
+
+            } else {
+                alert(result.responseJSON.Message);
+            }
+        }
+</script>
+

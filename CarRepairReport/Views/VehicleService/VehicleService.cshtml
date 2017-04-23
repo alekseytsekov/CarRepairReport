@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "Vehicle Service";
 
-    var groupByMake = Model.CarParts.GroupBy(x => x.CarMake);
+    var groupByMake = Model.CarParts.GroupBy(x => x.CarMake.ToCapital());
+
+    int ba = 0;
 }
 
 <div class="service-wrapper">
@@ -21,17 +23,17 @@
         </div>
     }
 
-    <div class="row">
+    @*<div class="row">
         <div class="col-sm-12 text-right">
             @Html.ActionLink("Manage", "Manage", new { id = Model.Id }, new { @class = "btn btn-default" })
             <br />
         </div>
-    </div>
+    </div>*@
 
     <div class="row">
         <div class="col col-sm-3 logo-img text-center">
             <img src="@Model.LogoUrl" alt="Vehicle Service Logo" />
-            <h3>@Model.Name</h3>
+            <h3>@Model.Name.ToCapital()</h3>
         </div>
 
         <div class="col col-sm-6 service-description">
@@ -46,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col col-sm-12">
-                    @Model.StreetName
+                    @Model.StreetName.ToCapital()
                 </div>
 
             </div>
@@ -87,7 +89,7 @@
         <div class="col col-sm-3 site-color">
             <div class="row">
                 <div class="col-sm-12">
-                    Rating: @Model.Rating
+                    Rating: <span id="current-service-rating">@Model.Rating</span> 
                 </div>
             </div>
             <div class="row">
@@ -100,10 +102,12 @@
             {
                 <div class="row">
                     <div class="col-sm-12">
-                        @group: @group.Count() parts
+                        @group.Key: @group.Count() parts
                     </div>
                 </div>
             }
+            
+            @Html.Action("VehicleServiceVote", @Model.Id)
         </div>
         <div class="col col-sm-9">
             <div class="row service-promotions">
@@ -114,236 +118,13 @@
 
             <div class="row service-comments">
                 <div class="col-sm-12">
+                    
                     <div class="row">
                         <div class="col-sm-12">
-                            asd
+                            comments ...
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            asd
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-sm-12">
                             zzxczcdczcdzc

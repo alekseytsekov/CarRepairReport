@@ -1,5 +1,6 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -20,7 +21,8 @@
             this.carManager = carManager;
             //this.vehicleServiceManager = vehicleServiceManager;
         }
-        
+
+        //[HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "BadRequestError")]
         public ActionResult Index()
         {
             var vm = new HomeVm();

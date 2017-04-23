@@ -8,11 +8,11 @@
     {
         public int Id { get; set; }
 
-        [MinLength(2), MaxLength(100)]
+        [MaxLength(50)]
         public string SerialNumber { get; set; }
 
         [Required]
-        [MinLength(2), MaxLength(100)]
+        [MinLength(1), MaxLength(100)]
         public string Name { get; set; }
 
         [Range(0d,100000d)]
@@ -27,13 +27,15 @@
 
         public int CarId { get; set; }
 
-        public Car Car { get; set; }
+        public virtual Car Car { get; set; }
 
         public string Description { get; set; }
 
         public bool RequestedToVehicleService { get; set; }
 
         public bool IsApprovedByVehicleService { get; set; }
+
+        public bool IsSeenByVehicleService { get; set; }
 
         public int VehicleServiceId { get; set; }
 

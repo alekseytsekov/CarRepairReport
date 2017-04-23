@@ -7,11 +7,11 @@
 
     public class CreateCarBm
     {
-        [RegularExpression("[a-zA-Z]{2,}\\s?[a-zA-Z-]{2,}")]
+        [RegularExpression(@"^[a-zA-Z\d]([\sa-zA-Z-\d]+)?$")]
         [Required]
         public string Make { get; set; }
 
-        [RegularExpression("[a-zA-Z]{2,}\\s?[a-zA-Z]{2,}")]
+        [RegularExpression(@"^[a-zA-Z\d]([\sa-zA-Z-\d]+)?$")]
         [Required]
         public string Model { get; set; }
 

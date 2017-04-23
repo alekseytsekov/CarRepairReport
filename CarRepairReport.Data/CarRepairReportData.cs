@@ -35,6 +35,7 @@
         private IBaseEntityRepository<VehicleService> vehicleServices;
         private IBaseEntityRepository<ServiceRating> serviceRatings;
         private IBaseEntityRepository<MembershipInvitation> membershipInvitations;
+        private IBaseEntityRepository<ErrorLog> errorLogs;
 
         //public CarRepairReportData() : this(ApplicationDbContext.Create())
         //{
@@ -141,6 +142,11 @@
         public IBaseEntityRepository<MembershipInvitation> MembershipInvitations
         {
             get { return this.membershipInvitations ?? (this.membershipInvitations = new BaseEntityRepository<MembershipInvitation>(this.context.MembershipInvitations)); }
+        }
+
+        public IBaseEntityRepository<ErrorLog> ErrorLogs
+        {
+            get { return this.errorLogs ?? (this.errorLogs = new BaseEntityRepository<ErrorLog>(this.context.ErrorLogs)); }
         }
 
         public ApplicationDbContext Context { get { return this.context; } }

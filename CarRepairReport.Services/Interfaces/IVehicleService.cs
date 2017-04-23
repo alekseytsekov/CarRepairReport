@@ -11,5 +11,6 @@
         bool IsServiceNameUnique(string serviceName);
         VehicleService GetVehiceService(int id);
         bool AddMembershipInvitation(MembershipInvitation membershipInvitation);
+        bool AddServiceRating(ServiceRating serviceRating);
     }
 }
