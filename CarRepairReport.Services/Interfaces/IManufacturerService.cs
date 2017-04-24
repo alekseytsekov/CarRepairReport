@@ -6,5 +6,6 @@
     public interface IManufacturerService : IService
     {
         IEnumerable<Manufacturer> All();
+        Manufacturer GetManufacturerByName(string name);
     }
 }

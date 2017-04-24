@@ -1,234 +1,270 @@
-﻿@model CarRepairReport.Models.ViewModels.GarageVms.GarageVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.GarageVms.GarageVm
 
 @{
     ViewBag.Title = "Cars";
 }
 
 <div class="garage-wrapper">
-    @using (Html.BeginForm("Cars", "Garage", FormMethod.Get))
-    {
-        @Html.LabelFor(x => x.SelectedCar)
-        @Html.DropDownListFor(x => x.SelectedCar, Model.AvailableCars.Select(c => new SelectListItem() { Value = c.Key.ToString(), Text = c.Value }), new { @class = "form-group" })
-        <input type="submit" value="Select" />
-        <hr/>
-    }
 
-    @if (Model.Car != null)
-    {
-        <div class="car-full-info">
-            @*<div class="row">
-                <div class="col col-sm-12">
-                    @Model.Car.ToString()
-                </div>
-            </div>*@
+@using (Html.BeginForm("Cars", "Garage", FormMethod.Get, new { @class="garage-select-car-menu site-color"}))
+{
+    @Html.LabelFor(x => x.SelectedCar)
+    @Html.DropDownListFor(x => x.SelectedCar, Model.AvailableCars.Select(c => new SelectListItem() { Value = c.Key.ToString(), Text = c.Value }), new { @class = "form-control" })
+    <input class="btn btn-default" type="submit" value="Select" />
+        
+}
 
+@if (Model.Car != null)
+{
+    <div class="car-full-info">
+    
+    <div class="row garage-car-main-info site-color">
+
+        <div class="col col-sm-4">
             <div class="row">
-                
-                <div class="col col-sm-4">
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.CarNickname, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.CarNickname)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.VIN, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.VIN)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.Model, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.Model)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.Make, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.Make)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.FirstRegistration, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.FirstRegistration)
-                        </div>
-                    </div>
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.CarNickname, new {@class = "pull-right"})
                 </div>
-
-                <div class="col col-sm-4">
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.Engine, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.Engine)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.Gearbox, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.Gearbox) gears
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.RunningDistance, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.RunningDistance)
-                        </div>
-                    </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.CarNickname)
                 </div>
-
-                <div class="col col-sm-4">
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.TotalSpendOnCar, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.TotalSpendOnCar)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.SpendOnCarParts, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.SpendOnCarParts)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            <label class="pull-right">Total Car Parts</label>
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.CarParts.Count)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            @Html.LabelFor(x => x.Car.SpendOnCosts, new {@class = "pull-right"})
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.SpendOnCosts)
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col col-sm-6">
-                            <label class="pull-right">Total Cost/Investments</label>
-                        </div>
-                        <div class="col col-sm-6">
-                            @Html.DisplayFor(x => x.Car.Costs.Count)
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
 
-            <hr/>
-
             <div class="row">
-                monitored items
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.VIN, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.VIN)
+                </div>
             </div>
 
-            <hr/>
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.Model, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.Model)
+                </div>
+            </div>
 
             <div class="row">
-                
-                <div class="col col-sm-12">
-                    
-                    <div class="row">
-                        
-                        <div class="col col-sm-8">
-                            @foreach (var cPart in Model.Car.CarParts)
-                            {
-                                <div class="car-part-info">
-                                    <div class="row">
-                                        <div class="col col-sm-4">
-                                            @cPart.SerialNumber
-                                        </div>
-                                        <div class="col col-sm-4">
-                                            @cPart.Name
-                                        </div>
-                                        <div class="col col-sm-4">
-                                            @cPart.Manufacturer
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col col-sm-4">
-                                            @cPart.Price
-                                        </div>
-                                        <div class="col col-sm-4">
-                                            @cPart.MountedOn
-                                        </div>
-                                        <div class="col col-sm-4">
-                                            @cPart.RegisterOn
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col col-sm-12">
-                                            @if (!cPart.RequestedToVehicleService)
-                                            {
-                                                <span class="text-info">by me</span>
-                                            }
-                                            else if (cPart.IsSeenByVehicleService)
-                                            {
-                                                if (cPart.IsApprovedByVehicleService)
-                                                {
-                                                    <span class="text-success">@cPart.VehicleService - Approved</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="text-danger">@cPart.VehicleService - Canceled</span>
-                                                }
-                                            }
-                                            else
-                                            {
-                                                <span class="text-warning">@cPart.VehicleService - Pending</span>
-                                            }
-                                        </div>
-                                    </div>
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.Make, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.Make)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.FirstRegistration, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.FirstRegistration)
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-sm-4">
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.Engine, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.Engine)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.Gearbox, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.Gearbox) gears
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.RunningDistance, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.RunningDistance)
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-sm-4">
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.TotalSpendOnCar, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.TotalSpendOnCar)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.SpendOnCarParts, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.SpendOnCarParts)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    <label class="pull-right">Total Car Parts</label>
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.CarParts.Count)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    @Html.LabelFor(x => x.Car.SpendOnCosts, new {@class = "pull-right"})
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.SpendOnCosts)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    <label class="pull-right">Total Cost/Investments</label>
+                </div>
+                <div class="col col-sm-6">
+                    @Html.DisplayFor(x => x.Car.Costs.Count)
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        monitored items
+    </div>
+
+    <hr/>
+
+    <div class="row">
+
+        <div class="col col-sm-12">
+
+            <div class="row">
+
+                <div class="col col-sm-8">
+                    @foreach (var cPart in Model.Car.CarParts)
+                    {
+                        <div class="car-part-info site-color">
+                            <div class="row">
+                                <div class="col col-sm-4">
+                                    @cPart.SerialNumber
                                 </div>
-                                <hr/>
-                            }
+
+                                <div class="col col-sm-3">
+                                    @cPart.Price
+                                </div>
+
+                                <div class="col col-sm-5">
+                                    @if (!cPart.RequestedToVehicleService)
+                                    {
+                                        <span class="text-info btn-info">by me</span>
+                                    }
+                                    else if (cPart.IsSeenByVehicleService)
+                                    {
+                                        if (cPart.IsApprovedByVehicleService)
+                                        {
+                                            <span class="btn-success">@cPart.VehicleService.ToCapital() - Approved</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn-danger">@cPart.VehicleService.ToCapital() - Canceled</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="btn-warning">@cPart.VehicleService.ToCapital() - Pending</span>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col col-sm-4">
+                                    @cPart.Name.ToCapital()
+                                </div>
+
+                                <div class="col col-sm-3">
+                                    @cPart.MountedOn
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col col-sm-4">
+                                    @cPart.Manufacturer.ToCapital()
+                                </div>
+
+                                <div class="col col-sm-3">
+                                    @cPart.RegisterOn
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div class="col col-sm-4">
-                            costs
+                    }
+                </div>
+
+                <div class="col col-sm-4">
+                    @foreach (var cost in Model.Car.Costs)
+                    {
+                        <div class="car-cost-info site-color">
+                            <div class="row">
+
+                                <div class="col col-sm-6">
+                                    @cost.Name
+                                </div>
+
+                                <div class="col col-sm-6">
+                                    @cost.Price
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-sm-6">
+                                    @cost.RegisterOn
+                                </div>
+                            </div>
+
                         </div>
-
-                    </div>
-
+                    }
                 </div>
 
             </div>
 
         </div>
-        
-    }
+
+    </div>
+
+    </div>
+
+}
+else
+{
+    <div class="row">
+        <div class="col col-sm-12">
+            There are no parts and costs/investments on this car!
+        </div>
+    </div>
+}
 </div>

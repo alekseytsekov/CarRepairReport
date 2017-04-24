@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -274,6 +274,34 @@ textarea {
 
 .vs-comment-comment {
     background-color: white;
+    border-radius: 5px;
+}
+
+/*********** garage car info ************/
+
+.garage-wrapper {
+    margin: 10px 0;
+    
+}
+
+.garage-select-car-menu {
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.garage-select-car-menu .form-control {
+    display: inline-block;
+}
+
+.car-full-info {
+    overflow: paged-y;
+}
+
+.car-part-info, .car-cost-info, .garage-car-main-info {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid rgb(200, 200, 200);
     border-radius: 5px;
 }
 

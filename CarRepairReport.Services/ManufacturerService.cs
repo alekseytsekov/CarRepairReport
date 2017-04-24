@@ -14,5 +14,10 @@
         {
             return this.context.Manufacturers.All();
         }
+
+        public Manufacturer GetManufacturerByName(string name)
+        {
+            return this.context.Manufacturers.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

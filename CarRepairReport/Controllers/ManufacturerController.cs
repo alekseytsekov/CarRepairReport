@@ -1,6 +1,8 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
@@ -26,10 +28,36 @@
         }
 
         [HttpGet]
-        [Route("manufacturers/{id}")]
-        public ActionResult Manufacturers(int id)
+        [Route("manufacturer/{name}")]
+        [HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "BadRequestError")]
+        public ActionResult Manufacturer(string name)
         {
-            return null;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+            
+            ManufacturerVm vm = this.manufacturerManager.GetManufacturerByName(name.ToLower());
+
+            if (vm == null)
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+            
+            return this.View(vm);
+        }
+
+        [HttpGet]
+        [Route("manufacturers")]
+        public ActionResult Manufacturers()
+        {
+            var vms = this.manufacturerManager.GetTopManufacturersShortInfo(int.MaxValue)
+                .OrderBy(x => x.Name)
+                .ThenByDescending(x => x.NumberOfParts);
+
+            return this.View(vms);
         }
     }
 }

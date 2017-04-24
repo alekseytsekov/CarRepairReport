@@ -30,5 +30,14 @@
 
             return vms;
         }
+
+        public ManufacturerVm GetManufacturerByName(string name)
+        {
+            var manufacturerEntity = this.manufacturerService.GetManufacturerByName(name);
+
+            var vm = Mapper.Map<Manufacturer, ManufacturerVm>(manufacturerEntity);
+
+            return vm;
+        }
     }
 }

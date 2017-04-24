@@ -171,16 +171,16 @@
         <div class="col-md-3 site-color aside-home-right">
             <div class="vehicle-services">
                 
-                <div>
-                    Car Services
+                <div class="text-center">
+                    @Html.ActionLink("Car Services", "", "")
                 </div>
 
                 @Html.Action("TopVehicleServices", "VehicleService")
             </div>
             
             <div class="manufacturers-short-info">
-                <div>
-                    Manufacturers
+                <div class="text-center">
+                    @Html.ActionLink("Manufacturers","Manufacturers","Manufacturer")
                 </div>
 
                 @Html.Action("GetTopManufacturers", "Manufacturer")

@@ -4,7 +4,9 @@ using System.Web.Routing;
 
 namespace CarRepairReport
 {
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
     using System.Text;
     using AutoMapper;
     using CarRepairReport.Extensions;
@@ -122,7 +124,20 @@ namespace CarRepairReport
                     .ForMember(x => x.Price, y => y.MapFrom(s => s.Price))
                     .ForMember(x => x.RegisterOn, y => y.MapFrom(s => s.CreatedOn));
 
+                map.CreateMap<Manufacturer, ManufacturerVm>()
+                    .ForMember(x => x.Name, y => y.MapFrom(s => s.Name))
+                    .ForMember(x => x.Parts, y => y.MapFrom(s => this.GroupCarPart(s)));
+
             });
+        }
+
+        private IDictionary<string,int> GroupCarPart(Manufacturer manufacturer)
+        {
+            var parts = new Dictionary<string,int>();
+
+            parts = manufacturer.CarParts.GroupBy(x => x.Name).ToDictionary(y => y.Key, y => y.Count());
+
+            return parts;
         }
 
         private string CreateCarDescription(CarPart cp)

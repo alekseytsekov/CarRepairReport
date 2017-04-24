@@ -350,10 +350,13 @@
     <Content Include="Views\VehicleService\Members.cshtml" />
     <Content Include="Views\Shared\_Invitations.cshtml" />
     <Content Include="Views\VehicleService\ConfirmServicedParts.cshtml" />
-    <Content Include="Views\Shared\BadRequestError.cshtml" />
+    <Content Include="Views\Shared\_Custom400BadRequestError.cshtml" />
     <Content Include="Views\VehicleService\VehicleServiceVote.cshtml" />
     <Content Include="Views\VehicleService\GetComments.cshtml" />
     <Content Include="Views\Garage\Cars.cshtml" />
+    <Content Include="Views\Shared\_Custom404FileNotFound.cshtml" />
+    <Content Include="Views\Manufacturer\Manufacturer.cshtml" />
+    <Content Include="Views\Manufacturer\Manufacturers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

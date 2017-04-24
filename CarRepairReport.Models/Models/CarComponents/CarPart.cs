@@ -39,6 +39,6 @@
 
         public int VehicleServiceId { get; set; }
 
-        public VehicleService VehicleService { get; set; }
+        public virtual VehicleService VehicleService { get; set; }
     }
 }
