@@ -1,0 +1,41 @@
+﻿@using CarRepairReport.Extensions
+@model IEnumerable<CarRepairReport.Models.ViewModels.ServiceVms.ShortServiceVm>
+
+@{
+    ViewBag.Title = "Car Service Short Info";
+}
+
+<h2>Services</h2>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RepairedParts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Name.ToCapital()
+        </td>
+        <td>
+            @item.RepairedParts
+        </td>
+        <td>
+            @item.Rating
+        </td>
+        <td>
+            @Html.ActionLink("View", "VehicleService", "VehicleService" , new { id =item.Id }, null) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,6 +1,7 @@
 ﻿namespace CarRepairReport.Controllers
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Helpers;
     using System.Web.Mvc;
     using CarRepairReport.Models.BindingModels;
     using AutoMapper;
@@ -13,28 +14,28 @@
 
     [System.Web.Mvc.Authorize]
     [RoutePrefix("Cost")]
-    public class CostController : Controller
+    public class CostController : BaseController
     {
         private ICarManager carManager;
 
-        public CostController(ICarManager carManager)
+        public CostController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
         {
             this.carManager = carManager;
         }
-        
+
         [Route]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public JsonResult Cost([Bind(Prefix = "InvestPart")]InvestPartBm bm)
         {
             var result = new CostDto();
-
-            var appUserId = this.User.Identity.GetUserId();
-
+            
             var carId = bm.CarId;
 
             if (carId < 1)
             {
-                //error 
+                this.Response.StatusCode = 400;
+                return new JsonResult() {Data = new CostDto() {ErrorMessage = "Cannot process request!"} };
             }
 
             Cost investmentEntity = null;
@@ -43,7 +44,7 @@
             {
                 var newInvestment = Mapper.Map<InvestPartBm,CreateInvestmentVm>(bm);
 
-                investmentEntity = this.carManager.AddNewInvestment(newInvestment, carId, appUserId);
+                investmentEntity = this.carManager.AddNewInvestment(newInvestment, carId, this.GetAppUserId());
 
                 var isInvestAdded = investmentEntity != null;
 
@@ -58,6 +59,12 @@
                     result.HasError = !isInvestAdded;
                     result.ErrorMessage = this.GetMessage(newInvestment.Name, isInvestAdded);
                 }
+            }
+            else if((string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0) || (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price <= 0) || (string.IsNullOrWhiteSpace(bm.Name) && bm.Price <= 0))
+            {
+                result.HasError = true;
+                result.HasInvest = false;
+                result.InvestMessage = string.Format("Cost/Investment contain invalid data!\r\nCost/Investment name: {0}\r\nCost/Investment Price: {1}", bm.Name, bm.Price);
             }
 
             if (!string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0)
@@ -75,7 +82,7 @@
 
                 for (int i = 0; i < quantity; i++)
                 {
-                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, appUserId);
+                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, this.GetAppUserId());
 
                     if (!isCarPartAdded)
                     {
@@ -90,13 +97,21 @@
                 }
                 else
                 {
+                    this.Response.StatusCode = 400;
+
                     result.HasInvest = isCarPartAdded;
                     result.HasError = !isCarPartAdded;
                     result.ErrorMessage = this.GetMessage(carPart.PartName, isCarPartAdded);
+
+                    return new JsonResult() {Data = result};
                 }
             }
-
-            return new JsonResult();
+            else if ((string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0) || (!string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice <= 0) || (string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice <= 0))
+            {
+                result.NewPartMessage = string.Format("New Part contain invalid data!\r\nPart name: {0}\r\nPart Price: {1}", bm.PartName, bm.PartPrice);
+            }
+            
+            return new JsonResult() { Data = result };
         }
         
         private string GetMessage(string param, bool isAdded, int quantity = 0)

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.Mvc;
     using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
@@ -61,7 +62,7 @@
             return this.View(vm);
         }
 
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("service/{id}/manage")]
         public ActionResult Manage()
@@ -69,10 +70,9 @@
             return this.RedirectToAction("Manage", 4);
         }
 
-        [System.Web.Mvc.HttpGet]
+        [HttpGet]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("members/{serviceId}")]
-        
         public ActionResult Members(int serviceId)
         {
             var vm = new InviteMemberVm() {Id = serviceId};
@@ -80,7 +80,7 @@
             return this.PartialView(vm);
         }
 
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("invite/{serviceId}")]
         public ActionResult Invite(InviteMemberBm bm)
@@ -109,7 +109,8 @@
         {
             if (serviceId < 1)
             {
-                return null;
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
             }
 
             IEnumerable<RequestCarPartVm> vms = this.vehicleServiceManager.GetUnconfirmedParts(serviceId);
@@ -144,6 +145,12 @@
         [ChildActionOnly]
         public ActionResult VehicleServiceVote(int id)
         {
+            if (id < 1)
+            {
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
+            }
+
             return this.PartialView(id);
         }
 
@@ -172,9 +179,24 @@
         [ChildActionOnly]
         public ActionResult GetComments(int id)
         {
+            if (id < 1)
+            {
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
+            }
+
             IEnumerable<VehicleServiceCommentVm> vms = this.vehicleServiceManager.GetComments(id);
 
             return this.PartialView(vms);
+        }
+
+        [HttpGet]
+        [Route("services")]
+        public ActionResult GetAllVehicleServiceShortInfo()
+        {
+            var vms = this.vehicleServiceManager.GetTopServicesShortInfo(int.MaxValue).OrderBy(x => x.Name);
+
+            return this.View(vms);
         }
     }
 }

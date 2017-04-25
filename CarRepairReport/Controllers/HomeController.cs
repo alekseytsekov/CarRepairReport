@@ -22,7 +22,7 @@
             //this.vehicleServiceManager = vehicleServiceManager;
         }
 
-        //[HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "BadRequestError")]
+        [HttpGet]
         public ActionResult Index()
         {
             var vm = new HomeVm();

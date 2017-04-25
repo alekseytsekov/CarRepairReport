@@ -149,13 +149,20 @@
                 return false;
             }
 
-            var entityManufacturer = this.carService.GetCarPartManufacturerByName(carPart.ManufacturerName.ToLower());
+            var manufacturerName = "unknown";
+
+            if (!string.IsNullOrWhiteSpace(carPart.ManufacturerName))
+            {
+                manufacturerName = carPart.ManufacturerName.ToLower();
+            }
+
+            var entityManufacturer = this.carService.GetCarPartManufacturerByName(manufacturerName);
 
             if (entityManufacturer == null)
             {
                 entityManufacturer = new Manufacturer()
                 {
-                    Name = carPart.ManufacturerName.ToLower()
+                    Name = manufacturerName
                 };
 
                 var isManufacturerAdded = this.carService.AddManufacturer(entityManufacturer);
@@ -183,11 +190,16 @@
                 carPart.SerialNumber = string.Empty;
             }
 
+            if (!string.IsNullOrWhiteSpace(carPart.SerialNumber))
+            {
+                carPart.SerialNumber = carPart.SerialNumber.ToUpper();
+            }
+
             // create new part 
             var newPart = new CarPart()
             {
                 CreatedOn = DateTime.UtcNow,
-                SerialNumber = carPart.SerialNumber.ToUpper(),
+                SerialNumber = carPart.SerialNumber,
                 Price = carPart.PartPrice,
                 Name = carPart.PartName.ToLower(),
                 ManufacturerId = entityManufacturer.Id,
