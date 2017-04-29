@@ -11,8 +11,8 @@
         bool Update(User user);
         User GetUserByAppId(string appUserId);
         bool IsUserExists(string appUserId);
-        bool UpdatePersonalInfo(string firstName, string lastName, string appUserId);
-
+        bool UpdatePersonalInfo(string firstName, string lastName, string imageUrl, string appUserId);
+        string GetUserImgUrl(string appUserId);
         IEnumerable<User> GetAllUsers();
     }
 }

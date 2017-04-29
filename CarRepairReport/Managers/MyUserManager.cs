@@ -7,6 +7,7 @@
     using System.Web;
     using AutoMapper;
     using CarRepairReport.Extensions;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models;
     using CarRepairReport.Models.BindingModels;
@@ -18,6 +19,7 @@
     using CarRepairReport.Models.ViewModels.Commons;
     using CarRepairReport.Models.ViewModels.UserVms;
     using CarRepairReport.Services.Interfaces;
+    using CloudStorageApi;
 
     public class MyUserManager : IMyUserManager
     {
@@ -27,13 +29,15 @@
         private ICarManager carManager;
         private IVehicleServiceService vehicleService;
         private ICommonService commonService;
+        private ICloudStorage cloudStorage;
 
         public MyUserManager(ILanguageManager langManager, 
                              IUserService userService, 
                              IAddressService addressService, 
                              ICarManager carManager,
                              IVehicleServiceService vehicleService,
-                             ICommonService commonService)
+                             ICommonService commonService,
+                             ICloudStorage cloudStorage)
         {
             this.langManager = langManager;
             this.userService = userService;
@@ -41,6 +45,7 @@
             this.carManager = carManager;
             this.vehicleService = vehicleService;
             this.commonService = commonService;
+            this.cloudStorage = cloudStorage;
         }
         public Task CreateMyUserAsync(ApplicationUser appUser, HttpContextBase httpContext)
         {
@@ -135,7 +140,7 @@
                 return false;
             }
 
-            bool isUpdated = this.userService.UpdatePersonalInfo(bm.FirstName, bm.LastName, appUserId);
+            bool isUpdated = this.userService.UpdatePersonalInfo(bm.FirstName, bm.LastName, bm.ImageUrl, appUserId);
 
             return isUpdated;
         }
@@ -144,6 +149,15 @@
         {
             var model = Mapper.Map<EditUserBm, UserProfileBm>(bm);
 
+            //var oldImgUrl = this.userService.GetUserImgUrl(appUserId);
+
+            if (bm.Image != null && bm.Image.ContentLength <= Configurations.MaxImageSize)
+            {
+                var newImgUrl = this.GetDownloadbleLink(bm.Image, bm.ServerPath);
+
+                model.ImageUrl = newImgUrl;
+            }
+            
             var result = this.AddUserDetails(model, appUserId);
 
             return result;
@@ -307,6 +321,19 @@
 
             return vm;
         }
-        
+
+        private string GetDownloadbleLink(HttpPostedFileBase image, string path)
+        {
+            this.cloudStorage.StartService(path);
+
+            var fileId = this.cloudStorage.UploadFile(image);
+
+            if (string.IsNullOrEmpty(fileId))
+            {
+                return null;
+            }
+
+            return Configurations.GoogleDownloadLink + fileId;
+        }
     }
 }

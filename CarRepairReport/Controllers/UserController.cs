@@ -1,14 +1,19 @@
 ﻿namespace CarRepairReport.Controllers
 {
+    using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
     using AutoMapper;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.BindingModels.CommonBms;
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.UserVms;
+    using CloudStorageApi;
     using Microsoft.AspNet.Identity;
 
     [Authorize]
@@ -16,6 +21,7 @@
     {
         //private IMyUserManager userManager;
         private ILanguageManager langManager;
+        
         
         public UserController(ILanguageManager langManager, IMyUserManager myUserManager) : base(myUserManager)
         { 
@@ -144,6 +150,8 @@
 
                 //return this.RedirectToAction("Edit");
             }
+            
+            bm.ServerPath = this.Server.MapPath(Configurations.CarRepaitReportJson);
 
             var result = this.myUserManager.EditUserPersonalDetails(bm, this.User.Identity.GetUserId());
 
@@ -151,10 +159,10 @@
             {
                 //error
             }
-
+            
             return this.RedirectToAction("UserProfile");
         }
-
+        
         [HttpGet]
         [Route("RegisterCarService")]
         public ActionResult RegisterCarService()

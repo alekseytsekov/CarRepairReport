@@ -26,8 +26,28 @@
     <div class="container">
         
         <div class="row">
+            
+            <div class="col col-sm-3 logo-img text-center">
+                <img src="@Model.ImageUrl" alt="Profile image" />
+            </div>
+
             <div class="col col-sm-6">
-                <h3>@Model.FirstName @Model.LastName</h3>
+                
+                <div class="row">
+                    <div class="col col-sm-6">
+                        <h3>@Model.FirstName @Model.LastName</h3>
+                    </div>
+                </div>
+                
+                @if (!string.IsNullOrWhiteSpace(Model.CityName))
+                {
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <h4>@Model.CityName, @Model.CountryName</h4>
+                        </div>
+                    </div>
+                }
+                
             </div>
 
             <div class="col col-sm-6">
@@ -35,14 +55,7 @@
 
             </div>
         </div>
-        @if (!string.IsNullOrWhiteSpace(Model.CityName))
-        {
-            <div class="row">
-                <div class="col col-sm-2">
-                    <h4>@Model.CityName, @Model.CountryName</h4>
-                </div>
-            </div>
-        }
+        
     </div>
 </div>
 <div class="profile-personal-cars profile-data">

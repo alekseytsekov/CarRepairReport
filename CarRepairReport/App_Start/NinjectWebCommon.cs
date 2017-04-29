@@ -12,6 +12,7 @@ namespace CarRepairReport
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Services;
     using CarRepairReport.Services.Interfaces;
+    using CloudStorageApi;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
@@ -81,6 +82,8 @@ namespace CarRepairReport
             kernel.Bind<IManufacturerManager>().To<ManufacturerManager>().InRequestScope();
             kernel.Bind<IManufacturerService>().To<ManufacturerService>().InRequestScope();
             kernel.Bind<ICommonService>().To<CommonService>().InRequestScope();
+            kernel.Bind<ICloudStorage>().To<GoogleDrive>().InRequestScope();
+            //kernel.Bind<ICloudStorage>().To<DropboxApi>().InRequestScope();
         }        
     }
 }

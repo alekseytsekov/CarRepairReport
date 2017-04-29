@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
     using CarRepairReport.Models.Attributes;
 
     public class EditUserVm : ViewBindingModel
@@ -30,6 +31,10 @@
         [MinLength(2), MaxLength(40)]
         [RegexValidation("^[a-zA-Z]{2,}$", "system.common.validation.countryname")]
         public string CountryName { get; set; }
+
+        //[FileSize(1024*1024)]
+        //[FileTypes("jpg,jpeg")]
+        public HttpPostedFileBase Image { get; set; }
 
         public IDictionary<string, string> Errors { get; set; }
     }

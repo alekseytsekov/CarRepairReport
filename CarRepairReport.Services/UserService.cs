@@ -67,7 +67,19 @@
             return this.context.MyUsers.Any(x => x.ApplicationUserId == appUserId);
         }
 
-        public bool UpdatePersonalInfo(string firstName, string lastName, string appUserId)
+        public string GetUserImgUrl(string appUserId)
+        {
+            var user = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user.ImageUrl;
+        }
+
+        public bool UpdatePersonalInfo(string firstName, string lastName,string imageUrl, string appUserId)
         {
             var entity = this.context.MyUsers.FirstOrDefault(x => x.ApplicationUserId == appUserId);
 
@@ -78,6 +90,11 @@
 
             entity.FirstName = firstName;
             entity.LastName = lastName;
+
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                entity.ImageUrl = imageUrl;
+            }
 
             try
             {
