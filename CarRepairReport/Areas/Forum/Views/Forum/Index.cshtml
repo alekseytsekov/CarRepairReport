@@ -1,11 +1,75 @@
-﻿
+﻿@model CarRepairReport.Models.ViewModels.ForumVm.ForumVm
+
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Car Repair Report Forum";
 }
 
+<div class="row crr-box site-color" style="min-height: 50px;">
+    <div class="col col-sm-12">
+        commercial banner
+    </div>
+</div>
 
-<h1>This is my forum!!!</h1>
-<h2>Index</h2>
+<div class="row crr-box site-color margin-me">
+    
+    @using (Ajax.BeginForm("FilterPosts", "Forum", null, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace,UpdateTargetId = "forum-posts-wrapper" },new {@class = "forum-filter-form"}))
+    {
+        <div class="col col-sm-2">
+            @Html.EditorFor(x => x.FilterVm.Title, new {htmlAttributes = new {@class = "form-control", placeholder= @LR("Title", Model.LanguageCode) } })
+        </div>
+
+        <div class="col col-sm-3">
+            @Html.EditorFor(x => x.FilterVm.Content, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Content", Model.LanguageCode) } })
+        </div>
+
+        <div class="col col-sm-2">
+            @Html.EditorFor(x => x.FilterVm.Category, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Category", Model.LanguageCode) } })
+        </div>
+
+        <div class="col col-sm-3">
+            @Html.EditorFor(x => x.FilterVm.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Tags", Model.LanguageCode) } })
+        </div>
+
+        <div class="col col-sm-2">
+            <input class="btn btn-default pull-right" type="submit" name="filter" value="@LR("Filter", Model.LanguageCode)" />
+        </div>
+    }
+
+</div>
+
+<div class="row">
+    
+    <div class="col col-xs-2">
+        <div class="row crr-box">
+            <div class="col col-sm-12">
+                list of categories
+            </div>
+        </div>
+        
+        <div class="row crr-box">
+            <div class="col col-sm-12">
+                list of tags
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col col-xs-10">
+        <div class="row crr-box">
+            <div id="forum-posts-wrapper" class="col col-sm-12">
+                <div class="row">
+                    <div class="col col-sm-12">
+                        @Html.ActionLink(LR("Create", "bg").ToString(),"CreatePost")
+                    </div>
+                </div>
+
+                posts ...
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 

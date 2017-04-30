@@ -298,10 +298,14 @@ textarea {
     overflow: paged-y;
 }
 
-.car-part-info, .car-cost-info, .garage-car-main-info, .serviced-part-info {
+.car-part-info, .car-cost-info, .garage-car-main-info, .serviced-part-info, .crr-box {
     margin: 5px 0;
     padding: 5px;
     border: 1px solid rgb(200, 200, 200);
     border-radius: 5px;
 }
+
+
+
+
 
