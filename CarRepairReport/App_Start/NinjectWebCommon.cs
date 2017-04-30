@@ -84,6 +84,7 @@ namespace CarRepairReport
             kernel.Bind<ICommonService>().To<CommonService>().InRequestScope();
             kernel.Bind<ICloudStorage>().To<GoogleDrive>().InRequestScope();
             //kernel.Bind<ICloudStorage>().To<DropboxApi>().InRequestScope();
-        }        
+            kernel.Bind<ICacheManager>().To<CacheManager>().InRequestScope();
+        }
     }
 }

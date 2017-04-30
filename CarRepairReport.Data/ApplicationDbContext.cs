@@ -5,6 +5,7 @@
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
+    using CarRepairReport.Models.Models.ForumModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -48,5 +49,8 @@
         public virtual IDbSet<ServiceRating> ServiceRatings { get; set; }
         public virtual IDbSet<MembershipInvitation> MembershipInvitations { get; set; }
         public virtual IDbSet<ErrorLog> ErrorLogs { get; set; }
+        public virtual IDbSet<Post> Posts { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Tag> Tags { get; set; }
     }
 }

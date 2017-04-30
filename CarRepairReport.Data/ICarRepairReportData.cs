@@ -5,6 +5,7 @@
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
+    using CarRepairReport.Models.Models.ForumModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -33,6 +34,9 @@
         IBaseEntityRepository<ServiceRating> ServiceRatings { get; }
         IBaseEntityRepository<MembershipInvitation> MembershipInvitations { get; }
         IBaseEntityRepository<ErrorLog> ErrorLogs { get; }
+        IBaseEntityRepository<Post> Posts { get; }
+        IBaseEntityRepository<Tag> Tags { get; }
+        IBaseEntityRepository<Category> Categories { get; }
 
         ApplicationDbContext Context { get; }
     }

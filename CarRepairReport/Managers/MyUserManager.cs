@@ -151,7 +151,7 @@
 
             //var oldImgUrl = this.userService.GetUserImgUrl(appUserId);
 
-            if (bm.Image != null && bm.Image.ContentLength <= Configurations.MaxImageSize)
+            if (this.CanUploadImage(bm.Image))
             {
                 var newImgUrl = this.GetDownloadbleLink(bm.Image, bm.ServerPath);
 
@@ -333,7 +333,16 @@
                 return null;
             }
 
-            return Configurations.GoogleDownloadLink + fileId;
+            return CRRConfig.GoogleDownloadLink + fileId;
+        }
+
+        private bool CanUploadImage(HttpPostedFileBase image)
+        {
+            var isNull = image != null;
+            var sizeCheck = image.ContentLength <= CRRConfig.MaxImageSize;
+            var fileType = image.ContentType.ToLower() == "image/jpg" || image.ContentType == "image/jpeg";
+            
+            return isNull && sizeCheck && fileType;
         }
     }
 }

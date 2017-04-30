@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Enums;
@@ -109,6 +110,18 @@
             }
 
             return this.RedirectToAction("UserProfile", "User");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [ChildActionOnly]
+        [Route("lastserviced")]
+        //[OutputCache(Duration = 60 * 5)]
+        public ActionResult GetLastServicedParts()
+        {
+            var vms = this.carManager.LastServicedCarParts();
+
+            return this.PartialView(vms);
         }
     }
 }

@@ -1,8 +1,14 @@
-﻿@using CarRepairReport.Extensions.HtmlHelpers
+﻿@using CarRepairReport.Extensions
+@using CarRepairReport.Extensions.HtmlHelpers
+@using CarRepairReport.Models.Dtos
+@using CarRepairReport.Models.Models.LanguageModels
+
+
+
 @model CarRepairReport.Models.ViewModels.UserVms.UserProfileVm
 
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Profile"; 
 }
 
 <div class="profile-personal-data profile-data">
@@ -20,6 +26,7 @@
             </div>
         }
         
+        @LR("system.common.currentLanguage", "bg")
     </div> 
     <hr />
 

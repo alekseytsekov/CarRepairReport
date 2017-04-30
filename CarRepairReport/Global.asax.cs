@@ -4,16 +4,21 @@ using System.Web.Routing;
 
 namespace CarRepairReport
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
     using System.Text;
+    using System.Web.Caching;
+    using System.Web.UI.WebControls;
     using AutoMapper;
+    using CarRepairReport.Data;
     using CarRepairReport.Extensions;
     using CarRepairReport.Models.BindingModels;
+    using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
+    using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels;
     using CarRepairReport.Models.ViewModels.CarVms;
@@ -21,6 +26,7 @@ namespace CarRepairReport
     using CarRepairReport.Models.ViewModels.ManufacturerVms;
     using CarRepairReport.Models.ViewModels.ServiceVms;
     using CarRepairReport.Models.ViewModels.UserVms;
+    using CarRepairReport.Services;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -30,6 +36,7 @@ namespace CarRepairReport
 
             //DependencyConfig.Register();
             this.ConfigureMapping();
+            CacheConfig.Config();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -128,7 +135,33 @@ namespace CarRepairReport
                     .ForMember(x => x.Name, y => y.MapFrom(s => s.Name))
                     .ForMember(x => x.Parts, y => y.MapFrom(s => this.GroupCarPart(s)));
 
+                map.CreateMap<LanguageValue, LanguageDto>()
+                    .ForMember(x => x.LanguageCode, y => y.MapFrom(s => s.LangTwoLetterCode))
+                    .ForMember(x => x.Key, y => y.MapFrom(s => s.Key))
+                    .ForMember(x => x.Value, y => y.MapFrom(s => s.Value));
+
+                map.CreateMap<CarPart, ServiceInfoVm>()
+                    .ForMember(x => x.CarPartSerialNumber, y => y.MapFrom(s => s.SerialNumber))
+                    .ForMember(x => x.CarPartName, y => y.MapFrom(s => s.Name))
+                    .ForMember(x => x.CarPartManufacturerName, y => y.MapFrom(s => s.Manufacturer.Name))
+                    .ForMember(x => x.ServicedBy, y => y.MapFrom(s => s.VehicleService.Name))
+                    .ForMember(x => x.CarMake, y => y.MapFrom(s => s.Car.Make))
+                    .ForMember(x => x.CarModel , y => y.MapFrom(s => s.Car.Model))
+                    .ForMember(x => x.CarEngineType, y => y.MapFrom(s => s.Car.Engine.FuelType.ToString()))
+                    .ForMember(x => x.CarYear, y => y.MapFrom(s => this.ToStringDate(s.Car.FirstRegistration)))
+                    .ForMember(x => x.CarEngine, y => y.MapFrom(s => this.EngineToString(s.Car.Engine)))
+                    .ForMember(x => x.CarGearbox, y => y.MapFrom(s => s.Car.Gearbox.GearBoxType.ToString()));
             });
+        }
+
+        private string EngineToString(Engine carEngine)
+        {
+            return carEngine.EngineSize.ToString("F1") + ", " + carEngine.EnginePower;
+        }
+
+        private string ToStringDate(DateTime carFirstRegistration)
+        {
+            return carFirstRegistration.ToString("D");
         }
 
         private IDictionary<string,int> GroupCarPart(Manufacturer manufacturer)

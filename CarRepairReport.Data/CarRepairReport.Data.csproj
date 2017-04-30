@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201704231121011_addErrorLogModel.Designer.cs">
       <DependentUpon>201704231121011_addErrorLogModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704301719460_ForumModels.cs" />
+    <Compile Include="Migrations\201704301719460_ForumModels.Designer.cs">
+      <DependentUpon>201704301719460_ForumModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -301,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704231121011_addErrorLogModel.resx">
       <DependentUpon>201704231121011_addErrorLogModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704301719460_ForumModels.resx">
+      <DependentUpon>201704301719460_ForumModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

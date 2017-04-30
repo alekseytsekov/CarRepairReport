@@ -22,7 +22,7 @@
         public ActionResult GetTopManufacturers()
         {
             var vms =
-                this.manufacturerManager.GetTopManufacturersShortInfo(Configurations.NumberOfTopManufacturersInHomeView);
+                this.manufacturerManager.GetTopManufacturersShortInfo(CRRConfig.NumberOfTopManufacturersInHomeView);
 
             return this.PartialView("ManufacturersShortInfo", vms);
         }

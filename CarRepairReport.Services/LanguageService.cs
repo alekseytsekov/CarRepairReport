@@ -1,6 +1,7 @@
 ﻿namespace CarRepairReport.Services
 {
     using System;
+    using System.Collections.Generic;
     using CarRepairReport.Data;
     using CarRepairReport.Models.Models;
     using CarRepairReport.Models.Models.LanguageModels;
@@ -82,6 +83,11 @@
             }
 
             return value;
+        }
+
+        public IEnumerable<LanguageValue> GetAllResources()
+        {
+            return this.context.LanguageValues.All();
         }
     }
 }

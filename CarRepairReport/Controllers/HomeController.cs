@@ -1,14 +1,9 @@
 ﻿namespace CarRepairReport.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Web.Mvc;
-    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.ViewModels.Commons;
-    using CarRepairReport.Models.ViewModels.ServiceVms;
     using Microsoft.AspNet.Identity;
 
     public class HomeController : BaseController
@@ -23,6 +18,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var vm = new HomeVm();
@@ -53,18 +49,18 @@
             return investPart;
         }
 
-        public ActionResult About()
-        {
-            this.ViewBag.Message = "Your application description page.";
+        //public ActionResult About()
+        //{
+        //    this.ViewBag.Message = "Your application description page.";
             
-            return this.View();
-        }
+        //    return this.View();
+        //}
 
-        public ActionResult Contact()
-        {
-            this.ViewBag.Message = "Your contact page.";
+        //public ActionResult Contact()
+        //{
+        //    this.ViewBag.Message = "Your contact page.";
 
-            return this.View();
-        }
+        //    return this.View();
+        //}
     }
 }

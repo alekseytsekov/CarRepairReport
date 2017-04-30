@@ -82,7 +82,9 @@
     <Compile Include="BindingModels\VehicleServiceBms\InviteMemberBm.cs" />
     <Compile Include="Dtos\CheckBoxDto.cs" />
     <Compile Include="Dtos\CostDto.cs" />
+    <Compile Include="Dtos\LanguageDto.cs" />
     <Compile Include="Dtos\ResultDto.cs" />
+    <Compile Include="Enums\BelongTo.cs" />
     <Compile Include="Enums\FuelType.cs" />
     <Compile Include="Enums\GearBoxType.cs" />
     <Compile Include="Models\AddressModels\Address.cs" />
@@ -97,6 +99,9 @@
     <Compile Include="Models\CommonModels\ErrorLog.cs" />
     <Compile Include="Models\CommonModels\MembershipInvitation.cs" />
     <Compile Include="Models\CommonModels\ServiceRating.cs" />
+    <Compile Include="Models\CommonModels\Category.cs" />
+    <Compile Include="Models\CommonModels\Tag.cs" />
+    <Compile Include="Models\ForumModels\Post.cs" />
     <Compile Include="Models\LanguageModels\Language.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="IBaseModel.cs" />
@@ -122,6 +127,7 @@
     <Compile Include="ViewModels\CarVms\CreateCarVm.cs" />
     <Compile Include="ViewModels\CarVms\FullCarVm.cs" />
     <Compile Include="ViewModels\CarVms\RequestCarPartVm.cs" />
+    <Compile Include="ViewModels\CarVms\ServiceInfoVm.cs" />
     <Compile Include="ViewModels\CarVms\SimpleCarVm.cs" />
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />

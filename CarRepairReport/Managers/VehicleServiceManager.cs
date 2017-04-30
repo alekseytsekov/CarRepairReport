@@ -211,7 +211,7 @@
                 return null;
             }
 
-            var ratings = vehicleService.ServiceRatings.OrderByDescending(x => x.CreatedOn).Take(Configurations.VehicleServiceVotesOnPage);
+            var ratings = vehicleService.ServiceRatings.OrderByDescending(x => x.CreatedOn).Take(CRRConfig.VehicleServiceVotesOnPage);
 
             var comments = Mapper.Map<IEnumerable<ServiceRating>, IEnumerable<VehicleServiceCommentVm>>(ratings);
 

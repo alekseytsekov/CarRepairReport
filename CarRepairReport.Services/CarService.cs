@@ -57,7 +57,7 @@
             {
                 return this.LogError(ex);
             }
-            
+
             return true;
         }
 
@@ -88,7 +88,7 @@
             {
                 return this.LogError(ex);
             }
-            
+
 
             return true;
         }
@@ -153,6 +153,11 @@
         public CarPart GetCarPartById(int id)
         {
             return this.context.CarParts.GetById(id);
+        }
+
+        public IEnumerable<CarPart> LatestCarParts(int count = 100)
+        {
+            return this.context.CarParts.All().OrderByDescending(x => x.CreatedOn).Take(count);
         }
     }
 }

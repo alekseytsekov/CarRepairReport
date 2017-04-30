@@ -151,7 +151,7 @@
                 //return this.RedirectToAction("Edit");
             }
             
-            bm.ServerPath = this.Server.MapPath(Configurations.CarRepaitReportJson);
+            bm.ServerPath = this.Server.MapPath(CRRConfig.CarRepaitReportJson);
 
             var result = this.myUserManager.EditUserPersonalDetails(bm, this.User.Identity.GetUserId());
 

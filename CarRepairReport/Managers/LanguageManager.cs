@@ -18,16 +18,16 @@
 
         public bool SetLangCookie(string lang, string userId, HttpContextBase httpContext)
         {
-            if (httpContext.Request.Cookies[Configurations.LangCookieKey] == null)
+            if (httpContext.Request.Cookies[CRRConfig.LangCookieKey] == null)
             {
-                var cookie = new HttpCookie(Configurations.LangCookieKey, lang);
+                var cookie = new HttpCookie(CRRConfig.LangCookieKey, lang);
                 httpContext.Response.Cookies.Add(cookie);
                 
             }
             else
             {
-                var value = httpContext.Request.Cookies[Configurations.LangCookieKey].Value;
-                httpContext.Response.Cookies[Configurations.LangCookieKey].Value = lang;
+                var value = httpContext.Request.Cookies[CRRConfig.LangCookieKey].Value;
+                httpContext.Response.Cookies[CRRConfig.LangCookieKey].Value = lang;
             }
 
             bool isSet = false;
@@ -48,17 +48,17 @@
         {
             Language lang = null;
 
-            if (httpContext.Request.Cookies[Configurations.LangCookieKey] == null)
+            if (httpContext.Request.Cookies[CRRConfig.LangCookieKey] == null)
             {
-                var cookie = new HttpCookie(Configurations.LangCookieKey, Configurations.DefaultLanguageTwoLetterCode);
+                var cookie = new HttpCookie(CRRConfig.LangCookieKey, CRRConfig.DefaultLanguageTwoLetterCode);
                 httpContext.Response.Cookies.Add(cookie);
 
-                lang = this.langService.GetLanguageByTwoLetterCode(Configurations.DefaultLanguageTwoLetterCode);
+                lang = this.langService.GetLanguageByTwoLetterCode(CRRConfig.DefaultLanguageTwoLetterCode);
 
                 return lang;
             }
 
-            var cookieLangCode = httpContext.Request.Cookies[Configurations.LangCookieKey].Value;
+            var cookieLangCode = httpContext.Request.Cookies[CRRConfig.LangCookieKey].Value;
 
             lang = this.langService.GetLanguageByTwoLetterCode(cookieLangCode);
 

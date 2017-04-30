@@ -15,5 +15,7 @@
         bool AddCarPart(CarPart newPart);
         bool AddInvestment(Cost newInvestment);
         CarPart GetCarPartById(int id);
+
+        IEnumerable<CarPart> LatestCarParts(int count = 100);
     }
 }

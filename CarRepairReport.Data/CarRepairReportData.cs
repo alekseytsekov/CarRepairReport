@@ -8,6 +8,7 @@
     using CarRepairReport.Models.Models.AddressModels;
     using CarRepairReport.Models.Models.CarComponents;
     using CarRepairReport.Models.Models.CommonModels;
+    using CarRepairReport.Models.Models.ForumModels;
     using CarRepairReport.Models.Models.LanguageModels;
     using CarRepairReport.Models.Models.UserModels;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -36,6 +37,9 @@
         private IBaseEntityRepository<ServiceRating> serviceRatings;
         private IBaseEntityRepository<MembershipInvitation> membershipInvitations;
         private IBaseEntityRepository<ErrorLog> errorLogs;
+        private IBaseEntityRepository<Post> posts;
+        private IBaseEntityRepository<Tag> tags;
+        private IBaseEntityRepository<Category> categories;
 
         //public CarRepairReportData() : this(ApplicationDbContext.Create())
         //{
@@ -147,6 +151,21 @@
         public IBaseEntityRepository<ErrorLog> ErrorLogs
         {
             get { return this.errorLogs ?? (this.errorLogs = new BaseEntityRepository<ErrorLog>(this.context.ErrorLogs)); }
+        }
+
+        public IBaseEntityRepository<Post> Posts
+        {
+            get { return this.posts ?? (this.posts = new BaseEntityRepository<Post>(this.context.Posts)); }
+        }
+
+        public IBaseEntityRepository<Tag> Tags
+        {
+            get { return this.tags ?? (this.tags = new BaseEntityRepository<Tag>(this.context.Tags)); }
+        }
+
+        public IBaseEntityRepository<Category> Categories
+        {
+            get { return this.categories ?? (this.categories = new BaseEntityRepository<Category>(this.context.Categories)); }
         }
 
         public ApplicationDbContext Context { get { return this.context; } }

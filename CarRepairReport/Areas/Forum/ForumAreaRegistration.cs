@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace CarRepairReport.Areas.Forum
+﻿namespace CarRepairReport.Areas.Forum
 {
+    using System.Web.Mvc;
+
     public class ForumAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
@@ -14,6 +14,8 @@ namespace CarRepairReport.Areas.Forum
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            context.Routes.MapMvcAttributeRoutes();
+
             context.MapRoute(
                 "Forum_default",
                 "Forum/{controller}/{action}/{id}",

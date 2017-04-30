@@ -12,6 +12,7 @@
     using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Models.ViewModels.ServiceVms;
 
+    
     public class VehicleServiceController : BaseController
     {
         private IVehicleServiceManager vehicleServiceManager;
@@ -41,12 +42,13 @@
         public ActionResult TopVehicleServices()
         {
             ICollection<ShortServiceVm> vms = this.vehicleServiceManager
-                .GetTopServicesShortInfo(Configurations.NumberOfTopVehicleServiceInHomeView);
+                .GetTopServicesShortInfo(CRRConfig.NumberOfTopVehicleServiceInHomeView);
 
             return this.PartialView("_TopVehicleServices", vms);
         }
 
-        [System.Web.Mvc.HttpGet]
+        [HttpGet]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("service/{id}/manage")]
         public ActionResult Manage(int id)
@@ -63,6 +65,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("service/{id}/manage")]
         public ActionResult Manage()
@@ -71,6 +74,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("members/{serviceId}")]
         public ActionResult Members(int serviceId)
@@ -81,6 +85,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("invite/{serviceId}")]
         public ActionResult Invite(InviteMemberBm bm)
@@ -102,6 +107,7 @@
         }
 
         [HttpGet]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("confirmservice/{serviceId}")]
         //[HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "BadRequestError")] -- does not work with ajax calls
@@ -119,6 +125,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
         [Route("ProcessingServicedParts")]
         public JsonResult ProcessingServicedParts(AnswerBm bm)
@@ -156,6 +163,7 @@
 
         [HttpPost]
         [Route("vote")]
+        [Authorize]
         public JsonResult ProcessServiceVote(AnswerBm bm)
         {
             if (bm.Id < 1 || string.IsNullOrWhiteSpace(bm.Message))

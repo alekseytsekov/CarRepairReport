@@ -24,9 +24,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Profile", "UserProfile", "User")</li>
-                    <li>@Html.ActionLink("Garage", "Cars", "Garage", new { selectedCar = 0}, null)</li>
-                    <li>@Html.ActionLink("Forum", "", "")</li>
+                    <li>@Html.ActionLink("Profile", "UserProfile", "User", new { Area = "" }, null)</li>
+                    <li>@Html.ActionLink("Garage", "Cars", "Garage", new {area = "", selectedCar = 0}, null)</li>
+                    <li>@Html.ActionLink("Forum", "Index", "Forum", new { Area = "forum"}, null)</li>
                 </ul>
                 
                 @Html.Partial("_LoginPartial")
@@ -34,7 +34,7 @@
 
                 @if (this.Request.IsAuthenticated)
                 {
-                    @Html.Action("ShowInvitations", "Home")
+                    @Html.Action("ShowInvitations", "Home", new {area =""})
                 }
                 
             </div>

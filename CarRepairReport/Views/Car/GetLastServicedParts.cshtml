@@ -1,0 +1,57 @@
+﻿@using CarRepairReport.Extensions
+@model IEnumerable<CarRepairReport.Models.ViewModels.CarVms.ServiceInfoVm>
+
+@{
+    ViewBag.Title = "Last Serviced Parts";
+}
+
+@foreach (var s in Model)
+{
+    <div class="row serviced-part-info site-color">
+        
+        <div class="col col-sm-12">
+
+            <div class="row">
+                <div class="col col-sm-5">
+                    @s.CarModel.ToCapital() @s.CarMake.ToCapital() @s.CarYear
+                </div>
+
+                <div class="col col-sm-4">
+                    @s.CarPartName
+                </div>
+                
+                <div class="col col-sm-3">
+                    @s.CarPartSerialNumber
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-5">
+                    @LR(s.CarEngineType, s.LanguageCode) @s.CarEngine
+                </div>
+
+                <div class="col col-sm-4">
+                    @LR("Count: ", s.LanguageCode) @s.Count
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-5">
+                    @LR(s.CarGearbox, s.LanguageCode)
+                </div>
+
+                <div class="col col-sm-4">
+                    @Html.ActionLink(s.CarPartManufacturerName.ToCapital(), "Manufacturer", "Manufacturer", new {name = s.CarPartManufacturerName}, null)
+                </div>
+                
+                <div class="col col-sm-3">
+                    @s.ServicedBy.ToCapital()
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

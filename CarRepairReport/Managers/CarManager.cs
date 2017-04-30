@@ -3,7 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography;
     using AutoMapper;
+    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Models.CarComponents;
@@ -234,6 +236,7 @@
                 {
                     newPart.VehicleService = vehicleService;
                     newPart.VehicleServiceId = vehicleService.Id;
+                    newPart.IsApprovedByVehicleService = true;
                     vehicleService.CarParts.Add(newPart);
                 }
             }
@@ -369,6 +372,35 @@
             }
 
             return hp;
+        }
+
+        public IEnumerable<ServiceInfoVm> LastServicedCarParts()
+        {
+            var carParts = this.carService.LatestCarParts(CRRConfig.NumberOfLastAddedCarParts);
+
+            var vms = Mapper.Map<IEnumerable<CarPart>, IEnumerable<ServiceInfoVm>>(carParts);
+
+            var tempCollection = new Dictionary<string, ServiceInfoVm>();
+
+            foreach (var infoVm in vms)
+            {
+                if (!tempCollection.ContainsKey(infoVm.ToString()))
+                {
+                    infoVm.Count = 1;
+                    tempCollection.Add(infoVm.ToString(), infoVm);
+                }
+                else
+                {
+                    tempCollection[infoVm.ToString()].Count++;
+                }
+
+                if (tempCollection.Count >= CRRConfig.ListOfServicedCarPartOnMainPage)
+                {
+                    break;
+                }
+            }
+
+            return tempCollection.Values;
         }
     }
 }

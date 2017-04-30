@@ -97,6 +97,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -225,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CacheConfig.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -232,6 +234,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Forum\Controllers\ForumController.cs" />
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -245,13 +248,18 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VehicleServiceController.cs" />
     <Compile Include="Extensions\AuthenticationExtensions\PrincipalExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelpers\LanguageResource.cs" />
+    <Compile Include="Extensions\HtmlHelpers\ResourceString.cs" />
+    <Compile Include="Extensions\HtmlHelpers\LanguageViewPage.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Globals\Configurations.cs" />
+    <Compile Include="Globals\CRRConfig.cs" />
     <Compile Include="Extensions\HtmlHelpers\HtmlHelperExtensions.cs" />
+    <Compile Include="Managers\CacheManager.cs" />
     <Compile Include="Managers\CarManager.cs" />
+    <Compile Include="Managers\Interfaces\ICacheManager.cs" />
     <Compile Include="Managers\Interfaces\ICarManager.cs" />
     <Compile Include="Managers\Interfaces\ILanguageManager.cs" />
     <Compile Include="Managers\Interfaces\IManufacturerManager.cs" />
@@ -289,6 +297,13 @@
     <Content Include="Resources\carRepairReport.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\Index.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -303,6 +318,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -316,7 +332,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -365,16 +383,14 @@
     <Content Include="Views\Manufacturer\Manufacturer.cshtml" />
     <Content Include="Views\Manufacturer\Manufacturers.cshtml" />
     <Content Include="Views\VehicleService\GetAllVehicleServiceShortInfo.cshtml" />
+    <Content Include="Views\Car\GetLastServicedParts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Forum\Controllers\" />
     <Folder Include="Areas\Forum\Models\" />
-    <Folder Include="Areas\Forum\Views\Shared\" />
-    <Folder Include="Factories\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cost\" />
   </ItemGroup>
