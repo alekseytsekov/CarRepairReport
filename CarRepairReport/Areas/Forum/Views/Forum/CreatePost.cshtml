@@ -1,0 +1,85 @@
+﻿@model CarRepairReport.Models.ViewModels.ForumVm.CreatePostVm
+
+@{
+    ViewBag.Title = LR("system.common.createpost", Model.LanguageCode);
+}
+
+<h2>Create Post</h2>
+<hr />
+
+
+
+<div class="create-post-forum-wrapper crr-box site-color">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row form-horizontal">
+            <div class="col col-sm-2">
+                <label class="pull-right control-label">@LR("Select Category", "en")</label>
+            </div>
+
+            <div class="col col-sm-9">
+                @Html.DropDownListFor(x => Model.Category, Model.Categories.Select(x => new SelectListItem() { Text = x, Value = x }), new { @class = "form-control" })
+                <br />
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row form-horizontal form-group custom-text-area">
+
+            <div class="col col-sm-2">
+                <label class="pull-right control-label">@LR("Tags", "en")</label>
+            </div>
+
+            <div class="col col-sm-9">
+                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = LR("separate your tags with interval", Model.LanguageCode).ToString() } })
+                @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row form-horizontal form-group custom-text-area">
+
+            <div class="col col-sm-2">
+                <label class="pull-right control-label">@LR("Title", "en")</label>
+            </div>
+
+            <div class="col col-sm-9">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row form-horizontal custom-text-area">
+
+            <div class="col col-sm-2">
+                <label class="pull-right control-label">@LR("Content", "en")</label>
+            </div>
+
+            <div class="col col-sm-9">
+                @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", rows = "20" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<div>
+    @Html.ActionLink(LR("Back to Posts", Model.LanguageCode).ToString(), "Index")
+</div>

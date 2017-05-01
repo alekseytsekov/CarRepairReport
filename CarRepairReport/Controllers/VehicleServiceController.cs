@@ -17,7 +17,7 @@
     {
         private IVehicleServiceManager vehicleServiceManager;
 
-        public VehicleServiceController(IVehicleServiceManager vehicleServiceManager, IMyUserManager myUserManager) : base(myUserManager)
+        public VehicleServiceController(IVehicleServiceManager vehicleServiceManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
             this.vehicleServiceManager = vehicleServiceManager;
         }
@@ -26,7 +26,7 @@
         [Route("service/{id}")]
         public ActionResult VehicleService(int id)
         {
-            VehicleServiceVm vm = this.vehicleServiceManager.GetVm(id, this.GetAppUserId());
+            VehicleServiceVm vm = this.vehicleServiceManager.GetVm(id, this.GetAppUserId);
 
             if (vm == null)
             {
@@ -135,7 +135,7 @@
                 return new JsonResult() { Data = new ResultDto("Cannot process request!") };
             }
 
-            bool isProcessed = this.vehicleServiceManager.ProcessCarPart(this.GetAppUserId(), bm);
+            bool isProcessed = this.vehicleServiceManager.ProcessCarPart(this.GetAppUserId, bm);
 
             if (!isProcessed)
             {
@@ -171,7 +171,7 @@
                 return new JsonResult() { Data = new ResultDto("Request contain invalid data!") };
             }
             
-            bool isProcessed = this.vehicleServiceManager.ProcessVote(bm, this.GetAppUserId());
+            bool isProcessed = this.vehicleServiceManager.ProcessVote(bm, this.GetAppUserId);
 
             if (!isProcessed)
             {

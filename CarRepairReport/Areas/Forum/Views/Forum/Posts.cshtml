@@ -1,0 +1,91 @@
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.ForumVm.PostWrapperVm
+
+@{
+    ViewBag.Title = "Posts";
+    //Layout = "~/Areas/Forum/Views/Forum/Index.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posts</h2>
+
+@if (Model.Posts == null || !Model.Posts.Any())
+{
+    <div class="row">
+        <div class="col col-sm-12">
+            @LR("There are still no posts", Model.LanguageCode)
+        </div>
+    </div>
+}
+
+
+@foreach (var post in Model.Posts)
+{
+    <div class="row crr-box site-color">
+        <div class="col col-sm-12">
+            <div class="row">
+                <div class="col col-sm-4 bg-info border-radius">
+                    <h4>@post.AuthorName.ToCapital()</h4>
+                </div>
+
+                <div class="col col-sm-8 bg-primary border-radius">
+                    <h4>@post.Title</h4>
+                </div>
+
+            </div>
+
+            <br/>
+
+            <div class="row">
+                <div class="col col-sm-2 text-right text-muted">
+                    @LR("Categories: ", Model.LanguageCode)
+                </div>
+                
+                <div class="col col-sm-10">
+                    @string.Join(", ", post.Categories)
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-2 text-right text-muted">
+                    @LR("Tags: ", Model.LanguageCode) 
+                </div>
+                
+                <div class="col col-sm-10">
+                    @string.Join(", ", post.Tags)
+                </div>
+
+            </div>
+            
+            <br/>
+            
+            <div class="row">
+                <div class="col col-sm-2 text-muted text-right">
+                    @LR("created on: ", Model.LanguageCode)
+                </div>
+
+                <div class="col col-sm-2">
+                    @post.CreatedOn.ToLocalTime().ToString("dd MMMM yyyy HH:mm")
+                </div>
+
+                <div class="col col-sm-2 text-muted text-right font-sm">
+                    @LR("modified on: ", Model.LanguageCode)
+                </div>
+
+                <div class="col col-sm-2">
+                    @if(post.ModifiedOn.Year > 2000){ @post.ModifiedOn.ToLocalTime().ToString("dd MMMM yyyy HH:mm") }
+                </div>
+                
+                <div class="col col-sm-4 text-right">
+                    @*@Html.ActionLink(LR("Button", Model.LanguageCode).ToString(), "Posts", new {title = "alabala"}, new {@class ="btn btn-success"})*@
+                    <a href="forum/post/@post.WebLink" class="btn btn-default">@LR("Button", Model.LanguageCode).ToString()</a>
+
+                    @*@Ajax.ActionLink("ajax link","post",new {title = post.WebLink }, new AjaxOptions() {HttpMethod = "POST",InsertionMode = InsertionMode.Replace, UpdateTargetId = "forum-posts-wrapper" },new {@class =""})*@
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

@@ -225,6 +225,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\CacheConfig.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Forum\Controllers\ForumController.cs" />
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
+    <Compile Include="Areas\Forum\Managers\ForumManager.cs" />
+    <Compile Include="Areas\Forum\Managers\IForumManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CarController.cs" />
@@ -300,6 +303,11 @@
     <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Forum\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Forum\Views\Forum\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\Posts.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\CreatePost.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\Post.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\GetCategoryAndTags.cshtml" />
+    <Content Include="Areas\Forum\Views\Forum\PostChildren.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -384,6 +392,7 @@
     <Content Include="Views\Manufacturer\Manufacturers.cshtml" />
     <Content Include="Views\VehicleService\GetAllVehicleServiceShortInfo.cshtml" />
     <Content Include="Views\Car\GetLastServicedParts.cshtml" />
+    <Content Include="Views\Shared\_Custom500InternalServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

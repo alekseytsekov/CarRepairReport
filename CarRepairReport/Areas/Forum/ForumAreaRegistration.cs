@@ -16,6 +16,12 @@
         {
             context.Routes.MapMvcAttributeRoutes();
 
+            //context.MapRoute(
+            //    "Forum_default",
+            //    "Forum/{id}/post",
+            //    new { action = "Posts", id = UrlParameter.Optional }
+            //);
+
             context.MapRoute(
                 "Forum_default",
                 "Forum/{controller}/{action}/{id}",

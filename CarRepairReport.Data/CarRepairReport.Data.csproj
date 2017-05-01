@@ -196,6 +196,10 @@
     <Compile Include="Migrations\201704301719460_ForumModels.Designer.cs">
       <DependentUpon>201704301719460_ForumModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705011636243_PostModelChangeChildToChildren.cs" />
+    <Compile Include="Migrations\201705011636243_PostModelChangeChildToChildren.Designer.cs">
+      <DependentUpon>201705011636243_PostModelChangeChildToChildren.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704301719460_ForumModels.resx">
       <DependentUpon>201704301719460_ForumModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705011636243_PostModelChangeChildToChildren.resx">
+      <DependentUpon>201705011636243_PostModelChangeChildToChildren.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

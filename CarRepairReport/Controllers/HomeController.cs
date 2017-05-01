@@ -11,7 +11,7 @@
         private ICarManager carManager;
         //private IVehicleServiceManager vehicleServiceManager;
 
-        public HomeController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
+        public HomeController(ICarManager carManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
             this.carManager = carManager;
             //this.vehicleServiceManager = vehicleServiceManager;

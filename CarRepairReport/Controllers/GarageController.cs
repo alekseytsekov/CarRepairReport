@@ -13,7 +13,7 @@ namespace CarRepairReport.Controllers
     {
         private ICarManager carManager;
 
-        public GarageController(IMyUserManager myUserManager, ICarManager carManager) : base(myUserManager)
+        public GarageController(IMyUserManager myUserManager, ICarManager carManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
             this.carManager = carManager;
         }
@@ -25,11 +25,11 @@ namespace CarRepairReport.Controllers
         {
             GarageVm vm = new GarageVm();
 
-            vm.AvailableCars = this.carManager.GetCarNames(this.GetAppUserId());
+            vm.AvailableCars = this.carManager.GetCarNames(this.GetAppUserId);
 
             if (bm.SelectedCar > 0)
             {
-                vm.Car = this.carManager.GetFullCarInfo(bm.SelectedCar, this.GetAppUserId());
+                vm.Car = this.carManager.GetFullCarInfo(bm.SelectedCar, this.GetAppUserId);
 
                 if (vm.Car == null)
                 {

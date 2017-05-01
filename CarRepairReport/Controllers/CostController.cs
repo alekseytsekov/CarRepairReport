@@ -18,7 +18,7 @@
     {
         private ICarManager carManager;
 
-        public CostController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
+        public CostController(ICarManager carManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
             this.carManager = carManager;
         }
@@ -44,7 +44,7 @@
             {
                 var newInvestment = Mapper.Map<InvestPartBm,CreateInvestmentVm>(bm);
 
-                investmentEntity = this.carManager.AddNewInvestment(newInvestment, carId, this.GetAppUserId());
+                investmentEntity = this.carManager.AddNewInvestment(newInvestment, carId, this.GetAppUserId);
 
                 var isInvestAdded = investmentEntity != null;
 
@@ -82,7 +82,7 @@
 
                 for (int i = 0; i < quantity; i++)
                 {
-                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, this.GetAppUserId());
+                    isCarPartAdded = this.carManager.AddReplacedPart(carPart, carId, this.GetAppUserId);
 
                     if (!isCarPartAdded)
                     {

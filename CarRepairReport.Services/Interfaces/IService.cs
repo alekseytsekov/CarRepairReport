@@ -3,5 +3,6 @@
     public interface IService
     {
         bool Update();
+        void LogError(string message, string controller);
     }
 }

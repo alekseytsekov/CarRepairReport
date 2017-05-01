@@ -29,10 +29,16 @@
 
         protected bool LogError(Exception ex)
         {
-            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = ex.Message, StackTrace = ex.StackTrace });
+            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = ex.Message, StackTrace = ex.StackTrace , CreatedOn = DateTime.UtcNow });
             this.context.Commit();
 
             return false;
+        }
+
+        public void LogError(string message, string controller)
+        {
+            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = message, StackTrace = controller, CreatedOn = DateTime.UtcNow});
+            this.context.Commit();
         }
     }
 }

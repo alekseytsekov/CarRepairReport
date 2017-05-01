@@ -7,6 +7,7 @@ namespace CarRepairReport
 {
     using System;
     using System.Web;
+    using CarRepairReport.Areas.Forum.Managers;
     using CarRepairReport.Data;
     using CarRepairReport.Managers;
     using CarRepairReport.Managers.Interfaces;
@@ -85,6 +86,8 @@ namespace CarRepairReport
             kernel.Bind<ICloudStorage>().To<GoogleDrive>().InRequestScope();
             //kernel.Bind<ICloudStorage>().To<DropboxApi>().InRequestScope();
             kernel.Bind<ICacheManager>().To<CacheManager>().InRequestScope();
+            kernel.Bind<IForumManager>().To<ForumManager>().InRequestScope();
+            kernel.Bind<IForumService>().To<ForumService>().InRequestScope();
         }
     }
 }

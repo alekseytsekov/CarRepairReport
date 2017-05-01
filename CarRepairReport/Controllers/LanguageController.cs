@@ -7,23 +7,18 @@
     using Microsoft.AspNet.Identity;
     using Newtonsoft.Json;
 
-    public class LanguageController : Controller
+    public class LanguageController : BaseController
     {
-        private ILanguageManager langManager;
-
-        public LanguageController(ILanguageManager langManager)
+        public LanguageController(IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
-            this.langManager = langManager;
         }
-
-        
 
         [HttpGet]
         public ActionResult Set(string langValue, string returnUrl)
         {
             var userId = this.User.Identity.GetUserId();
 
-            bool isSuccess = this.langManager.SetLangCookie(langValue, userId, this.HttpContext);
+            bool isSuccess = this.languageManager.SetLangCookie(langValue, userId, this.HttpContext);
 
             this.SetCulture(langValue);
 
@@ -52,5 +47,7 @@
             System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
             System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(ci.Name);
         }
+
+        
     }
 }

@@ -15,8 +15,12 @@
         public static int MaxImageSize = 1024*1024*1;
         public static int NumberOfLastAddedCarParts = 100;
         public static int ListOfServicedCarPartOnMainPage = 25;
+        public static int NumberOfForumPostsPerPage = 10;
+        
 
         public static string LanguageResourcesCacheCollection = "languageResourcesCrr";
+        public static string CurrentForumPage = "currentForumPage";
+        public static string ForumFilter = "currentForumFilter";
 
     }
 }

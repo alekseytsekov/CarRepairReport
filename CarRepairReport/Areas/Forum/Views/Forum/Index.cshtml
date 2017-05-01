@@ -41,30 +41,26 @@
 <div class="row">
     
     <div class="col col-xs-2">
-        <div class="row crr-box">
-            <div class="col col-sm-12">
-                list of categories
-            </div>
-        </div>
         
-        <div class="row crr-box">
-            <div class="col col-sm-12">
-                list of tags
-            </div>
-        </div>
+        @Html.Action("GetCategoryAndTags")
 
     </div>
 
     <div class="col col-xs-10">
         <div class="row crr-box">
-            <div id="forum-posts-wrapper" class="col col-sm-12">
+            <div class="col col-sm-12">
                 <div class="row">
                     <div class="col col-sm-12">
                         @Html.ActionLink(LR("Create", "bg").ToString(),"CreatePost")
                     </div>
                 </div>
 
-                posts ...
+                <div class="row">
+                    <div id="forum-posts-wrapper" class="col col-sm-12">
+                        @Html.Action("Posts")
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

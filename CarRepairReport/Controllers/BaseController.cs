@@ -9,12 +9,25 @@
     public abstract class BaseController : Controller
     {
         protected IMyUserManager myUserManager;
+        protected ILanguageManager languageManager;
 
-        protected BaseController(IMyUserManager myUserManager)
+        protected BaseController(IMyUserManager myUserManager, ILanguageManager languageManager)
         {
             this.myUserManager = myUserManager;
+            this.languageManager = languageManager;
         }
 
+
+        protected string CurrentLanguageCode
+        {
+            get { return this.languageManager.GetCurrentLang(this.HttpContext).TwoLetterCode; }
+        }
+
+        protected string GetAppUserId
+        {
+            get { return this.User.Identity.GetUserId(); }
+        }
+        
         //public ICollection<MembershipInvitationVm> GetInvitations()
         //{
         //    var email = this.User.Identity.GetUserName();
@@ -33,9 +46,6 @@
             return this.PartialView("_Invitations", invitations);
         }
 
-        protected string GetAppUserId()
-        {
-            return this.User.Identity.GetUserId();
-        }
+        
     }
 }

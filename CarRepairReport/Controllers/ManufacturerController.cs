@@ -12,7 +12,7 @@
     {
         private IManufacturerManager manufacturerManager;
 
-        public ManufacturerController(IManufacturerManager manufacturerManager, IMyUserManager myUserManager) : base(myUserManager)
+        public ManufacturerController(IManufacturerManager manufacturerManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         {
             this.manufacturerManager = manufacturerManager;
         }

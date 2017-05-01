@@ -16,7 +16,7 @@
     {
         private ICarManager carManager;
 
-        public CarController(ICarManager carManager, IMyUserManager myUserManager) : base(myUserManager)
+        public CarController(ICarManager carManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager,languageManager)
         {
             this.carManager = carManager;
         }

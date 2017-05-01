@@ -305,7 +305,34 @@ textarea {
     border-radius: 5px;
 }
 
+.custom-text-area textarea, .custom-text-area input, .custom-text-area select {
+    min-width: 85%;
+    max-width: 85%;
+}
 
+.custom-text-area textarea {
+    
+    min-height: 25rem;
+
+    border: 2px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}
+
+.border-radius {
+    border-radius: 5px;
+}
+
+.bg-custom-forum {
+    background-color: hsl(242, 62%, 84%)
+}
+
+.bg-info-c {
+    background-color: hsl(0, 28%, 90%)
+}
+
+.bg-warning-c {
+    background-color: rgb(200,200, 200);
+}
 
 
 

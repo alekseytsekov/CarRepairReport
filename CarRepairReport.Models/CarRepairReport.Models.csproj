@@ -76,7 +76,9 @@
     <Compile Include="BindingModels\CreateCarBm.cs" />
     <Compile Include="BindingModels\CreateCarServiceBm.cs" />
     <Compile Include="BindingModels\EditUserBm.cs" />
+    <Compile Include="BindingModels\ForumBms\CreatePostBm.cs" />
     <Compile Include="BindingModels\ForumBms\ForumFilterBm.cs" />
+    <Compile Include="BindingModels\ForumBms\PostAnswerBm.cs" />
     <Compile Include="BindingModels\GarageBms\GarageBm.cs" />
     <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
@@ -133,8 +135,14 @@
     <Compile Include="ViewModels\Commons\CreateInvestmentVm.cs" />
     <Compile Include="ViewModels\Commons\HomeVm.cs" />
     <Compile Include="ViewModels\Commons\MembershipInvitationVm.cs" />
+    <Compile Include="ViewModels\ForumVm\AnswersBm.cs" />
+    <Compile Include="ViewModels\ForumVm\CategoryTagVm.cs" />
+    <Compile Include="ViewModels\ForumVm\CreatePostVm.cs" />
     <Compile Include="ViewModels\ForumVm\ForumFilterVm.cs" />
     <Compile Include="ViewModels\ForumVm\ForumVm.cs" />
+    <Compile Include="ViewModels\ForumVm\PostVm.cs" />
+    <Compile Include="ViewModels\ForumVm\PostWrapperVm.cs" />
+    <Compile Include="ViewModels\ForumVm\ViewPostVm.cs" />
     <Compile Include="ViewModels\GarageVms\GarageVm.cs" />
     <Compile Include="ViewModels\ManufacturerVms\ManufacturerVm.cs" />
     <Compile Include="ViewModels\ManufacturerVms\ShortManufacturerInfoVm.cs" />

@@ -64,7 +64,7 @@
         public Language GetLanguageByTwoLetterCode(string twoLetterCode)
         {
             var lang = this.context.Languages.FirstOrDefault(x => x.IsSystemLanguage && x.TwoLetterCode == twoLetterCode);
-
+            
             return lang;
         }
 

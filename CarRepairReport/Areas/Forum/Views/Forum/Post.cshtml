@@ -1,0 +1,85 @@
+﻿@model CarRepairReport.Models.ViewModels.ForumVm.ViewPostVm
+
+@{
+    ViewBag.Title = "Post";
+    //Layout = "~/Areas/Forum/Views/Forum/Index.cshtml";
+    
+}
+
+<div class="row">
+    
+    <div class="col col-sm-2">
+        
+        @Html.Action("GetCategoryAndTags")
+
+    </div>
+
+    <div class="col col-sm-10">
+        
+        <div class="crr-box crr-post site-color">
+
+            <div class="row">
+                <div class="col col-sm-12">
+
+                    <div class="row">
+                        <div class="col col-sm-3">
+                            @Model.AuthorName
+                        </div>
+                        <div class="col col-sm-9 text-right">
+                            @Model.CreatedOn.ToString("D")
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col col-sm-12">
+                            @Model.Title
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row">
+                        <div class="col col-sm-12">
+                            @Model.Content
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col col-sm-12 text-right">
+                            <span class="btn btn-default">Answer</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="row post-answer">
+                
+                <div class="col col-sm-12">
+                    @using (Html.BeginForm("SetAnswer","Forum", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(x => x.Id)
+
+                        <textarea name="Content"></textarea>  
+
+                        <input type="submit" value="@LR("Answer", Model.LanguageCode)"/>
+                    }
+                </div>
+
+            </div>
+            
+            @if (Model.Children != null && Model.Children.Any())
+            {
+                <div class="post-children">
+                    @Html.Action("PostChildren", new { bm = Model })
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+

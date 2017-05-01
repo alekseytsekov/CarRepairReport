@@ -23,7 +23,7 @@
         private ILanguageManager langManager;
         
         
-        public UserController(ILanguageManager langManager, IMyUserManager myUserManager) : base(myUserManager)
+        public UserController(ILanguageManager langManager, IMyUserManager myUserManager, ILanguageManager languageManager) : base(myUserManager, languageManager)
         { 
             //this.userManager = userManager;
             this.langManager = langManager;
