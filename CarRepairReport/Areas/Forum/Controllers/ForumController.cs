@@ -1,11 +1,10 @@
-﻿using System.Web.Mvc;
+﻿
 
 namespace CarRepairReport.Areas.Forum.Controllers
 {
-    using System.Web.Http;
+    using System.Web.Mvc;
     using CarRepairReport.Areas.Forum.Managers;
     using CarRepairReport.Controllers;
-    using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels.ForumBms;
     using CarRepairReport.Models.ViewModels.ForumVm;
@@ -20,7 +19,6 @@ namespace CarRepairReport.Areas.Forum.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         public ActionResult Index()
         {
             var vm = new ForumVm();
@@ -64,7 +62,8 @@ namespace CarRepairReport.Areas.Forum.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
+        //[Route("Create")]
         public ActionResult CreatePost()
         {
             var vm = new CreatePostVm();
@@ -74,9 +73,10 @@ namespace CarRepairReport.Areas.Forum.Controllers
             return this.View(vm);
         }
 
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize]
+        [Authorize]
+        //[Route("Save")]
         public ActionResult CreatePost(CreatePostBm bm)
         {
             if (!this.ModelState.IsValid)
@@ -96,15 +96,7 @@ namespace CarRepairReport.Areas.Forum.Controllers
             //return this.RedirectToRoute("/forum");
             return this.RedirectToAction("Index");
         }
-
-        [HttpGet]
-        public ActionResult GetCategoryAndTags()
-        {
-            CategoryTagVm vm = new CategoryTagVm();
-
-            return this.PartialView(vm);
-        }
-
+        
         [HttpGet]
         [ChildActionOnly]
         public ActionResult PostChildren(ViewPostVm bm)
@@ -147,6 +139,74 @@ namespace CarRepairReport.Areas.Forum.Controllers
             }
 
             return this.RedirectToAction("Post", new {title = webTitleLink });
+        }
+
+        [HttpGet]
+        [ChildActionOnly]
+        [Route("categoriestags")]
+        public ActionResult GetCategoryAndTags()
+        {
+            CategoryTagVm vm = this.forumManager.GetCategoryTagVms(this.CurrentLanguageCode);
+
+            if (vm == null)
+            {
+                this.Response.StatusCode = 500;
+                return this.View("_Custom500InternalServerError");
+            }
+
+            vm.LanguageCode = this.CurrentLanguageCode;
+
+            return this.PartialView(vm);
+        }
+
+        [HttpGet]
+        public ActionResult FilterByCategory(int filter)
+        {
+            ForumFilterBm bm = new ForumFilterBm();
+
+            bm.Category = this.forumManager.GetCategorySystemNameById(filter);
+
+            if (string.IsNullOrWhiteSpace(bm.Category))
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+
+            this.forumManager.SetFilter(this.HttpContext.Session, bm);
+
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult FilterByTag(string filter)
+        {
+            if (string.IsNullOrWhiteSpace(filter))
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+
+            ForumFilterBm bm = new ForumFilterBm();
+
+            bm.Tags = filter;
+
+            this.forumManager.SetFilter(this.HttpContext.Session, bm);
+
+            return this.RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Paging(int page)
+        {
+            if (page != 1 && page != -1)
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+
+            this.forumManager.SetPage(page);
+
+            return this.RedirectToAction("Index");
         }
     }
 }

@@ -6,6 +6,8 @@
     {
         public int Page { get; set; }
 
+        public int[] Pages { get; set; }
+
         public IEnumerable<PostVm> Posts { get; set; }
     }
 }

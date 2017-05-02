@@ -34,13 +34,13 @@
 
             </div>
 
-            <br/>
+            <br />
 
             <div class="row">
                 <div class="col col-sm-2 text-right text-muted">
                     @LR("Categories: ", Model.LanguageCode)
                 </div>
-                
+
                 <div class="col col-sm-10">
                     @string.Join(", ", post.Categories)
                 </div>
@@ -49,17 +49,17 @@
 
             <div class="row">
                 <div class="col col-sm-2 text-right text-muted">
-                    @LR("Tags: ", Model.LanguageCode) 
+                    @LR("Tags: ", Model.LanguageCode)
                 </div>
-                
+
                 <div class="col col-sm-10">
                     @string.Join(", ", post.Tags)
                 </div>
 
             </div>
-            
-            <br/>
-            
+
+            <br />
+
             <div class="row">
                 <div class="col col-sm-2 text-muted text-right">
                     @LR("created on: ", Model.LanguageCode)
@@ -74,9 +74,10 @@
                 </div>
 
                 <div class="col col-sm-2">
-                    @if(post.ModifiedOn.Year > 2000){ @post.ModifiedOn.ToLocalTime().ToString("dd MMMM yyyy HH:mm") }
+                    @if (post.ModifiedOn.Year > 2000)
+                    { @post.ModifiedOn.ToLocalTime().ToString("dd MMMM yyyy HH:mm") }
                 </div>
-                
+
                 <div class="col col-sm-4 text-right">
                     @*@Html.ActionLink(LR("Button", Model.LanguageCode).ToString(), "Posts", new {title = "alabala"}, new {@class ="btn btn-success"})*@
                     <a href="forum/post/@post.WebLink" class="btn btn-default">@LR("Button", Model.LanguageCode).ToString()</a>
@@ -89,3 +90,47 @@
         </div>
     </div>
 }
+
+<div class="row">
+    <div class="col col-sm-6 text-right">
+
+        @using (Html.BeginForm("Paging", "Forum", FormMethod.Get))
+        {
+            <input type="hidden" name="Page" value="-1" />
+            <input type="submit" value="&lt;" />
+        }
+    </div>
+    
+    <div class="col col-sm-6">
+
+        @using (Html.BeginForm("Paging", "Forum", FormMethod.Get))
+        {
+            <input type="hidden" name="Page" value="1" />
+            <input type="submit" value="&gt;" />
+        }
+    </div>
+
+</div>
+
+<div class="row">
+    
+    <div class="col col-sm-12 text-center">
+        
+        @foreach (var page in Model.Pages)
+        {
+            if (page == Model.Page)
+            {
+                
+                @Html.ActionLink(page.ToString(), "GoToPage", "Forum", new {toPage = page}, new {@class = "paging-current-page" }) 
+            }
+            else
+            {
+                @Html.ActionLink(page.ToString(), "GoToPage", "Forum", new { toPage = page }, null)
+            }
+            
+        }
+
+    </div>
+
+</div>
+

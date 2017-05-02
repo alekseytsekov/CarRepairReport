@@ -1,18 +1,43 @@
 ﻿@model CarRepairReport.Models.ViewModels.ForumVm.CategoryTagVm
 
 @{
-   
+
 }
 
 <div class="row crr-box">
     <div class="col col-sm-12">
-        list of categories
+
+        @foreach (var cat in Model.Categories)
+        {
+            <div class="row">
+                <div class="col col-sm-12 small-width">
+                    @Html.ActionLink(cat.Name, "FilterByCategory", new {filter = cat.Id})
+                </div>
+            </div>
+            <br/>
+        }
+
     </div>
 </div>
 
 <div class="row crr-box">
     <div class="col col-sm-12">
-        list of tags
+        
+        <div class="row">
+            
+            @foreach (var cat in Model.Tags)
+            {
+                @*<div class="row">
+                        <div class="col col-sm-12 small-width">
+                            @Html.ActionLink(cat.Name, "FilterByTag", new { filter = cat.Id })
+                        </div>
+                    </div>*@
+
+                <span>@Html.ActionLink(cat.Name, "FilterByTag", new { filter = cat.Name })</span>
+            }
+
+        </div>
+
     </div>
 </div>
 

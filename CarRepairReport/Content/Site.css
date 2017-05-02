@@ -71,6 +71,10 @@ textarea {
     background-color: white;
 }
 
+.small-width {
+    word-wrap: break-word;
+}
+
 .aside-home-left, .aside-home-right, .service-wrapper {
     min-height: 780px;
     max-height: 780px;

@@ -117,7 +117,8 @@
                 map.CreateMap<LanguageValue, LanguageDto>()
                     .ForMember(x => x.LanguageCode, y => y.MapFrom(s => s.LangTwoLetterCode))
                     .ForMember(x => x.Key, y => y.MapFrom(s => s.Key))
-                    .ForMember(x => x.Value, y => y.MapFrom(s => s.Value));
+                    .ForMember(x => x.Value, y => y.MapFrom(s => s.Value))
+                    .ForMember(x => x.Type, y => y.MapFrom(s => s.Type));
 
                 map.CreateMap<CarPart, ServiceInfoVm>()
                     .ForMember(x => x.CarPartSerialNumber, y => y.MapFrom(s => s.SerialNumber))

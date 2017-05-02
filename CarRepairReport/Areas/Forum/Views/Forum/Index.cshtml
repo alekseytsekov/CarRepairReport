@@ -49,12 +49,16 @@
     <div class="col col-xs-10">
         <div class="row crr-box">
             <div class="col col-sm-12">
-                <div class="row">
-                    <div class="col col-sm-12">
-                        @Html.ActionLink(LR("Create", "bg").ToString(),"CreatePost")
+                
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <div class="row">
+                        <div class="col col-sm-12">
+                            @Html.ActionLink(LR("Create", "bg").ToString(), "CreatePost")
+                        </div>
                     </div>
-                </div>
-
+                }
+                
                 <div class="row">
                     <div id="forum-posts-wrapper" class="col col-sm-12">
                         @Html.Action("Posts")

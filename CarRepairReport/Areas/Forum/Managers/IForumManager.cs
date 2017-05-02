@@ -14,5 +14,9 @@
         ViewPostVm GetPost(string title);
         string CreateAnswer(PostAnswerBm bm, string appUserId);
         ViewPostVm GetPostById(int id);
+        CategoryTagVm GetCategoryTagVms(string language);
+        string[] GetCategorySystemNameByString(IEnumerable<string> input);
+        string GetCategorySystemNameById(int id);
+        void SetPage(int page);
     }
 }

@@ -138,7 +138,9 @@
     <Compile Include="ViewModels\ForumVm\AnswersBm.cs" />
     <Compile Include="ViewModels\ForumVm\CategoryTagVm.cs" />
     <Compile Include="ViewModels\ForumVm\CreatePostVm.cs" />
+    <Compile Include="ViewModels\Commons\CategoryVm.cs" />
     <Compile Include="ViewModels\ForumVm\ForumFilterVm.cs" />
+    <Compile Include="ViewModels\Commons\TagVm.cs" />
     <Compile Include="ViewModels\ForumVm\ForumVm.cs" />
     <Compile Include="ViewModels\ForumVm\PostVm.cs" />
     <Compile Include="ViewModels\ForumVm\PostWrapperVm.cs" />

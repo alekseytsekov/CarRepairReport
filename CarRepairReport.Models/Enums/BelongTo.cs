@@ -2,6 +2,8 @@
 {
     public enum BelongTo
     {
-        Forum
+        Forum,
+        Category,
+        Tag
     }
 }
