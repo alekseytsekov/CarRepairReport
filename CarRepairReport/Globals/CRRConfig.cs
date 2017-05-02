@@ -22,5 +22,7 @@
         public static string CurrentForumPage = "currentForumPage";
         public static string ForumFilter = "currentForumFilter";
 
+        public static string DateFormat = "dd-MMM-yy HH:mm";
+
     }
 }

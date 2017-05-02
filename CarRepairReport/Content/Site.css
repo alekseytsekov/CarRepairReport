@@ -67,6 +67,10 @@ textarea {
     background-color: hsl(240, 25%, 95%);
 }
 
+.bg-white {
+    background-color: white;
+}
+
 .aside-home-left, .aside-home-right, .service-wrapper {
     min-height: 780px;
     max-height: 780px;
@@ -254,6 +258,13 @@ textarea {
     max-width: 100%;
 }
 
+.text-area-fixed {
+
+    min-height: 10rem;
+    min-width: 100%;
+    max-width: 100%;
+}
+
 /*********** vehicle service comments  *********/
 
 .vehicle-service-comment {
@@ -322,6 +333,9 @@ textarea {
     border-radius: 5px;
 }
 
+
+/******** forum ********/
+
 .bg-custom-forum {
     background-color: hsl(242, 62%, 84%)
 }
@@ -332,6 +346,10 @@ textarea {
 
 .bg-warning-c {
     background-color: rgb(200,200, 200);
+}
+
+.content-min-height {
+    min-height: 10rem;
 }
 
 

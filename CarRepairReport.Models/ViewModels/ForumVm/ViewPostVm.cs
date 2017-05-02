@@ -24,6 +24,8 @@
         public int Id { get; set; }
         public string WebLink { get; set; }
 
-        
+        public IEnumerable<string> Categories { get; set; }
+
+        public IEnumerable<string> Tags { get; set; }
     }
 }

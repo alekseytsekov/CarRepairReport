@@ -1,73 +1,163 @@
 ﻿@*@model IEnumerable<CarRepairReport.Models.ViewModels.ForumVm.ViewPostVm>*@
+@using CarRepairReport.Extensions
+@using CarRepairReport.Globals
 @model CarRepairReport.Models.ViewModels.ForumVm.ViewPostVm
 
 @{
-    
+
 }
 
 @foreach (var child in Model.Children)
 {
+    @*<div class="row crr-box @child.CssStyleColor">
+            <div class="col col-sm-12">
+
+                <div class="row">
+                    <div class="col col-sm-3">
+                        @child.AuthorName
+                    </div>
+                    <div class="col col-sm-9 text-right">
+                        @child.CreatedOn.ToString("D")
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col col-sm-12">
+                        @child.Title
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="col col-sm-12">
+                        @child.Content
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-sm-12 text-right">
+                        <span class="btn btn-default">Answer</span>
+                    </div>
+                </div>
+
+                <div class="row post-answer">
+
+                    <div class="col col-sm-12">
+
+                        @using (Html.BeginForm("SetAnswer", "Forum", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="number" value='@child.Id' name="id" hidden="true"/>
+
+                            <textarea name="Content"></textarea>
+
+                            <input type="submit" value="@LR("Answer", Model.LanguageCode)" />
+                        }
+                    </div>
+
+                </div>
+
+                @if (child.Id > 0)
+                {
+                    <div class="post-children">
+                        @Html.Action("PostChildrenId", new { id = child.Id })
+                    </div>
+                }
+
+            </div>
+
+        </div>*@
+
     <div class="row crr-box @child.CssStyleColor">
         <div class="col col-sm-12">
 
             <div class="row">
-                <div class="col col-sm-3">
-                    @child.AuthorName alexxxx
+                <div style="border-bottom: 1px solid black" class="col col-sm-10 col-sm-offset-1">
+                    <h3><strong>@child.Title</strong></h3>
                 </div>
-                <div class="col col-sm-9 text-right">
-                    @child.CreatedOn.ToString("D")
+
+            </div>
+
+            <div class="row">
+                <div class="col col-sm-4 text-center">
+                    <h4 class="crr-box">@child.AuthorName</h4>
+                </div>
+
+                <div class="col col-sm-7 text-muted text-right">
+                    @child.CreatedOn.ToLocalTime().ToString(CRRConfig.DateFormat)
                 </div>
             </div>
+
+            <br />
             <br />
 
             <div class="row">
-                <div class="col col-sm-12">
-                    @child.Title
+                <div class="col col-sm-10 col-sm-offset-1">
+                    <div class="row crr-box bg-white content-min-height">
+                        <div class="col col-sm-12">
+                            @child.Content
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
 
             <br />
 
             <div class="row">
-                <div class="col col-sm-12">
-                    @child.Content
+                <div class="col col-sm-11 col-sm-offset-0">
+                    @string.Join(", ", child.Categories)
                 </div>
             </div>
 
             <div class="row">
-                <div class="col col-sm-12 text-right">
-                    <span class="btn btn-default">Answer</span>
+                <div class="col col-sm-11 col-sm-offset-0">
+                    @string.Join(" ", child.Tags.Select(t => t.ToCapital()))
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col col-sm-11 text-right">
+                    <span onclick="showAnswer('publish-@child.Id')" class="btn btn-default">Answer</span>
                 </div>
             </div>
             
             <div class="row post-answer">
 
-                <div class="col col-sm-12">
-                    
+                <br />
+                <br />
+
+                <div id="publish-@child.Id" class="col col-sm-10 col-sm-offset-1 content-min-height text-right @child.CssStyleColor" style="display: none;">
                     @using (Html.BeginForm("SetAnswer", "Forum", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        
-                        <input type="number" value='@child.Id' name="id" hidden="true"/>
 
-                        <textarea name="Content"></textarea>
+                        @Html.HiddenFor(x => x.Id)
 
-                        <input type="submit" value="@LR("Answer", Model.LanguageCode)" />
+                        <textarea class="text-area-fixed border-radius" name="Content"></textarea>
+
+                        <input class="btn btn-default" type="submit" value="@LR("Publish", Model.LanguageCode)" />
                     }
+
+                    <br />
                 </div>
 
             </div>
             
             @if (child.Id > 0)
             {
-                <div class="post-children">
-                    @Html.Action("PostChildrenId", new { id = child.Id })
-                </div>
+            <div class="post-children">
+                @Html.Action("PostChildrenId", new { id = child.Id })
+            </div>
             }
-            
-        </div>
-        
-    </div>
 
+        </div>
+    </div>
     
 }

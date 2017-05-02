@@ -154,7 +154,9 @@
                     .ForMember(x => x.WebLink, y => y.MapFrom(s => s.WebLink()))
                     .ForMember(x => x.Id, y => y.MapFrom(s => s.Id))
                     .ForMember(x => x.CreatedOn, y => y.MapFrom(s => s.CreatedOn))
-                    .ForMember(x => x.ModifiedOn, y => y.MapFrom(s => s.ModifiedOn));
+                    .ForMember(x => x.ModifiedOn, y => y.MapFrom(s => s.ModifiedOn))
+                    .ForMember(x => x.Categories, y => y.MapFrom(s => s.Categories.Select(c => c.Name)))
+                    .ForMember(x => x.Tags, y => y.MapFrom(s => s.Tags.Select(t => t.Name)));
             });
         }
 
