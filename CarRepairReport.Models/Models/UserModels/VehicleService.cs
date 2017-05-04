@@ -16,6 +16,7 @@
             this.CarParts = new HashSet<CarPart>();
             this.ServiceMembers = new HashSet<User>();
             this.ServiceRatings = new HashSet<ServiceRating>();
+            this.Promotions = new HashSet<Promotion>();
         }
         public int Id { get; set; }
 
@@ -44,6 +45,7 @@
         public virtual ICollection<User> ServiceMembers { get; set; }
         public virtual ICollection<CarPart> CarParts { get; set; }
         public virtual ICollection<ServiceRating> ServiceRatings { get; set; }
+        public virtual ICollection<Promotion> Promotions { get; set; }
 
         public int GetRating()
         {

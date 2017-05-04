@@ -29,7 +29,7 @@
 
         protected bool LogError(Exception ex)
         {
-            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = ex.Message, StackTrace = ex.StackTrace , CreatedOn = DateTime.UtcNow });
+            this.context.ErrorLogs.Add(new ErrorLog() { ErrorMessage = ex.Message , StackTrace = ex.StackTrace , CreatedOn = DateTime.UtcNow });
             this.context.Commit();
 
             return false;

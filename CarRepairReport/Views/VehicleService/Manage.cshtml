@@ -6,15 +6,35 @@
 
 <div class="row service-management-wrapper">
     <div class="col-sm-3 site-color wrapper">
+        
+        <div class="row button-control">
+            <div class="col-sm-12">
+                @Html.ActionLink(LR("Back To Service", Model.LanguageCode).ToString(), "VehicleService", new {serviceId = Model.Id})
+            </div>
+        </div>
+
+        <br />
+        <br />
+
         <div class="row button-control">
             <div id="invite-member" class="col-sm-12">
                 Members
             </div>
         </div>
-        
+
+        <br/>
+
         <div class="row button-control">
             <div id="confirm-serviced-parts" class="col-sm-12">
                 Confirm serviced parts
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row button-control">
+            <div id="vs-create-promotion" class="col-sm-12">
+                @LR("Create Promotion", Model.LanguageCode)
             </div>
         </div>
 
@@ -29,8 +49,11 @@
     var resultContainerId = '#control-result';
 
     var inviteUrl = '@Url.Action("Members", new { serviceId = Model.Id})';
+
     var confirmServicedPartsUrl = '@Url.Action("ConfirmServicedParts", "VehicleService", new { serviceId = Model.Id})';
-    
+
+    var createPromotion = '@Url.Action("CreatePromotion", "Commercial", new { serviceId = Model.Id})';
+
     $('#invite-member') .click(function() {
         $(resultContainerId).load(inviteUrl);
     });
@@ -38,6 +61,11 @@
     $('#confirm-serviced-parts').click(function() {
         $(resultContainerId).load(confirmServicedPartsUrl);
     });
+
+    $('#vs-create-promotion').click(function () {
+        $(resultContainerId).load(createPromotion);
+    });
+
 
 </script>
 

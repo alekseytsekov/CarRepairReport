@@ -2,6 +2,7 @@
 
 namespace CarRepairReport.Areas.Forum.Controllers
 {
+    using System.Web;
     using System.Web.Mvc;
     using CarRepairReport.Areas.Forum.Managers;
     using CarRepairReport.Controllers;
@@ -22,7 +23,7 @@ namespace CarRepairReport.Areas.Forum.Controllers
         public ActionResult Index()
         {
             var vm = new ForumVm();
-            vm.LanguageCode = "bg";
+            vm.LanguageCode = this.CurrentLanguageCode;
 
             return this.View(vm);
         }
@@ -41,8 +42,8 @@ namespace CarRepairReport.Areas.Forum.Controllers
         
         public ActionResult Posts()
         {
-            PostWrapperVm vm = this.forumManager.GetPosts(this.HttpContext.Session);
-            
+            PostWrapperVm vm = this.forumManager.GetPosts(this.HttpContext.Session, this.CurrentLanguageCode);
+            vm.LanguageCode = this.CurrentLanguageCode;
             return this.PartialView(vm);
         }
 
@@ -50,7 +51,7 @@ namespace CarRepairReport.Areas.Forum.Controllers
         [Route("post/{title}")]
         public ActionResult Post(string title)
         {
-            ViewPostVm vm = this.forumManager.GetPost(title);
+            ViewPostVm vm = this.forumManager.GetPost(title, this.CurrentLanguageCode);
 
             if (vm == null)
             {
@@ -58,17 +59,20 @@ namespace CarRepairReport.Areas.Forum.Controllers
                 return this.View("_Custom400BadRequestError");
             }
 
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
         [HttpGet]
         [Authorize]
-        //[Route("Create")]
         public ActionResult CreatePost()
         {
             var vm = new CreatePostVm();
 
             vm.Categories = this.forumManager.GetCategories(this.CurrentLanguageCode);
+
+            vm.LanguageCode = this.CurrentLanguageCode;
 
             return this.View(vm);
         }
@@ -76,7 +80,6 @@ namespace CarRepairReport.Areas.Forum.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        //[Route("Save")]
         public ActionResult CreatePost(CreatePostBm bm)
         {
             if (!this.ModelState.IsValid)
@@ -115,6 +118,8 @@ namespace CarRepairReport.Areas.Forum.Controllers
                 this.Response.StatusCode = 400;
                 return this.View("_Custom400BadRequestError");
             }
+
+            vm.LanguageCode = this.CurrentLanguageCode;
 
             return this.PartialView("PostChildren", vm);
         }
@@ -172,6 +177,11 @@ namespace CarRepairReport.Areas.Forum.Controllers
                 return this.View("_Custom404FileNotFound");
             }
 
+            if (bm.Category == "clear")
+            {
+                bm.Category = null;
+            }
+
             this.forumManager.SetFilter(this.HttpContext.Session, bm);
 
             return this.RedirectToAction("Index");
@@ -205,6 +215,19 @@ namespace CarRepairReport.Areas.Forum.Controllers
             }
 
             this.forumManager.SetPage(page);
+
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult GoToPage(int toPage)
+        {
+            if (toPage < 1)
+            {
+                this.Response.StatusCode = 404;
+                return this.View("_Custom404FileNotFound");
+            }
+
+            this.forumManager.SetToPage(--toPage);
 
             return this.RedirectToAction("Index");
         }

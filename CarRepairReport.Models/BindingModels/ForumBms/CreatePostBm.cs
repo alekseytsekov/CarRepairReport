@@ -5,8 +5,10 @@
 
     public class CreatePostBm
     {
-        [Required]
+        
+        [RegularExpression("^[a-zA-Z0-9?\\s,]+$", ErrorMessage = "Invalid Title!")]
         [MinLength(3), MaxLength(100)]
+        [Required]
         public string Title { get; set; }
 
         [Required]

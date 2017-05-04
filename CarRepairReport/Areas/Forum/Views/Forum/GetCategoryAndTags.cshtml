@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.ForumVm.CategoryTagVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.ForumVm.CategoryTagVm
 
 @{
 
@@ -6,12 +7,19 @@
 
 <div class="row crr-box">
     <div class="col col-sm-12">
+        
+        <div class="row">
+            <div class="col col-sm-12 small-width">
+                @Html.ActionLink(LR("all", Model.LanguageCode).ToString().ToCapital(), "FilterByCategory", new { filter = "0" })
+            </div>
+        </div>
+        <br />
 
         @foreach (var cat in Model.Categories)
         {
             <div class="row">
                 <div class="col col-sm-12 small-width">
-                    @Html.ActionLink(cat.Name, "FilterByCategory", new {filter = cat.Id})
+                    @Html.ActionLink(cat.Name.ToCapital(), "FilterByCategory", new {filter = cat.Id})
                 </div>
             </div>
             <br/>

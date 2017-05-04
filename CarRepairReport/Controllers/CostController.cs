@@ -60,7 +60,7 @@
                     result.ErrorMessage = this.GetMessage(newInvestment.Name, isInvestAdded);
                 }
             }
-            else if((string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0) || (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price <= 0) || (string.IsNullOrWhiteSpace(bm.Name) && bm.Price <= 0))
+            else if((string.IsNullOrWhiteSpace(bm.Name) && bm.Price > 0) || (!string.IsNullOrWhiteSpace(bm.Name) && bm.Price <= 0) || (string.IsNullOrWhiteSpace(bm.Name) && bm.Price < 0))
             {
                 result.HasError = true;
                 result.HasInvest = false;
@@ -106,7 +106,7 @@
                     return new JsonResult() {Data = result};
                 }
             }
-            else if ((string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0) || (!string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice <= 0) || (string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice <= 0))
+            else if ((string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice > 0) || (!string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice <= 0) || (string.IsNullOrWhiteSpace(bm.PartName) && bm.PartPrice < 0))
             {
                 result.NewPartMessage = string.Format("New Part contain invalid data!\r\nPart name: {0}\r\nPart Price: {1}", bm.PartName, bm.PartPrice);
             }

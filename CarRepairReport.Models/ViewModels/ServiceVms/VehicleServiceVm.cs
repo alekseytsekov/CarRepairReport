@@ -34,6 +34,8 @@
 
         public int Rating { get; set; }
 
+        public string PromotionContent { get; set; }
+
         public ICollection<BasicCarPartVm> CarParts { get; set; }
     }
 }

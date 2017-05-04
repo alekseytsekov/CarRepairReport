@@ -102,10 +102,17 @@
 
             </div>
             
+
             @if (Model.Children != null && Model.Children.Any())
             {
-                <div class="post-children">
-                    @Html.Action("PostChildren", new { bm = Model })
+                <div class="row">
+                    <div class="col col-sm-11 col-sm-offset-1">
+
+                        <div class="post-children">
+                            @Html.Action("PostChildren", new { bm = Model })
+                        </div>
+
+                    </div>
                 </div>
             }
 

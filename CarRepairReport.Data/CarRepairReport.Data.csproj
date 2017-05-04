@@ -204,6 +204,18 @@
     <Compile Include="Migrations\201705022019245_AddTypeToLanguageResource.Designer.cs">
       <DependentUpon>201705022019245_AddTypeToLanguageResource.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041652277_AddPromotionModel.cs" />
+    <Compile Include="Migrations\201705041652277_AddPromotionModel.Designer.cs">
+      <DependentUpon>201705041652277_AddPromotionModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041659041_AddFKPromotionVService.cs" />
+    <Compile Include="Migrations\201705041659041_AddFKPromotionVService.Designer.cs">
+      <DependentUpon>201705041659041_AddFKPromotionVService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705041845446_AddIsActiveToPromotion.cs" />
+    <Compile Include="Migrations\201705041845446_AddIsActiveToPromotion.Designer.cs">
+      <DependentUpon>201705041845446_AddIsActiveToPromotion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -322,6 +334,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705022019245_AddTypeToLanguageResource.resx">
       <DependentUpon>201705022019245_AddTypeToLanguageResource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041652277_AddPromotionModel.resx">
+      <DependentUpon>201705041652277_AddPromotionModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041659041_AddFKPromotionVService.resx">
+      <DependentUpon>201705041659041_AddFKPromotionVService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041845446_AddIsActiveToPromotion.resx">
+      <DependentUpon>201705041845446_AddIsActiveToPromotion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

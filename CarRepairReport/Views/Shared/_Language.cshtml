@@ -21,10 +21,10 @@
 
 <div id="nav-lang-menu" class="navbar-collapse collapse pull-right">
     <ul class="nav navbar-nav">
-        <li>@Html.ActionLink("EN", "Set", "Language", new { langValue = "en", returnUrl = this.Request.RawUrl }, null)</li>
+        <li>@Html.ActionLink("EN", "Set", "Language", new {area = "", langValue = "en", returnUrl = this.Request.RawUrl }, null)</li>
         <li>@Html.ActionLink("|","")</li>
-        <li>@Html.ActionLink("БГ", "Set", "Language", new { langValue = "bg", returnUrl = this.Request.RawUrl }, null)</li>
+        <li>@Html.ActionLink("БГ", "Set", "Language", new { area = "", langValue = "bg", returnUrl = this.Request.RawUrl }, null)</li>
         <li>@Html.ActionLink("|", "")</li>
-        <li>@Html.ActionLink("РУ", "Set", "Language", new { langValue = "ru", returnUrl = this.Request.RawUrl }, null)</li>
+        <li>@Html.ActionLink("РУ", "Set", "Language", new { area = "", langValue = "ru", returnUrl = this.Request.RawUrl }, null)</li>
     </ul>
 </div>

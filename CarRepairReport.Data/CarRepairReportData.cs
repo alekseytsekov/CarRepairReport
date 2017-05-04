@@ -40,6 +40,7 @@
         private IBaseEntityRepository<Post> posts;
         private IBaseEntityRepository<Tag> tags;
         private IBaseEntityRepository<Category> categories;
+        private IBaseEntityRepository<Promotion> promotions;
 
         //public CarRepairReportData() : this(ApplicationDbContext.Create())
         //{
@@ -166,6 +167,11 @@
         public IBaseEntityRepository<Category> Categories
         {
             get { return this.categories ?? (this.categories = new BaseEntityRepository<Category>(this.context.Categories)); }
+        }
+
+        public IBaseEntityRepository<Promotion> Promotions
+        {
+            get { return this.promotions ?? (this.promotions = new BaseEntityRepository<Promotion>(this.context.Promotions)); }
         }
 
         public ApplicationDbContext Context { get { return this.context; } }

@@ -1,0 +1,54 @@
+﻿@model CarRepairReport.Models.ViewModels.ServiceVms.MembersWrapperVm
+
+@{
+    
+}
+
+<br />
+<br />
+<br />
+
+<div class="row">
+    
+    <div class="col col-sm-11 col-sm-offset-1">
+        
+        <table class="table table-striped table-hover">
+
+            <tr>
+
+                <th>@LR("Full Name", Model.LanguageCode)</th>
+                <th> @LR("Email", Model.LanguageCode)</th>
+                <th>@LR("Owner", Model.LanguageCode) </th>
+                <th></th>
+
+            </tr>
+
+            @foreach (var member in Model.Members)
+            {
+                <tr>
+                    <th>@member.FullName</th>
+                    <th>@member.Email</th>
+                    <th>@(member.IsOwner ? LR("Yes", Model.LanguageCode) : LR("No", Model.LanguageCode)) </th>
+                    <th id="@member.Id"> <p onclick="removeVSMember('@member.Id')" class="btn btn-danger">@LR("Remove", Model.LanguageCode)</p></th>
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    function removeVSMember(elementId) {
+
+        console.log(elementId);
+
+        confirm('@LR("Are You Sure?", Model.LanguageCode)' + '->' + elementId);
+
+    }
+
+</script>
+

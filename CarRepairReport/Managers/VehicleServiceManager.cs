@@ -15,6 +15,7 @@
     using CarRepairReport.Models.Models.UserModels;
     using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Models.ViewModels.ServiceVms;
+    using CarRepairReport.Models.ViewModels.UserVms;
     using CarRepairReport.Services.Interfaces;
 
     public class VehicleServiceManager : IVehicleServiceManager
@@ -216,6 +217,34 @@
             var comments = Mapper.Map<IEnumerable<ServiceRating>, IEnumerable<VehicleServiceCommentVm>>(ratings);
 
             return comments;
+        }
+
+        public MembersWrapperVm GetMembers(int serviceId, string getAppUserId)
+        {
+            var vehicleServiceEntity = this.vehicleService.GetVehiceService(serviceId);
+
+            if (vehicleServiceEntity == null)
+            {
+                return null;
+            }
+
+            var members = vehicleServiceEntity.ServiceMembers;
+
+            var owner = members.FirstOrDefault(x => x.IsVehicleServiceOwner);
+
+            if (owner == null || owner.ApplicationUserId != getAppUserId)
+            {
+                return null;
+            }
+            
+            var vms = Mapper.Map<IEnumerable<User>, IEnumerable<UserAsMemberVm>>(members);
+
+            var vm = new MembersWrapperVm();
+
+            vm.Members = vms.OrderByDescending(x => x.IsOwner)
+                            .ThenBy(x => x.FullName);
+
+            return vm;
         }
     }
 }

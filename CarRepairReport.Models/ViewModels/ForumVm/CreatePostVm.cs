@@ -10,6 +10,7 @@
             this.Categories = new HashSet<string>();
         }
 
+        [RegularExpression("^[a-zA-Z0-9?\\s,]+$", ErrorMessage = "Invalid Title!")]
         [Required]
         [MinLength(3), MaxLength(100)]
         public string Title { get; set; }

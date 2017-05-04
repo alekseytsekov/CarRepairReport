@@ -21,6 +21,7 @@
         public static string LanguageResourcesCacheCollection = "languageResourcesCrr";
         public static string CurrentForumPage = "currentForumPage";
         public static string ForumFilter = "currentForumFilter";
+        public static string MaxForumPage = "maxForumPage";
 
         public static string DateFormat = "dd-MMM-yy HH:mm";
 

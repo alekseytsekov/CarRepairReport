@@ -11,8 +11,9 @@
     using CarRepairReport.Models.Dtos;
     using CarRepairReport.Models.ViewModels.CarVms;
     using CarRepairReport.Models.ViewModels.ServiceVms;
+    using CarRepairReport.Models.ViewModels.UserVms;
 
-    
+
     public class VehicleServiceController : BaseController
     {
         private IVehicleServiceManager vehicleServiceManager;
@@ -83,7 +84,7 @@
 
             return this.PartialView(vm);
         }
-
+        
         [HttpPost]
         [Authorize]
         //[Authorize(Roles = "service-member,service-owner")]
@@ -205,6 +206,28 @@
             var vms = this.vehicleServiceManager.GetTopServicesShortInfo(int.MaxValue).OrderBy(x => x.Name);
 
             return this.View(vms);
+        }
+
+        [HttpGet, Route("GetMembers"), ChildActionOnly, Authorize]
+        public ActionResult GetMembers(int serviceId)
+        {
+            if (serviceId < 0)
+            {
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
+            }
+
+            MembersWrapperVm vm = this.vehicleServiceManager.GetMembers(serviceId, this.GetAppUserId);
+
+            if (vm == null)
+            {
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
+            }
+
+            vm.LanguageCode = this.CurrentLanguageCode;
+
+            return this.PartialView(vm);
         }
     }
 }

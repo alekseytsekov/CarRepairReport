@@ -20,6 +20,12 @@
 
             bool isSuccess = this.languageManager.SetLangCookie(langValue, userId, this.HttpContext);
 
+            if (!isSuccess)
+            {
+                this.Response.StatusCode = 500;
+                return this.View("_Custom500InternalServerError");
+            }
+
             this.SetCulture(langValue);
 
             return this.Redirect(returnUrl);

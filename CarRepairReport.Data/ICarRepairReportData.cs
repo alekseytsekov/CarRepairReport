@@ -37,6 +37,7 @@
         IBaseEntityRepository<Post> Posts { get; }
         IBaseEntityRepository<Tag> Tags { get; }
         IBaseEntityRepository<Category> Categories { get; }
+        IBaseEntityRepository<Promotion> Promotions { get; }
 
         ApplicationDbContext Context { get; }
     }

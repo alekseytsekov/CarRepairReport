@@ -10,6 +10,7 @@
     int ba = 0;
 }
 
+
 <div class="service-wrapper">
 
     @if (Model.HasUserManagementRights)
@@ -104,8 +105,11 @@
         </div>
         <div class="col col-sm-9">
             <div class="row service-promotions">
-                <div class="col-sm-12">
-                    promotions ...
+                <div class="col-sm-12 preview-promotion-content">
+                    
+                    @Html.Raw(Model.PromotionContent)
+
+                    @*@Html.TextAreaFor(x => x.PromotionContent, new {id = "preview-promotion-content"})*@
                 </div>
             </div>
 

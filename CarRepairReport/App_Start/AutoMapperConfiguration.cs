@@ -64,7 +64,8 @@
                     .ForMember(x => x.WorkingTime, y => y.MapFrom(s => s.WorkingTime))
                     .ForMember(x => x.Rating, y => y.MapFrom(s => s.GetRating()))
                     .ForMember(x => x.CarParts, y => y.MapFrom(s => s.CarParts.Where(x => x.IsApprovedByVehicleService && x.IsSeenByVehicleService && !x.IsDeleted)))
-                    .ForMember(x => x.LogoUrl, y => y.MapFrom(s => s.LogoUrl));
+                    .ForMember(x => x.LogoUrl, y => y.MapFrom(s => s.LogoUrl))
+                    .ForMember(x => x.PromotionContent, y => y.MapFrom(s => s.Promotions.FirstOrDefault(x => x.IsActive).Content));
 
                 map.CreateMap<MembershipInvitation, MembershipInvitationVm>()
                     .ForMember(x => x.Name, y => y.MapFrom(s => s.VehicleServiceName))
@@ -158,6 +159,12 @@
                     .ForMember(x => x.ModifiedOn, y => y.MapFrom(s => s.ModifiedOn))
                     .ForMember(x => x.Categories, y => y.MapFrom(s => s.Categories.Select(c => c.Name)))
                     .ForMember(x => x.Tags, y => y.MapFrom(s => s.Tags.Select(t => t.Name)));
+
+                map.CreateMap<User, UserAsMemberVm>()
+                    .ForMember(x => x.Id, y => y.MapFrom(s => s.Id))
+                    .ForMember(x => x.FullName, y => y.MapFrom(s => s.FirstName + " " + s.LastName))
+                    .ForMember(x => x.Email, y => y.MapFrom(s => s.ApplicationUser.Email))
+                    .ForMember(x => x.IsOwner, y => y.MapFrom(s => s.IsVehicleServiceOwner));
             });
         }
 

@@ -7,13 +7,11 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Posts</h2>
-
 @if (Model.Posts == null || !Model.Posts.Any())
 {
     <div class="row">
         <div class="col col-sm-12">
-            @LR("There are still no posts", Model.LanguageCode)
+            <h3>@LR("There are still no posts!", Model.LanguageCode)</h3>
         </div>
     </div>
 }
@@ -80,8 +78,8 @@
 
                 <div class="col col-sm-4 text-right">
                     @*@Html.ActionLink(LR("Button", Model.LanguageCode).ToString(), "Posts", new {title = "alabala"}, new {@class ="btn btn-success"})*@
-                    <a href="forum/post/@post.WebLink" class="btn btn-default">@LR("Button", Model.LanguageCode).ToString()</a>
-
+                    <a href="/forum/post/@post.WebLink" class="btn btn-default">@LR("Button", Model.LanguageCode).ToString()</a>
+                    
                     @*@Ajax.ActionLink("ajax link","post",new {title = post.WebLink }, new AjaxOptions() {HttpMethod = "POST",InsertionMode = InsertionMode.Replace, UpdateTargetId = "forum-posts-wrapper" },new {@class =""})*@
                 </div>
 
@@ -91,8 +89,10 @@
     </div>
 }
 
+
+
 <div class="row">
-    <div class="col col-sm-6 text-right">
+    <div class="col col-sm-5 text-right">
 
         @using (Html.BeginForm("Paging", "Forum", FormMethod.Get))
         {
@@ -101,7 +101,16 @@
         }
     </div>
     
-    <div class="col col-sm-6">
+    <div class="col col-sm-2 text-center">
+
+        @using (Html.BeginForm("GoToPage", "Forum", FormMethod.Get))
+        {
+            <input class="forum-page-input" type="number" name="toPage" value="" />
+            <input type="submit" value="Go!" />
+        }
+    </div>
+
+    <div class="col col-sm-5">
 
         @using (Html.BeginForm("Paging", "Forum", FormMethod.Get))
         {
@@ -111,6 +120,8 @@
     </div>
 
 </div>
+
+<br/>
 
 <div class="row">
     
@@ -125,7 +136,7 @@
             }
             else
             {
-                @Html.ActionLink(page.ToString(), "GoToPage", "Forum", new { toPage = page }, null)
+                @Html.ActionLink(page.ToString(), "GoToPage", "Forum", new { toPage = page }, new {@class = "page-num" })
             }
             
         }

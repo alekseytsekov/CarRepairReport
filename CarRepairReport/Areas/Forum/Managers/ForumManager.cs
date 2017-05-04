@@ -1,10 +1,12 @@
 ﻿namespace CarRepairReport.Areas.Forum.Managers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web;
     using AutoMapper;
+    using CarRepairReport.Extensions.HtmlHelpers;
     using CarRepairReport.Globals;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels.ForumBms;
@@ -42,10 +44,10 @@
             
         }
 
-        public PostWrapperVm GetPosts(HttpSessionStateBase session)
+        public PostWrapperVm GetPosts(HttpSessionStateBase session, string languageCode)
         {
             IQueryable<Post> entityPosts = null;
-
+            
             var vm = new PostWrapperVm();
             
             var filter = session[CRRConfig.ForumFilter] as ForumFilterBm;
@@ -55,10 +57,11 @@
 
             if (int.TryParse(sessionPage.ToString(), out currentPage))
             {
-                //currentPage++;
+                
             }
 
             var resultLength = 0;
+            var maxPage = 0;
 
             if (filter == null || 
                 (string.IsNullOrWhiteSpace(filter.Title) && string.IsNullOrWhiteSpace(filter.Content) &&
@@ -68,18 +71,32 @@
                 resultLength = this.forumService.GetPosts()
                     .Count(x => x.IsQuestion && !x.IsDeleted);
 
+                maxPage = this.CalculateMaxPage(resultLength);
+
+                if (currentPage >= maxPage)
+                {
+                    --currentPage;
+                    session[CRRConfig.CurrentForumPage] = currentPage;
+                }
+
                 var entityPostsConnectionIsClose = this.forumService.GetPosts()
                     .Where(x => x.IsQuestion && !x.IsDeleted)
                     .OrderByDescending(x => x.CreatedOn)
                     .Skip(currentPage * CRRConfig.NumberOfForumPostsPerPage)
                     .Take(CRRConfig.NumberOfForumPostsPerPage).ToArray();
 
-                var mvss = Mapper.Map<IEnumerable<Post>, IEnumerable<PostVm>>(entityPostsConnectionIsClose);
+                var mvss = Mapper.Map<IEnumerable<Post>, IEnumerable<PostVm>>(entityPostsConnectionIsClose).ToList();
+
+                for (int i = 0; i < mvss.Count; i++)
+                {
+                    mvss[i].Categories = this.SystemNameToCurrentLanguage(mvss[i].Categories, languageCode);
+                    
+                }
                 
                 vm.Posts = mvss;
-                vm.Page = currentPage;
+                vm.Page = currentPage + 1;
 
-                vm.Pages = Enumerable.Range(1, (resultLength + CRRConfig.NumberOfForumPostsPerPage - 1) / CRRConfig.NumberOfForumPostsPerPage).ToArray();
+                vm.Pages = this.FillPages(maxPage);
                 
 
                 return vm;
@@ -168,29 +185,74 @@
             if (takeOnlyOriginals.Count == 0)
             {
                 vm.Posts = new List<PostVm>();
+                vm.Page = 1;
+                vm.Pages = new[] {1};
+                session[CRRConfig.CurrentForumPage] = 0;
                 return vm;
             }
 
             resultLength = takeOnlyOriginals.Count;
 
+            maxPage = this.CalculateMaxPage(resultLength);
+
+            //session[CRRConfig.MaxForumPage] = maxPage;
+
+            if (currentPage >= maxPage)
+            {
+                --currentPage;
+                session[CRRConfig.CurrentForumPage] = currentPage;
+            }
+
             var filtered = Mapper.Map<IEnumerable<Post>, IEnumerable<PostVm>>(takeOnlyOriginals);
 
-            var result = filtered.OrderByDescending(x => x.CreatedOn).Skip(currentPage).Take(CRRConfig.NumberOfForumPostsPerPage).ToList();
+            var result = filtered.OrderByDescending(x => x.CreatedOn).Skip(currentPage * CRRConfig.NumberOfForumPostsPerPage).Take(CRRConfig.NumberOfForumPostsPerPage).ToList();
             
             if (!result.Any())
             {
-                vm.Page = 0;
+                vm.Page = 1;
                 session[CRRConfig.CurrentForumPage] = 0;
             }
             else
             {
-                vm.Page = currentPage;
+                vm.Page = currentPage + 1;
+            }
+            
+            for (int i = 0; i < result.Count; i++)
+            {
+                result[i].Categories = this.SystemNameToCurrentLanguage(result[i].Categories, languageCode);
             }
 
             vm.Posts = result;
-            vm.Pages = Enumerable.Range(1, (resultLength + CRRConfig.NumberOfForumPostsPerPage - 1) / CRRConfig.NumberOfForumPostsPerPage).ToArray();
+
+            vm.Pages = this.FillPages(maxPage);
 
             return vm;
+        }
+        
+        private ICollection<string> SystemNameToCurrentLanguage(ICollection<string> categories, string languageCode)
+        {
+            var resources = this.cacheManager.GetLanguageResources(languageCode);
+
+            ICollection<string> result = new List<string>();
+
+            foreach (var category in categories)
+            {
+                var langResource = resources.FirstOrDefault(x => x.Key == category);
+                var convertedString = langResource == null ? category : langResource.Value;
+                result.Add(convertedString);
+            }
+
+            return result;
+        }
+
+        private int CalculateMaxPage(int result)
+        {
+            return (result + CRRConfig.NumberOfForumPostsPerPage - 1) / CRRConfig.NumberOfForumPostsPerPage;
+        }
+
+        private int[] FillPages(int maxPage)
+        {
+            return Enumerable.Range(1, maxPage).ToArray();
         }
 
         public string[] GetCategorySystemNameByString(IEnumerable<string> input)
@@ -201,11 +263,11 @@
 
             foreach (var name in input)
             {
-                var langResource = langResources.FirstOrDefault(x => x.Value == name);
+                var langResource = langResources.FirstOrDefault(x => x.Value == name || x.Key == name);
 
                 if (langResource != null)
                 {
-                    result.Add(langResource.Value);
+                    result.Add(langResource.Key);
                 }
             }
 
@@ -214,6 +276,11 @@
 
         public string GetCategorySystemNameById(int id)
         {
+            if (id == 0)
+            {
+                return "clear";
+            }
+
             var categoty = this.forumService.GetCategories().FirstOrDefault(x => x.Id == id && !x.IsDeleted);
 
             if (categoty == null)
@@ -245,6 +312,16 @@
             {
                 HttpContext.Current.Session[CRRConfig.CurrentForumPage] = 0;
             }
+        }
+
+        public void SetToPage(int page)
+        {
+            if (page < 0)
+            {
+                page = 0;
+            }
+
+            HttpContext.Current.Session[CRRConfig.CurrentForumPage] = page;
         }
 
         public ICollection<string> GetCategories(string language)
@@ -354,7 +431,7 @@
             return true;
         }
 
-        public ViewPostVm GetPost(string title)
+        public ViewPostVm GetPost(string title, string languageCode)
         {
             var post = this.forumService.GetPostByTitle(title);
 
@@ -369,6 +446,8 @@
             {
                 child.CssStyleColor = "bg-custom-forum";
             }
+
+            vm.Categories = this.SystemNameToCurrentLanguage(vm.Categories.ToList(), languageCode);
             
             return vm;
 
@@ -414,6 +493,7 @@
                 Original = originalPost
             };
 
+            originalPost.ModifiedOn = answer.CreatedOn;
             postEntity.Children.Add(answer);
 
             bool isAdded = this.forumService.AddPost(answer);

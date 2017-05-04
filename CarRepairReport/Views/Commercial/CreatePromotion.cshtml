@@ -1,0 +1,73 @@
+﻿@model CarRepairReport.Models.ViewModels.Commons.PromotionVm
+
+@{
+    ViewBag.Title = "Create Promotion";
+}
+
+@*<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>*@
+
+<script src="~/Resources/tinymce/tinymce.min.js"></script>
+<script src="~/Resources/tinymce/jquery.tinymce.min.js"></script>
+<script type="text/javascript">
+    
+    tinymce.init({
+
+        selector: 'textarea#promotion-content',  // change this value according to your HTML
+        plugins: [
+          'advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker',
+          'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+          'save table contextmenu directionality emoticons template paste textcolor'
+        ],
+        toolbar: 'insertfile undo redo | styleselect  | fontselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | print preview fullpage | forecolor backcolor emoticons',
+        //a_plugin_option: true,
+        //a_configuration_option: 400,
+        fontsize_formats: "8pt 9pt 10pt 11pt 12pt 26pt 36pt",
+        theme: 'modern',
+        height: 300
+    });
+
+    function showSuccessError(result) {
+
+        if (result.IsSucceed) {
+            alert(result.Message);
+        } else {
+            alert("Error!!!\r\nMaybe content is null,empty or whitespace!");
+        }
+        
+    }
+
+    function showErrorMessage(result) {
+        alert(result.Message);
+    }
+
+</script>
+
+<div class="row">
+    <div class="col col-sm-9">
+        <h2>@LR("Create Promotion", Model.LanguageCode)</h2>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col col-sm-10">
+        
+        @using (Ajax.BeginForm("SavePromotion", "Commercial", new AjaxOptions() {HttpMethod = "POST", OnSuccess = "showSuccessError", OnFailure = "showErrorMessage"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Id)
+
+            @Html.TextAreaFor(x => x.Content, new {id = "promotion-content"})
+
+            <br />
+            <br />
+            <br/>
+
+            <input class="btn btn-default" type="submit" value="@LR("Create", Model.LanguageCode)"/>
+        }
+
+    </div>
+</div>
+

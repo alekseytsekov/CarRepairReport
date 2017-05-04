@@ -88,6 +88,8 @@ namespace CarRepairReport
             kernel.Bind<ICacheManager>().To<CacheManager>().InRequestScope();
             kernel.Bind<IForumManager>().To<ForumManager>().InRequestScope();
             kernel.Bind<IForumService>().To<ForumService>().InRequestScope();
+            kernel.Bind<ICommercialManager>().To<CommercialManager>().InRequestScope();
+            kernel.Bind<ICommercialService>().To<CommercialService>().InRequestScope();
         }
     }
 }

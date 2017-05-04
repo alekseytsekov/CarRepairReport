@@ -52,5 +52,6 @@
         public virtual IDbSet<Post> Posts { get; set; }
         public virtual IDbSet<Category> Categories { get; set; }
         public virtual IDbSet<Tag> Tags { get; set; }
+        public virtual IDbSet<Promotion> Promotions { get; set; }
     }
 }

@@ -17,5 +17,6 @@
         bool ProcessVote(AnswerBm bm, string appUserId);
         int GetRating(int serviceId);
         IEnumerable<VehicleServiceCommentVm> GetComments(int serviceId);
+        MembersWrapperVm GetMembers(int serviceId, string getAppUserId);
     }
 }

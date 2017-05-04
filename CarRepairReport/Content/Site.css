@@ -127,13 +127,22 @@ textarea {
 }
 
 .service-promotions {
-    min-height: 200px;
-    max-height: 200px;
+    overflow: auto;
+    min-height: 350px;
 }
 
 .service-comments {
     overflow-y: scroll;
     max-height: 380px;
+}
+
+.service-management-wrapper a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.preview-promotion-content {
+    padding: 8px;
 }
 
 
@@ -355,6 +364,25 @@ textarea {
 .content-min-height {
     min-height: 10rem;
 }
+
+.paging-current-page {
+    font-size: 2rem;
+    color: white;
+    background-color: black;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.page-num {
+    padding: 3px 5px;
+}
+
+.forum-page-input {
+    min-width: 3rem;
+    max-width: 35%;
+}
+
+
 
 
 
