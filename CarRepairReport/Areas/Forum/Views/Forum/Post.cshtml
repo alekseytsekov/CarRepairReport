@@ -70,37 +70,45 @@
                     </div>
                     
                     <br/>
-
-                    <div class="row">
-                        <div class="col col-sm-11 text-right">
-                            <span onclick="showAnswer('publish-@Model.Id')" class="btn btn-default">Answer</span>
+                    
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <div class="row">
+                            <div class="col col-sm-11 text-right">
+                                <span onclick="showAnswer('publish-@Model.Id')" class="btn btn-default">Answer</span>
+                            </div>
                         </div>
-                    </div>
+                    }
 
                 </div>
             </div>
             
-            <div class="row post-answer">
-                
-                <br />
-                <br />
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <div class="row post-answer">
 
-                <div id="publish-@Model.Id" class="col col-sm-10 col-sm-offset-1 content-min-height text-right" style="display: none;">
-                    @using (Html.BeginForm("SetAnswer","Forum", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
+                    <br />
+                    <br />
 
-                        @Html.HiddenFor(x => x.Id)
+                    <div id="publish-@Model.Id" class="col col-sm-10 col-sm-offset-1 content-min-height text-right" style="display: none;">
+                        @using (Html.BeginForm("SetAnswer", "Forum", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
 
-                        <textarea class="text-area-fixed border-radius" name="Content"></textarea>  
+                            @Html.HiddenFor(x => x.Id)
 
-                        <input class="btn btn-default" type="submit" value="@LR("Publish", Model.LanguageCode)"/>
-                    }
-                    
-                    <br/>
+                            <textarea class="text-area-fixed border-radius" name="Content"></textarea>
+
+                            <input class="btn btn-default" type="submit" value="@LR("Publish", Model.LanguageCode)" />
+                        }
+
+                        <br />
+                    </div>
+
                 </div>
+            }
 
-            </div>
+            
             
 
             @if (Model.Children != null && Model.Children.Any())

@@ -167,10 +167,6 @@
         [Route("RegisterCarService")]
         public ActionResult RegisterCarService()
         {
-            if (false)
-            {
-                // already is owner .. return error page
-            }
             var vm = new CreateCarServiceVm();
 
             var wd = new []
@@ -202,21 +198,24 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("RegisterCarService")]
         public ActionResult RegisterCarService(CreateCarServiceBm bm)
         {
             if (!this.ModelState.IsValid)
             {
-                // return error page
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
             }
+            
+            bm.ServerPath = this.Server.MapPath(CRRConfig.CarRepaitReportJson);
 
-            var appUserId = this.User.Identity.GetUserId();
-
-            var result = this.myUserManager.RegisterVehicleService(bm, appUserId);
+            var result = this.myUserManager.RegisterVehicleService(bm, this.GetAppUserId);
 
             if (result != null)
             {
-                // error page;
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
             }
 
             return this.RedirectToAction("UserProfile");

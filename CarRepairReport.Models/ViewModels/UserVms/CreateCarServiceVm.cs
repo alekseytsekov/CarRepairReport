@@ -1,9 +1,11 @@
 ﻿namespace CarRepairReport.Models.ViewModels.UserVms
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
+    using CarRepairReport.Models.BindingModels;
     using CarRepairReport.Models.Dtos;
 
-    public class CreateCarServiceVm : ViewBindingModel
+    public class CreateCarServiceVm : ViewBindingModel, IImageUploader
     {
         [Required]
         [MinLength(2), MaxLength(100)]
@@ -36,7 +38,10 @@
         [Required]
         [MinLength(2), MaxLength(2100)]
         public string Description { get; set; }
-        
+
+        public HttpPostedFileBase Image { get; set; }
+        public string ServerPath { get; set; }
+
         public CheckBoxDto[] WorkingDays { get; set; }
 
         public CheckBoxDto[] NonWorkingDays { get; set; }

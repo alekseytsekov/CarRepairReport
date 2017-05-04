@@ -1,9 +1,10 @@
 ﻿namespace CarRepairReport.Models.BindingModels
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
     using CarRepairReport.Models.Dtos;
 
-    public class CreateCarServiceBm
+    public class CreateCarServiceBm : IImageUploader
     {
         [Required]
         [MinLength(2), MaxLength(100)]
@@ -35,6 +36,8 @@
 
         public CheckBoxDto[] WorkingDays { get; set; }
 
-        //public byte[] Logo { get; set; }
+        public HttpPostedFileBase Image { get; set; }
+
+        public string ServerPath { get; set; }
     }
 }

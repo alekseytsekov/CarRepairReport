@@ -4,14 +4,14 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>@LR("Edit", Model.LanguageCode)</h2>
 
 @using (Html.BeginForm("Edit","User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>EditUserVm</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -47,7 +47,7 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "col-md-2" })
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="Image" />
             </div>

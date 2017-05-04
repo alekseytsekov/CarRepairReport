@@ -25,6 +25,7 @@
         
         [HttpGet]
         [Route("service/{id}")]
+        [OutputCache(Duration = 60 * 20)]
         public ActionResult VehicleService(int id)
         {
             VehicleServiceVm vm = this.vehicleServiceManager.GetVm(id, this.GetAppUserId);

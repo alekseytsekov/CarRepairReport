@@ -5,7 +5,7 @@
     using CarRepairReport.Models.Attributes;
 
 
-    public class EditUserBm : ViewBindingModel
+    public class EditUserBm : ViewBindingModel, IImageUploader
     {
         [Required]
         [MinLength(1)]

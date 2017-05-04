@@ -59,37 +59,40 @@
             </div>
 
             <br />
-
-            <div class="row">
-                <div class="col col-sm-11 text-right">
-                    <span onclick="showAnswer('publish-@child.Id')" class="btn btn-default">Answer</span>
-                </div>
-            </div>
             
-            <div class="row post-answer">
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <div class="row">
+                    <div class="col col-sm-11 text-right">
+                        <span onclick="showAnswer('publish-@child.Id')" class="btn btn-default">Answer</span>
+                    </div>
+                </div>
 
-                <br />
-                <br />
-
-                <div id="publish-@child.Id" class="col col-sm-10 col-sm-offset-1 content-min-height text-right @child.CssStyleColor" style="display: none;">
-                    @using (Html.BeginForm("SetAnswer", "Forum", new {area="forum"}, FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <input type="number" value='@child.Id' name="id" hidden="true" />
-
-                        <textarea class="text-area-fixed border-radius" name="Content"></textarea>
-
-                        <input class="btn btn-default" type="submit" value="@LR("Publish", Model.LanguageCode)" />
-
-                        @*@Html.HiddenFor(x => x.Id)*@
-                    }
+                <div class="row post-answer">
 
                     <br />
-                </div>
+                    <br />
 
-            </div>
-            
+                    <div id="publish-@child.Id" class="col col-sm-10 col-sm-offset-1 content-min-height text-right @child.CssStyleColor" style="display: none;">
+                        @using (Html.BeginForm("SetAnswer", "Forum", new { area = "forum" }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="number" value='@child.Id' name="id" hidden="true" />
+
+                            <textarea class="text-area-fixed border-radius" name="Content"></textarea>
+
+                            <input class="btn btn-default" type="submit" value="@LR("Publish", Model.LanguageCode)" />
+
+                            @*@Html.HiddenFor(x => x.Id)*@
+                        }
+
+                        <br />
+                    </div>
+
+                </div>
+            }
+
             @if (child.Id > 0)
             {
 

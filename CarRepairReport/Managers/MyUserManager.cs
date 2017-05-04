@@ -171,7 +171,7 @@
             {
                 return new ResultDto("Already exists service with that name!");
             }
-
+            
             var address = this.addressService.GenerateAddress(bm.Country, bm.City, string.Empty, bm.StreetName, appUserId, true, AddressType.Work);
 
             var workingDays = string.Empty;
@@ -203,6 +203,13 @@
                 WorkingDays = workingDays,
                 NonWorkingDays = nonWorkingDays
             };
+
+            if (this.CanUploadImage(bm.Image))
+            {
+                var newImgUrl = this.GetDownloadbleLink(bm.Image, bm.ServerPath);
+
+                vehicleService.LogoUrl = newImgUrl;
+            }
 
             var user = this.userService.GetUserByAppId(appUserId);
 

@@ -81,6 +81,7 @@
     <Compile Include="BindingModels\ForumBms\ForumFilterBm.cs" />
     <Compile Include="BindingModels\ForumBms\PostAnswerBm.cs" />
     <Compile Include="BindingModels\GarageBms\GarageBm.cs" />
+    <Compile Include="BindingModels\IImageUploader.cs" />
     <Compile Include="BindingModels\InvestPartBm.cs" />
     <Compile Include="BindingModels\UserProfileBm.cs" />
     <Compile Include="BindingModels\VehicleServiceBms\InviteMemberBm.cs" />
