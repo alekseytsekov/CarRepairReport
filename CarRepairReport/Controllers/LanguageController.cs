@@ -35,18 +35,32 @@
         {
             var langValue = string.Empty;
 
+            //switch (lang)
+            //{
+            //    case "en":
+            //        langValue = "en-EN";
+            //        break;
+            //    case "bg":
+            //        langValue = "bg-BG";
+            //        break;
+            //    case "ru":
+            //        langValue = "ru-RU";
+            //        break;
+            //    default:return;
+            //}
+
             switch (lang)
             {
                 case "en":
-                    langValue = "en-EN";
+                    langValue = "en";
                     break;
                 case "bg":
-                    langValue = "bg-BG";
+                    langValue = "bg";
                     break;
                 case "ru":
-                    langValue = "ru-RU";
+                    langValue = "ru";
                     break;
-                default:return;
+                default: return;
             }
 
             CultureInfo ci = new CultureInfo(langValue);
