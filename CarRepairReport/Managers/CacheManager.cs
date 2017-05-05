@@ -69,6 +69,8 @@
             var resources =
                 HttpContext.Current.Cache[CRRConfig.LanguageResourcesCacheCollection] as IEnumerable<LanguageDto>;
 
+            this.LoadLanguageResources();
+
             if (resources == null)
             {
                 this.LoadLanguageResources();
