@@ -156,8 +156,8 @@ namespace CarRepairReport.Areas.Forum.Controllers
 
             if (vm == null)
             {
-                this.Response.StatusCode = 500;
-                return this.View("_Custom500InternalServerError");
+                //this.Response.StatusCode = 500;
+                //return this.View("_Custom500InternalServerError");
             }
 
             vm.LanguageCode = this.CurrentLanguageCode;
