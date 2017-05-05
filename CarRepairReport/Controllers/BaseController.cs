@@ -20,7 +20,7 @@
 
         protected string CurrentLanguageCode
         {
-            get { return this.languageManager.GetCurrentLang(this.HttpContext).TwoLetterCode; }
+            get { return this.languageManager.GetCurrentLang(this.HttpContext)?.TwoLetterCode; }
         }
 
         protected string GetAppUserId

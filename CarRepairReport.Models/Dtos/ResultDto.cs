@@ -8,8 +8,8 @@
             this.IsSucceed = isSucced;
         }
 
-        public bool IsSucceed { get; }
+        public bool IsSucceed { get; set;}
 
-        public string Message { get; }
+        public string Message { get; set; }
     }
 }
