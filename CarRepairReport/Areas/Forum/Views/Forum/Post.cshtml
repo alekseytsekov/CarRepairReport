@@ -1,12 +1,25 @@
 ﻿@using CarRepairReport.Extensions
+@using CarRepairReport.Extensions.HtmlHelpers
 @using CarRepairReport.Globals
 @model CarRepairReport.Models.ViewModels.ForumVm.ViewPostVm
 
 @{
     ViewBag.Title = "Post";
     //Layout = "~/Areas/Forum/Views/Forum/Index.cshtml";
-    
+
+    var cookie = this.Request.Cookies["CRRLang"];
+    var langCode = "en";
+
+    if (cookie != null)
+    {
+        langCode = cookie.Value;
+    }
+
+    var currentLang = Html.LangValue("system.common.currentlanguage", langCode).ToString();
+
 }
+
+
 
 <div class="row">
     
@@ -59,7 +72,13 @@
                     
                     <div class="row">
                         <div class="col col-sm-11 col-sm-offset-0">
-                            @string.Join(", ", Model.Categories)
+                            
+                            @foreach (var cat in Model.Categories)
+                            {
+                                <span>@LR(cat, langCode).ToString().ToCapital() </span>
+                            }
+
+                            @*@string.Join(", ", Model.Categories)*@
                         </div>
                     </div>
                     
