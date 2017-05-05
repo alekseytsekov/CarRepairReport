@@ -2,12 +2,14 @@
 
 namespace CarRepairReport.Areas.Forum.Controllers
 {
+    using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
     using CarRepairReport.Areas.Forum.Managers;
     using CarRepairReport.Controllers;
     using CarRepairReport.Managers.Interfaces;
     using CarRepairReport.Models.BindingModels.ForumBms;
+    using CarRepairReport.Models.ViewModels.Commons;
     using CarRepairReport.Models.ViewModels.ForumVm;
 
     [RouteArea("Forum")]
@@ -156,6 +158,9 @@ namespace CarRepairReport.Areas.Forum.Controllers
 
             if (vm == null)
             {
+                vm = new CategoryTagVm();
+                vm.Categories = new List<CategoryVm>();
+                vm.Tags = new List<TagVm>();
                 //this.Response.StatusCode = 500;
                 //return this.View("_Custom500InternalServerError");
             }
