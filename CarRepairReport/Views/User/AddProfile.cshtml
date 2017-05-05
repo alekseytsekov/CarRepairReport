@@ -1,18 +1,18 @@
-﻿@using CarRepairReport.Extensions.HtmlHelpers
+﻿@using CarRepairReport.Extensions
+@using CarRepairReport.Extensions.HtmlHelpers
 @model CarRepairReport.Models.ViewModels.UserVms.UserProfileVm
 
 @{
     ViewBag.Title = "AddProfile";
 }
 
-<h2>AddProfile</h2>
+<h2>Add Profile</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UserProfileVm</h4>
         <hr />
         @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
         @{
@@ -20,7 +20,8 @@
             int b = 0;
         }
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.user.firstname", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 
 
@@ -34,7 +35,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.user.lastname", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id ="model-lastName", onkeyup = "onInputChange(this)" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
@@ -45,10 +47,11 @@
             </div>
         </div>
         
-        <div>@Html.LangValue("system.common.unrequired", Model.LanguageCode)</div>
+        
         
         <div class="form-group">
-            @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.city", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-City", onchange = "onInputChange(this)" } })
                 @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
@@ -60,7 +63,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.country", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CountryName, new { htmlAttributes = new { @class = "form-control date-picker", id = "model-country", onchange = "onInputChange(this)" } })
                 @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "text-danger" })
@@ -81,7 +85,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="@LR("system.common.create", Model.LanguageCode).ToString().ToCapital()" class="btn btn-default" />
             </div>
         </div>
     </div>

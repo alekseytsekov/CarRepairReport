@@ -1,16 +1,28 @@
 ﻿@using CarRepairReport.Extensions
+@using CarRepairReport.Extensions.HtmlHelpers
 @model IEnumerable<CarRepairReport.Models.ViewModels.ServiceVms.ShortServiceVm>
 
 @{
     ViewBag.Title = "_TopVehicleServices";
+
+    var cookie = this.Request.Cookies["CRRLang"];
+    var langCode = "en";
+
+    if (cookie != null)
+    {
+        langCode = cookie.Value;
+    }
+
+    var currentLang = Html.LangValue("system.common.currentlanguage", langCode).ToString();
+
 }
 
 <table class="tab-content table table-hover table-striped">
     <thead>
         <tr class="table-header">
             <th class="col-sm-5"></th>
-            <th class="col-sm-2">Repaired Parts</th>
-            <th class="col-sm-2">Rating</th>
+            <th class="col-sm-2">@LR("system.common.repairedparts", langCode).ToString().ToCapital()</th>
+            <th class="col-sm-2">@LR("system.common.rating", langCode).ToString().ToCapital()</th>
         </tr>
     </thead>
     <tbody>

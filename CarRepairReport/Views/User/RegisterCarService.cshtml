@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.UserVms.CreateCarServiceVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.UserVms.CreateCarServiceVm
 
 @{
     ViewBag.Title = "RegisterCarService";
@@ -20,7 +21,8 @@
 
         <div class="col col-sm-6">
             <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">@LR("system.common.partname", Model.LanguageCode).ToString().ToCapital()</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -28,7 +30,8 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">@LR("system.common.street", Model.LanguageCode).ToString().ToCapital()</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
@@ -36,7 +39,8 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">@LR("system.common.city", Model.LanguageCode).ToString().ToCapital()</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
@@ -44,7 +48,8 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">@LR("system.common.country", Model.LanguageCode).ToString().ToCapital()</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
@@ -52,7 +57,8 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                @*@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <label class="control-label col-md-2">@LR("system.common.description", Model.LanguageCode).ToString().ToCapital()</label>
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Description, 10, 50, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -64,7 +70,7 @@
             
             <div class="row">
                 <div class="col col-sm-4">
-                    <h4><label>@LR("Select Logo:", Model.LanguageCode)</label></h4>
+                    <h4><label>@LR("system.common.image", Model.LanguageCode)</label></h4>
                 </div>
                 <div class="col col-sm-8">
                     <input class="btn btn-default" type="file" name="Image" />
@@ -73,7 +79,7 @@
 
             <div class="form-group">
                 <div class="col-md-10">
-                    <h4><label>@LR("Working Time:", Model.LanguageCode)</label></h4>
+                    <h4><label>@LR("system.common.workingtime", Model.LanguageCode)</label></h4>
                 </div>
             </div>
 
@@ -140,7 +146,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Profile", "UserProfile")
+    @Html.ActionLink(@LR("system.common.backtoprofile", Model.LanguageCode).ToString().ToCapital(), "UserProfile")
 </div>
 
 

@@ -1,10 +1,11 @@
-﻿@model CarRepairReport.Models.ViewModels.ForumVm.CreatePostVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.ForumVm.CreatePostVm
 
 @{
     ViewBag.Title = LR("system.common.createpost", Model.LanguageCode);
 }
 
-<h2>Create Post</h2>
+<h2>@LR("system.common.createpost", Model.LanguageCode).ToString().ToCapital()</h2>
 <hr />
 
 
@@ -19,7 +20,7 @@
 
         <div class="row form-horizontal">
             <div class="col col-sm-2">
-                <label class="pull-right control-label">@LR("Select Category", "en")</label>
+                <label class="pull-right control-label">@LR("system.common.selecetacar", Model.LanguageCode).ToString().ToCapital()</label>
             </div>
 
             <div class="col col-sm-9">
@@ -33,7 +34,7 @@
         <div class="row form-horizontal form-group custom-text-area">
 
             <div class="col col-sm-2">
-                <label class="pull-right control-label">@LR("Tags", "en")</label>
+                <label class="pull-right control-label">@LR("system.forum.tags", Model.LanguageCode).ToString().ToCapital()</label>
             </div>
 
             <div class="col col-sm-9">
@@ -46,7 +47,7 @@
         <div class="row form-horizontal form-group custom-text-area">
 
             <div class="col col-sm-2">
-                <label class="pull-right control-label">@LR("Title", "en")</label>
+                <label class="pull-right control-label">@LR("system.forum.title", Model.LanguageCode).ToString().ToCapital()</label>
             </div>
 
             <div class="col col-sm-9">
@@ -60,7 +61,7 @@
         <div class="row form-horizontal custom-text-area">
 
             <div class="col col-sm-2">
-                <label class="pull-right control-label">@LR("Content", "en")</label>
+                <label class="pull-right control-label">@LR("system.forum.content", Model.LanguageCode).ToString().ToCapital()</label>
             </div>
 
             <div class="col col-sm-9">
@@ -82,5 +83,5 @@
 
 
 <div>
-    @Html.ActionLink(LR("Back to Posts", Model.LanguageCode).ToString(), "Index")
+    @Html.ActionLink(LR("system.common.backtoprofile", Model.LanguageCode).ToString().ToCapital(), "Index")
 </div>

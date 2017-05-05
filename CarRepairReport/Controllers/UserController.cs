@@ -42,6 +42,8 @@
                 return this.RedirectToAction("AddProfile");
             }
 
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
@@ -56,10 +58,13 @@
             }
             this.TempData["errorModel"] = null;
 
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddProfile(UserProfileBm bm)
         {
             if (!this.ModelState.IsValid)
@@ -121,6 +126,8 @@
                 }
             }
 
+            vm.LanguageCode  = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
@@ -149,6 +156,9 @@
                 //this.TempData["errorModel"] = errorModel;
 
                 //return this.RedirectToAction("Edit");
+
+                this.Response.StatusCode = 400;
+                return this.View("_Custom400BadRequestError");
             }
             
             bm.ServerPath = this.Server.MapPath(CRRConfig.CarRepaitReportJson);
@@ -157,7 +167,8 @@
 
             if (!result)
             {
-                //error
+                this.Response.StatusCode = 500;
+                return this.View("_Custom500InternalServerError");
             }
             
             return this.RedirectToAction("UserProfile");
@@ -194,6 +205,8 @@
             vm.WorkingDays = wd;
             //vm.NonWorkingDays = hd;
 
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
@@ -214,8 +227,8 @@
 
             if (result != null)
             {
-                this.Response.StatusCode = 400;
-                return this.View("_Custom400BadRequestError");
+                this.Response.StatusCode = 500;
+                return this.View("_Custom500InternalServerError");
             }
 
             return this.RedirectToAction("UserProfile");

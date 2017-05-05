@@ -41,6 +41,8 @@
                 vm.GearBoxValues.Add((int)gearboxType, gearboxType.ToString());
             }
 
+
+            vm.LanguageCode = this.CurrentLanguageCode;
             return View(vm);
         }
 
@@ -92,6 +94,7 @@
                 // error page
             }
 
+            vm.LanguageCode = this.CurrentLanguageCode;
             return this.View(vm);
         }
 
@@ -119,7 +122,9 @@
         //[OutputCache(Duration = 60 * 5)]
         public ActionResult GetLastServicedParts()
         {
-            var vms = this.carManager.LastServicedCarParts();
+            var vms = this.carManager.LastServicedCarParts(this.CurrentLanguageCode);
+
+            
 
             return this.PartialView(vms);
         }

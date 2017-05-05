@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class ManufacturerVm
+    public class ManufacturerVm : ViewBindingModel
     {
         public string Name { get; set; }
 

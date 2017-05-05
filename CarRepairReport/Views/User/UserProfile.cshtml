@@ -22,11 +22,11 @@
         @if (!Model.IsVehicleServiceOwner)
         {
             <div class="col col-sm-2 col-sm-offset-5">
-                @Html.ActionLink(Html.LangValue("Register Car Service", Model.LanguageCode).ToString(), "RegisterCarService", null, new { @class = "btn btn-info" })
+                @Html.ActionLink(Html.LangValue("system.vs.registercarservice", Model.LanguageCode).ToString(), "RegisterCarService", null, new { @class = "btn btn-info" })
             </div>
         }
         
-        @LR("system.common.currentLanguage", "bg")
+        
     </div> 
     <hr />
 
@@ -72,7 +72,7 @@
             Cars
         </div>
         <div class="col col-sm-3">
-            @Html.ActionLink("Add", "Add", "Car", null, new { @class = "btn btn-info" })
+            @Html.ActionLink(LR("system.common.add", Model.LanguageCode).ToString().ToCapital(), "Add", "Car", null, new { @class = "btn btn-info" })
         </div>
     </div>
     <hr />
@@ -101,7 +101,7 @@
                     <td>@car.NumberOfServices</td>
                     <td>@car.NumberOfCosts</td>
                     <td>@car.TotalSpent.ToString("F2")</td>
-                    <td>@Html.ActionLink("Remove","Remove","Car",new {carId = car.Id}, htmlAttributes:new {@class ="btn btn-danger"})</td> @*| @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>*@
+                    <td>@Html.ActionLink(LR("system.common.remove", Model.LanguageCode).ToString().ToCapital(), "Remove","Car",new {carId = car.Id}, htmlAttributes:new {@class ="btn btn-danger"})</td> @*| @Html.ActionLink("Edit", "Remove", "Car", null, htmlAttributes: new { @class = "btn btn-warning" })</td>*@
                 </tr>
             }
             </tbody>

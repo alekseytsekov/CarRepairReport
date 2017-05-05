@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.UserVms.EditUserVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.UserVms.EditUserVm
 
 @{
     ViewBag.Title = "Edit";
@@ -15,7 +16,8 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.user.firstname", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
@@ -23,7 +25,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.user.lastname", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
@@ -31,7 +34,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CityName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.city", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CityName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CityName, "", new { @class = "text-danger" })
@@ -39,7 +43,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.CountryName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.country", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CountryName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CountryName, "", new { @class = "text-danger" })
@@ -47,7 +52,8 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.image", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 <input type="file" name="Image" />
             </div>
@@ -55,12 +61,12 @@
         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="@LR("system.common.save", Model.LanguageCode).ToString().ToCapital()" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to Profile", "UserProfile")
+    @Html.ActionLink(LR("system.common.backtoprofile", Model.LanguageCode).ToString().ToCapital(), "UserProfile")
 </div>

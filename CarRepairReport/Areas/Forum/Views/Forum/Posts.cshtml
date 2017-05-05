@@ -12,7 +12,7 @@
 {
     <div class="row">
         <div class="col col-sm-12">
-            <h3>@LR("There are still no posts!", Model.LanguageCode)</h3>
+            <h3>@LR("system.message.noposts", Model.LanguageCode)</h3>
         </div>
     </div>
 }
@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="col col-sm-2 text-right text-muted">
-                    @LR("Categories: ", Model.LanguageCode)
+                    @LR("system.common.category", Model.LanguageCode).ToString().ToCapital()
                 </div>
 
                 <div class="col col-sm-10">
@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="col col-sm-2 text-right text-muted">
-                    @LR("Tags: ", Model.LanguageCode)
+                    @LR("system.forum.tags", Model.LanguageCode)
                 </div>
 
                 <div class="col col-sm-10">
@@ -61,7 +61,7 @@
 
             <div class="row">
                 <div class="col col-sm-2 text-muted text-right">
-                    @LR("created on: ", Model.LanguageCode)
+                    @LR("system.common.createdon", Model.LanguageCode)
                 </div>
 
                 <div class="col col-sm-2">
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="col col-sm-2 text-muted text-right font-sm">
-                    @LR("modified on: ", Model.LanguageCode)
+                    @LR("system.common.modifiedon", Model.LanguageCode)
                 </div>
 
                 <div class="col col-sm-2">
@@ -78,9 +78,9 @@
                 </div>
                 
                 <div class="col col-sm-4 text-right">
-                    @*@Html.ActionLink(LR("Button", Model.LanguageCode).ToString(), "Posts", new {title = "alabala"}, new {@class ="btn btn-success"})*@
-                    <a href="/forum/post/@post.WebLink" class="btn btn-default">@LR("Read", Model.LanguageCode).ToString()</a>
                     
+                    <a href="/forum/post/@post.WebLink" class="btn btn-default">@LR("system.forum.read", Model.LanguageCode).ToString()</a>
+
                     @*@Ajax.ActionLink("ajax link","post",new {title = post.WebLink }, new AjaxOptions() {HttpMethod = "POST",InsertionMode = InsertionMode.Replace, UpdateTargetId = "forum-posts-wrapper" },new {@class =""})*@
                 </div>
 

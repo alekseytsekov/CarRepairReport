@@ -24,7 +24,7 @@
                             HttpContext.Current.Cache[CRRConfig.LanguageResourcesCacheCollection] as
                                 IEnumerable<LanguageDto>;
                         
-                        var value = resources.FirstOrDefault(x => x.Key.ToLower() == key.ToLower() && x.LanguageCode.ToLower() == langCode.ToLower());
+                        var value = resources.FirstOrDefault(x => x.Key.ToLower() == key.ToLower() && x.LanguageCode.ToLower() == langCode?.ToLower());
 
                         if (value == null)
                         {

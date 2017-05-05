@@ -24,6 +24,8 @@
             var vms =
                 this.manufacturerManager.GetTopManufacturersShortInfo(CRRConfig.NumberOfTopManufacturersInHomeView);
 
+            
+
             return this.PartialView("ManufacturersShortInfo", vms);
         }
 
@@ -45,7 +47,9 @@
                 this.Response.StatusCode = 404;
                 return this.View("_Custom404FileNotFound");
             }
-            
+
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
@@ -56,6 +60,8 @@
             var vms = this.manufacturerManager.GetTopManufacturersShortInfo(int.MaxValue)
                 .OrderBy(x => x.Name)
                 .ThenByDescending(x => x.NumberOfParts);
+
+            
 
             return this.View(vms);
         }

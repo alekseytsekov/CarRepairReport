@@ -104,6 +104,7 @@ namespace CarRepairReport.Areas.Forum.Controllers
         [ChildActionOnly]
         public ActionResult PostChildren(ViewPostVm bm)
         {
+            bm.LanguageCode = this.CurrentLanguageCode;
             return this.PartialView(bm);
         }
 

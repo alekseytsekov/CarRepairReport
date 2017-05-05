@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.CarVms.CreateCarVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.CarVms.CreateCarVm
 
 @{
     ViewBag.Title = "Add";
@@ -13,15 +14,18 @@
     <div class="form-horizontal">
         
         <div class="form-group">
-            @Html.LabelFor(model => model.Make, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+            <label class="control-label col-md-2">@LR("system.car.make", Model.LanguageCode).ToString().ToCapital()</label>
+            @*@Html.LabelFor(model => model.Make, htmlAttributes: new {@class = "control-label col-md-2"})*@
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Make, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Make, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.car.model", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Model, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
@@ -29,7 +33,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.VIN, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.car.vin", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.VIN, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.VIN, "", new { @class = "text-danger" })
@@ -37,7 +42,8 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.FirstRegistration, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.FirstRegistration, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.common.firstregistration", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FirstRegistration, new { htmlAttributes = new { @class = "form-control date-picker" } })
                 @Html.ValidationMessageFor(model => model.FirstRegistration, "", new { @class = "text-danger" })
@@ -45,7 +51,8 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.RunningDistanceKm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.RunningDistanceKm, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.car.mountedon.km", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RunningDistanceKm, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RunningDistanceKm, "", new { @class = "text-danger" })
@@ -53,7 +60,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RunningDistanceM, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.RunningDistanceM, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.car.mountedon.mi", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.RunningDistanceM, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RunningDistanceM, "", new { @class = "text-danger" })
@@ -61,7 +69,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(m => m.FuelType, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.engine.fueltype", Model.LanguageCode).ToString().ToCapital()</label>
             
             <div class="col-md-10">
                 
@@ -96,23 +105,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EngineSize, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.EngineSize, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.engine.enginesize", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EngineSize, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EngineSize, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        
         <div class="form-group">
-            @Html.LabelFor(model => model.EnginePowerKw, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EnginePowerKw, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EnginePowerKw, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EnginePowerHp, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.EnginePowerHp, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.engine.power.hp", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EnginePowerHp, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EnginePowerHp, "", new { @class = "text-danger" })
@@ -120,7 +123,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.GearBoxType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.EnginePowerKw, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.engine.power.kw", Model.LanguageCode).ToString().ToCapital()</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EnginePowerKw, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EnginePowerKw, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(m => m.GearBoxType, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR(Model.GearBoxType.ToString(), Model.LanguageCode).ToString().ToCapital()</label>
             
             <div class="col-md-10">
                 <div class="row">
@@ -150,7 +163,8 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfGears, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.NumberOfGears, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">@LR("system.gearbox.numberofgears", Model.LanguageCode).ToString().ToCapital()</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NumberOfGears, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NumberOfGears, "", new { @class = "text-danger" })
@@ -159,14 +173,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="@LR("system.common.create", Model.LanguageCode)" class="btn btn-default" />
             </div>
         </div>
     </div>
                     }
 
 <div>
-    @Html.ActionLink("Back to Profile", "UserProfile", "User")
+    @Html.ActionLink(LR("system.common.backtoprofile", Model.LanguageCode).ToString().ToCapital(), "UserProfile", "User")
 </div>
 
 <script type="text/javascript">

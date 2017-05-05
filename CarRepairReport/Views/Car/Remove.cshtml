@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.CarVms.SimpleCarVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.CarVms.SimpleCarVm
 
 @{
     ViewBag.Title = "Remove";
@@ -56,8 +57,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("No", "UserProfile", "User", null, new {@class =" btn btn-default"})
+            <input type="submit" value="@LR("system.common.remove", Model.LanguageCode)" class="btn btn-danger" /> |
+            @Html.ActionLink(LR("system.common.no", Model.LanguageCode).ToString().ToCapital(), "UserProfile", "User", null, new {@class =" btn btn-default"})
         </div>
     }
 </div>

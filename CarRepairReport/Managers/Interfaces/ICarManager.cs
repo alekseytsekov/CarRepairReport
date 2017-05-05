@@ -18,6 +18,6 @@
         bool AddReplacedPart(CreateCarPartVm carPart, int carId, string appUserId);
         Cost AddNewInvestment(CreateInvestmentVm newInvestment, int carId, string appUserId);
         FullCarVm GetFullCarInfo(int carId, string appUserId);
-        IEnumerable<ServiceInfoVm> LastServicedCarParts();
+        IEnumerable<ServiceInfoVm> LastServicedCarParts(string langCode);
     }
 }

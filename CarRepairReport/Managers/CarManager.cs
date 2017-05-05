@@ -374,7 +374,7 @@
             return hp;
         }
 
-        public IEnumerable<ServiceInfoVm> LastServicedCarParts()
+        public IEnumerable<ServiceInfoVm> LastServicedCarParts(string langCode)
         {
             var carParts = this.carService.LatestCarParts(CRRConfig.NumberOfLastAddedCarParts);
 
@@ -393,6 +393,7 @@
                 {
                     tempCollection[infoVm.ToString()].Count++;
                 }
+                infoVm.LanguageCode = langCode;
 
                 if (tempCollection.Count >= CRRConfig.ListOfServicedCarPartOnMainPage)
                 {

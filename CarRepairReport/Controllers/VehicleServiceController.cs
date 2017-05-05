@@ -25,7 +25,7 @@
         
         [HttpGet]
         [Route("service/{id}")]
-        [OutputCache(Duration = 60 * 20)]
+        //[OutputCache(Duration = 60 * 20)]
         public ActionResult VehicleService(int id)
         {
             VehicleServiceVm vm = this.vehicleServiceManager.GetVm(id, this.GetAppUserId);
@@ -36,6 +36,8 @@
             }
 
             vm.WorkingTime = string.Format(vm.WorkingTime, "From", "To");
+
+            vm.LanguageCode = this.CurrentLanguageCode;
 
             return this.View(vm);
         }
@@ -63,6 +65,8 @@
             var vm = new ManagementVehicleServiceVm();
             vm.Id = id;
 
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
 
@@ -82,6 +86,8 @@
         public ActionResult Members(int serviceId)
         {
             var vm = new InviteMemberVm() {Id = serviceId};
+
+            vm.LanguageCode = this.CurrentLanguageCode;
 
             return this.PartialView(vm);
         }

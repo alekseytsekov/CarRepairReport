@@ -11,22 +11,30 @@
         <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>*@
 
-<div class="commercial-banner">
-    <p></p>
 
-</div>
 
 <div class="container">
-    <div class="row">
+    
+    <div class="main-commercial-ad">
 
-        <div class="col-md-3 crr-box site-color">
+        <div class="row">
+            <div class="col col-sm-12">
+                <img src="http://commercial-vehicle-valeting.com/route/images/header_slides/2/1485171159.jpg" alt="Main Commercial Ad" />
+            </div>
+        </div>
 
-            @if (this.User.Identity.IsAuthenticated)
-            {
-                <div class="row">
-                    <div class="col col-xs-12 aside-home-left">
+    </div>
 
-                        @using (Ajax.BeginForm("Cost", "Cost", null,
+<div class="row">
+
+<div class="col-md-3 crr-box site-color">
+
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="col col-xs-12 aside-home-left">
+
+                @using (Ajax.BeginForm("Cost", "Cost", null,
                     new AjaxOptions()
                     {
                         HttpMethod = "POST",
@@ -34,198 +42,208 @@
                         OnSuccess = "resetInvestmentForm",
                         //OnComplete = "resetInvestmentForm",
                         OnFailure = "onError"
-                    }, new { id = "investment-form" }))
-                        {
-                            @Html.AntiForgeryToken()
+                    }, new {id = "investment-form"}))
+                {
+                    @Html.AntiForgeryToken()
 
-                            <div class="form-group">
-                                <div class="col-md-10 text-muted">
-                                    <div class="form-group flex">
-                                        <div class="col-md-11 margin-top">
-                                            <span>New Invest</span>
-                                        </div>
-                                        <div class="col-md-1 margin-top">
-                                            <button onclick="changeIcon('#plus-minus-invest')" type="button" data-toggle="collapse" data-target="#cost-form"><span id="plus-minus-invest" class="glyphicon glyphicon-plus"></span></button>
-                                        </div>
+                    <div class="form-group">
+                        <div class="col-md-10 text-muted">
+                            <div class="form-group flex">
+                                <div class="col-md-11 margin-top">
+                                    <span>New Invest</span>
+                                </div>
+                                <div class="col-md-1 margin-top">
+                                    <button onclick="changeIcon('#plus-minus-invest')" type="button" data-toggle="collapse" data-target="#cost-form"><span id="plus-minus-invest" class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cost-form" class="collapse">
+
+                        <div class="form-group margin-me">
+                            <div class="col-md-10">
+                                @Html.LabelFor(x => x.InvestPart.CarId)
+                                @Html.DropDownListFor(x => Model.InvestPart.CarId, Model.InvestPart.CarNames.Select(x => new SelectListItem() {Text = x.Value, Value = x.Key.ToString()}), new {@class = "limit-dropdown-width", id = "car-dropdown-home"})
+                                <br/>
+                                @Html.ValidationMessageFor(model => model.InvestPart.CarId, "", new {@class = "text-danger"})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.Name, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.left.aside.investmentname", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.Name, new {htmlAttributes = new {@class = "form-group"}})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.Price, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.price", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.Price, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
+                            </div>
+                        </div>
+
+                        <div class="form-group margin-top">
+                            <div class="col-md-10 text-muted">
+                                <div class="form-group">
+                                    <div class="col-md-11 hr margin-top">
+                                        @LR("system.left.aside.newpart", Model.LanguageCode).ToString().ToCapital()
                                     </div>
                                 </div>
                             </div>
-                            <div id="cost-form" class="collapse">
+                        </div>
 
-                                <div class="form-group margin-me">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.CarId)
-                                        @Html.DropDownListFor(x => Model.InvestPart.CarId, Model.InvestPart.CarNames.Select(x => new SelectListItem() { Text = x.Value, Value = x.Key.ToString() }), new { @class = "limit-dropdown-width", id = "car-dropdown-home" })
-                                        <br />
-                                        @Html.ValidationMessageFor(model => model.InvestPart.CarId, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.SerialNumber, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.serialnumber", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.SerialNumber, new {htmlAttributes = new {@class = "form-group"}})
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.PartName, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.partname", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.PartName, new {htmlAttributes = new {@class = "form-group"}})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.PartPrice, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.price", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.PartPrice, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.Quantity, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.quantity", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.Quantity, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.ManufacturerName, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.common.manufacturername", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.ManufacturerName, new {htmlAttributes = new {@class = "form-group"}})
+                            </div>
+                        </div>
+
+                        <div class="form-group margin-top">
+                            <div class="col-md-10 text-muted">
                                 <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.Name, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.Name, new { htmlAttributes = new { @class = "form-group" } })
+                                    <div class="col-md-11 hr margin-top">
+                                        @LR("system.left.aside.carrunningdistance", Model.LanguageCode).ToString().ToCapital()
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.Price, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.Price, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
-                                <div class="form-group margin-top">
-                                    <div class="col-md-10 text-muted">
-                                        <div class="form-group">
-                                            <div class="col-md-11 hr margin-top">
-                                                New Part
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.SerialNumber, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.SerialNumber, new { htmlAttributes = new { @class = "form-group" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.PartName, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.PartName, new { htmlAttributes = new { @class = "form-group" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.PartPrice, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.PartPrice, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.Quantity, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.Quantity, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.ManufacturerName, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.ManufacturerName, new { htmlAttributes = new { @class = "form-group" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group margin-top">
-                                    <div class="col-md-10 text-muted">
-                                        <div class="form-group">
-                                            <div class="col-md-11 hr margin-top">
-                                                Car Running Distance
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @*<div class="col-md-10">
+                        <div class="form-group">
+                            @*<div class="col-md-10">
                                             @Html.LabelFor(x => x.InvestPart.DistanceTraveled, htmlAttributes: new { @class = "form-group" })
                                             @Html.EditorFor(x => x.InvestPart.DistanceTraveled, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
                                         </div>*@
-                                </div>
-                                <div class="form-group">
+                        </div>
+                        <div class="form-group">
 
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.MountedOnKm, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.MountedOnKm, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.MountedOnMi, htmlAttributes: new { @class = "form-group" })
-                                        @Html.EditorFor(x => x.InvestPart.MountedOnMi, new { htmlAttributes = new { @class = "form-group", @data_val = "false" } })
-                                    </div>
-                                </div>
-
-                                <div class="form-group margin-top">
-                                    <div class="col-md-10 text-muted">
-                                        <div class="form-group">
-                                            <div class="col-md-11 hr margin-top">
-                                                Serviced By
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group margin-me">
-                                    <div class="col-md-10">
-                                        @Html.LabelFor(x => x.InvestPart.VehicleService)
-                                        @Html.DropDownListFor(x => Model.InvestPart.VehicleService, Model.InvestPart.VehicleServices.Select(x => new SelectListItem() { Text = x.ToCapital(), Value = x }), new { id = "service-dropdown-home" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group margin-me">
-                                    <div class="col-md-10">
-                                        <input type="submit" value="Add" class="btn btn-sm btn-default" />
-                                    </div>
-                                </div>
-
-                            </div>
-                        }
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="row crr-box bg-white">
-                    <div class="col col-sm-11 col-sm-offset-1 vertical-home-banner">
-                        <div class="row">
-                            <div class="col col-sm-12">
-                                <img src="http://zbrozracing.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/s/dsc_0060_6.jpg" alt="Commercial banner" />
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.MountedOnKm, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.car.mountedon.km", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.MountedOnKm, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
                             </div>
                         </div>
-                        
-                        <div class="row">
-                            <div class="col col-sm-12">
-                                <img src="http://s.hswstatic.com/gif/engine-brakes-1.jpg" alt="Commercial banner" />
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.MountedOnMi, htmlAttributes: new {@class = "form-group"})*@
+                                <label class="form-group">@LR("system.car.mountedon.mi", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.EditorFor(x => x.InvestPart.MountedOnMi, new {htmlAttributes = new {@class = "form-group", @data_val = "false"}})
                             </div>
                         </div>
+
+                        <div class="form-group margin-top">
+                            <div class="col-md-10 text-muted">
+                                <div class="form-group">
+                                    <div class="col-md-11 hr margin-top">
+                                        @LR("system.common.serviceby", Model.LanguageCode).ToString().ToCapital()
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group margin-me">
+                            <div class="col-md-10">
+                                @*@Html.LabelFor(x => x.InvestPart.VehicleService)*@
+                                <label>@LR("system.right.aside.carservices", Model.LanguageCode).ToString().ToCapital()</label>
+                                @Html.DropDownListFor(x => Model.InvestPart.VehicleService, Model.InvestPart.VehicleServices.Select(x => new SelectListItem() {Text = x.ToCapital(), Value = x}), new {id = "service-dropdown-home"})
+                            </div>
+                        </div>
+
+                        <div class="form-group margin-me">
+                            <div class="col-md-10">
+                                <input type="submit" value="@LR("system.common.add", Model.LanguageCode).ToString().ToCapital()" class="btn btn-sm btn-default"/>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row crr-box bg-white">
+            <div class="col col-sm-11 col-sm-offset-1 vertical-home-banner">
+                <div class="row">
+                    <div class="col col-sm-12">
+                        <img src="http://zbrozracing.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/s/dsc_0060_6.jpg" alt="Commercial banner"/>
                     </div>
                 </div>
-            }
 
-
-
-        </div>
-
-        <div class="col col-md-6">
-
-            @Html.Action("GetLastServicedParts", "Car")
-
-        </div>
-
-        <div class="col-md-3 site-color crr-box aside-home-right">
-            <div class="vehicle-services">
-
-                <div class="text-center">
-                    @Html.ActionLink("Car Services", "GetAllVehicleServiceShortInfo", "VehicleService")
+                <div class="row">
+                    <div class="col col-sm-12">
+                        <img src="http://s.hswstatic.com/gif/engine-brakes-1.jpg" alt="Commercial banner"/>
+                    </div>
                 </div>
-
-                @Html.Action("TopVehicleServices", "VehicleService")
-            </div>
-
-            <div class="manufacturers-short-info">
-                <div class="text-center">
-                    @Html.ActionLink("Manufacturers", "Manufacturers", "Manufacturer")
-                </div>
-
-                @Html.Action("GetTopManufacturers", "Manufacturer")
             </div>
         </div>
+    }
 
+
+
+</div>
+
+<div class="col col-md-6">
+
+    @Html.Action("GetLastServicedParts", "Car")
+
+</div>
+
+<div class="col-md-3 site-color crr-box aside-home-right">
+    <div class="vehicle-services">
+
+        <div class="text-center">
+            @Html.ActionLink(LR("system.right.aside.carservices", Model.LanguageCode).ToString().ToCapital(), "GetAllVehicleServiceShortInfo", "VehicleService")
+        </div>
+
+        @Html.Action("TopVehicleServices", "VehicleService")
     </div>
+
+    <div class="manufacturers-short-info">
+        <div class="text-center">
+            @Html.ActionLink(LR("system.common.manufacturername", Model.LanguageCode).ToString().ToCapital(), "Manufacturers", "Manufacturer")
+        </div>
+
+        @Html.Action("GetTopManufacturers", "Manufacturer")
+    </div>
+</div>
+
+</div>
 </div>
 
 <button id="modal-btn-trigger" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal-input-custom" style="display: none;">Open Modal</button>

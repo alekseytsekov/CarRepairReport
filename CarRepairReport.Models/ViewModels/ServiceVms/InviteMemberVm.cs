@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class InviteMemberVm
+    public class InviteMemberVm: ViewBindingModel
     {
         public int Id { get; set; }
 

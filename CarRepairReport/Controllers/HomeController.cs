@@ -27,6 +27,8 @@
             //vm.Invitations = this.GetInvitations();
             //vm.ShortServices = this.TakeVehicleServices();
             
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
         

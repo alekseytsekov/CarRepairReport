@@ -37,6 +37,8 @@ namespace CarRepairReport.Controllers
                 }
             }
             
+            vm.LanguageCode = this.CurrentLanguageCode;
+
             return this.View(vm);
         }
     }

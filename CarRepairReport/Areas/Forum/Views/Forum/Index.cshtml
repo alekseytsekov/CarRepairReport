@@ -1,4 +1,5 @@
-﻿@model CarRepairReport.Models.ViewModels.ForumVm.ForumVm
+﻿@using CarRepairReport.Extensions
+@model CarRepairReport.Models.ViewModels.ForumVm.ForumVm
 
 
 @{
@@ -16,23 +17,23 @@
     @using (Ajax.BeginForm("FilterPosts", "Forum", null, new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace,UpdateTargetId = "forum-posts-wrapper" },new {@class = "forum-filter-form"}))
     {
         <div class="col col-sm-2">
-            @Html.EditorFor(x => x.FilterVm.Title, new {htmlAttributes = new {@class = "form-control", placeholder= @LR("Title", Model.LanguageCode) } })
+            @Html.EditorFor(x => x.FilterVm.Title, new {htmlAttributes = new {@class = "form-control", placeholder= @LR("system.forum.title", Model.LanguageCode) } })
         </div>
 
         <div class="col col-sm-3">
-            @Html.EditorFor(x => x.FilterVm.Content, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Content", Model.LanguageCode) } })
+            @Html.EditorFor(x => x.FilterVm.Content, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("system.forum.content", Model.LanguageCode) } })
         </div>
 
         <div class="col col-sm-2">
-            @Html.EditorFor(x => x.FilterVm.Category, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Category", Model.LanguageCode) } })
+            @Html.EditorFor(x => x.FilterVm.Category, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("system.common.category", Model.LanguageCode) } })
         </div>
 
         <div class="col col-sm-3">
-            @Html.EditorFor(x => x.FilterVm.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("Tags", Model.LanguageCode) } })
+            @Html.EditorFor(x => x.FilterVm.Tags, new { htmlAttributes = new { @class = "form-control", placeholder = @LR("system.forum.tags", Model.LanguageCode) } })
         </div>
 
         <div class="col col-sm-2">
-            <input class="btn btn-default pull-right" type="submit" name="filter" value="@LR("Filter", Model.LanguageCode)" />
+            <input class="btn btn-default pull-right" type="submit" name="filter" value="@LR("system.common.filter", Model.LanguageCode).ToString().ToCapital()" />
         </div>
     }
 
@@ -54,7 +55,7 @@
                 {
                     <div class="row">
                         <div class="col col-sm-12">
-                            @Html.ActionLink(LR("Create", "bg").ToString(), "CreatePost", null, new {@class = "btn btn-default"})
+                            @Html.ActionLink(LR("system.common.create", Model.LanguageCode).ToString().ToCapital(), "CreatePost", null, new {@class = "btn btn-default"})
                         </div>
                     </div>
                 }

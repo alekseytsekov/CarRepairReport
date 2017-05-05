@@ -27,5 +27,5 @@
     </table>
 </div>
 <p>
-    @Html.ActionLink("Back", "Index","Home", null, new {@class = "btn btn-default"})
+    @Html.ActionLink(LR("system.common.backtoprofile", Model.LanguageCode).ToString().ToCapital(), "Index","Home", null, new {@class = "btn btn-default"})
 </p>
