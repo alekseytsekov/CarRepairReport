@@ -26,6 +26,11 @@
 
             var sysLang = this.GetLanguageByTwoLetterCode(twoLetterCode);
 
+            if (sysLang == null)
+            {
+                sysLang = new Language() {TwoLetterCode = "en", Name = "English", IsSystemLanguage = true, CreatedOn = DateTime.UtcNow};
+            }
+
             var userLang = user.UserSetting.Language;
 
             userLang.Name = sysLang.Name;
