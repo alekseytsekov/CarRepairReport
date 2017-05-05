@@ -71,6 +71,15 @@
                 resultLength = this.forumService.GetPosts()
                     .Count(x => x.IsQuestion && !x.IsDeleted);
 
+                if (resultLength < 1)
+                {
+                    vm.Posts = new List<PostVm>();
+                    vm.Page = 0;
+                    vm.Pages = this.FillPages(0);
+                    session[CRRConfig.CurrentForumPage] = 0;
+                    return vm;
+                }
+
                 maxPage = this.CalculateMaxPage(resultLength);
 
                 if (currentPage >= maxPage)
@@ -109,7 +118,16 @@
             var tempCollection = new HashSet<Post>();
 
             var vms = this.forumService.GetPosts().Where(x => !x.IsDeleted).ToArray();
-            
+
+            if (vms.Length < 1)
+            {
+                vm.Posts = new List<PostVm>();
+                vm.Page = 0;
+                vm.Pages = this.FillPages(0);
+                session[CRRConfig.CurrentForumPage] = 0;
+                return vm;
+            }
+
             if (!string.IsNullOrWhiteSpace(filter.Title))
             {
                 foreach (var postVm in vms)
