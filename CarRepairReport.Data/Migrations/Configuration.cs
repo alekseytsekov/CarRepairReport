@@ -15,8 +15,9 @@
     {
         public Configuration()
         {
+
             this.AutomaticMigrationsEnabled = false;
-            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationDataLossAllowed = false;
             this.ContextKey = "CarRepairReport.Data.ApplicationDbContext";
         }
 
@@ -89,7 +90,7 @@
                 context.SaveChanges();
             }
 
-            if (context.LanguageValues.Any())
+            if (!context.LanguageValues.Any())
             {
                 var resources = new List<string>()
                 {

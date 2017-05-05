@@ -7,5 +7,7 @@
         public string ErrorMessage { get; set; }
 
         public string StackTrace { get; set; }
+
+        public string UserId { get; set; }
     }
 }

@@ -216,6 +216,10 @@
     <Compile Include="Migrations\201705041845446_AddIsActiveToPromotion.Designer.cs">
       <DependentUpon>201705041845446_AddIsActiveToPromotion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705050518399_addPropToErrorLog.cs" />
+    <Compile Include="Migrations\201705050518399_addPropToErrorLog.Designer.cs">
+      <DependentUpon>201705050518399_addPropToErrorLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -343,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705041845446_AddIsActiveToPromotion.resx">
       <DependentUpon>201705041845446_AddIsActiveToPromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705050518399_addPropToErrorLog.resx">
+      <DependentUpon>201705050518399_addPropToErrorLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
