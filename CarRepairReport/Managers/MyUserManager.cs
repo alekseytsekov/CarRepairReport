@@ -345,6 +345,11 @@
 
         private bool CanUploadImage(HttpPostedFileBase image)
         {
+            if (image == null)
+            {
+                return false;
+            }
+
             var isNull = image != null;
             var sizeCheck = image.ContentLength <= CRRConfig.MaxImageSize;
             var fileType = image.ContentType.ToLower() == "image/jpg" || image.ContentType == "image/jpeg";
